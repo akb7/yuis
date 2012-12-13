@@ -1,0 +1,16 @@
+@namespace yui "http://akb7.jp/yuis/1.0";
+@namespace core "jp.akb7.yuis.core.*";
+
+.customizers{
+    c10:ClassReference("jp.akb7.yuis.customizer.ActionCustomizer");
+    c20:ClassReference("jp.akb7.yuis.customizer.BehaviorCustomizer");
+    c30:ClassReference("jp.akb7.yuis.customizer.HelperCustomizer");
+    c40:ClassReference("jp.akb7.yuis.customizer.EventHandlerCustomizer");
+}
+
+core|YuiFrameworkSettings {
+	namingConventionClass:ClassReference("jp.akb7.yuis.convention.NamingConvention");
+	frameworkBridgePlugin:ClassReference("jp.akb7.yuis.bridge.DefaultFrameworkBridgePlugin");
+	autoMonitoring:false;
+}
+

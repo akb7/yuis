@@ -1,0 +1,58 @@
+/*
+*****************************************************
+*
+*  Copyright 2012 AKABANA.  All Rights Reserved.
+*
+*****************************************************
+*  The contents of this file are subject to the Mozilla Public License
+*  Version 1.1 (the "License"); you may not use this file except in
+*  compliance with the License. You may obtain a copy of the License at
+*  http://www.mozilla.org/MPL/
+*
+*  Software distributed under the License is distributed on an "AS IS"
+*  basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+*  License for the specific language governing rights and limitations
+*  under the License.
+*
+*
+*  The Initial Developer of the Original Code is AKABANA.
+*  Portions created by AKABANA are Copyright (C) 2012 AKABANA
+*  All Rights Reserved.
+*
+*****************************************************/
+package jp.akb7.yuis.cmd
+{
+    import jp.akb7.yuis.core.reflection.FunctionInvoker;
+    
+    public final class WaitCommand extends AsyncCommand {
+        
+        private var _invoker:FunctionInvoker;
+        
+        private var _sleep:int;
+
+        public function get sleep():int{
+            return _sleep;
+        }
+
+        public function set sleep(value:int):void{
+            _sleep = value;
+        }
+        
+        public function WaitCommand(sleep:int=0){
+            super();
+            this._sleep = sleep;
+        }
+        
+        protected override function runAsync():void{
+            if( _invoker != null && _invoker.isStarted ){
+                return;
+            }
+            _invoker = new FunctionInvoker(doSleepEnd).invokeDelay(_sleep);
+        }
+        
+        private function doSleepEnd():void{
+            _invoker = null;
+            doneAsync();
+        }
+    }
+}
