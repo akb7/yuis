@@ -23,7 +23,7 @@
 package 
 {
     import flash.events.IEventDispatcher;
-    import jp.akb7.yuis.core.event.NotificationEvent;
+    import yuis.core.event.NotificationEvent;
 
     /**
      * 指定されたターゲットに対して通知を送ります。

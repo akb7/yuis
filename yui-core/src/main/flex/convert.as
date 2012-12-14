@@ -22,7 +22,7 @@
 *****************************************************/
 package
 {
-    import jp.akb7.yuis.core.data.Converter;
+    import yuis.core.data.Converter;
 
     public function convert(value:Object,toClass:Class):*{
         return Converter.getInstanceBy().convert(value,toClass);

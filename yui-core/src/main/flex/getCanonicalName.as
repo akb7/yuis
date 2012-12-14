@@ -22,7 +22,7 @@
 *****************************************************/
 package
 {
-    import jp.akb7.yuis.core.reflection.ClassRef;
+    import yuis.core.reflection.ClassRef;
 
     public function getCanonicalName(object:Object):String{
         return ClassRef.getCanonicalName(object);

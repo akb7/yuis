@@ -2,7 +2,7 @@
 <yui:YuiApplication
 	xmlns:fx="http://ns.adobe.com/mxml/2009" 
 	xmlns:s="library://ns.adobe.com/flex/spark"
-	xmlns:yui="http://akb7.jp/yuis/1.0"
+	xmlns:yui="library://akb7.jp/yuis/1.0"
 	rootViewClass="examples.yuis.helloworld.view.HelloWorldView"
 	>
 </yui:YuiApplication>

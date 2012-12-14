@@ -22,7 +22,7 @@
 *****************************************************/
 package
 {
-    import jp.akb7.yuis.core.reflection.ClassRef;
+    import yuis.core.reflection.ClassRef;
 
     public function findClass(className:String):Class{
         return ClassRef.classLoader.findClass(className);

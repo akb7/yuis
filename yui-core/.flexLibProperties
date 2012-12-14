@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
-  <includeClasses/>
+  <includeClasses>
+    <classEntry path="yuis.cmd.AsyncCommand"/>
+    <classEntry path="yuis.cmd.SequenceCommand"/>
+    <classEntry path="yuis.cmd.CallBackCommand"/>
+    <classEntry path="yuis.cmd.Command"/>
+    <classEntry path="yuis.cmd.core.IComplexCommand"/>
+    <classEntry path="yuis.cmd.core.impl.EventListener"/>
+    <classEntry path="yuis.cmd.events.CommandEvent"/>
+    <classEntry path="yuis.cmd.core.ICommand"/>
+    <classEntry path="yuis.cmd.core.impl.AbstractCommand"/>
+    <classEntry path="yuis.cmd.WaitCommand"/>
+    <classEntry path="yuis.cmd.core.impl.AbstractAsyncCommand"/>
+    <classEntry path="yuis.cmd.SwitchCommand"/>
+    <classEntry path="yuis.cmd.core.ISubCommand"/>
+    <classEntry path="yuis.cmd.core.impl.AbstractComplexCommand"/>
+    <classEntry path="yuis.cmd.core.impl.AbstractSubCommand"/>
+  </includeClasses>
   <includeResources/>
   <namespaceManifests/>
 </flexLibProperties>
