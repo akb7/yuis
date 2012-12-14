@@ -22,7 +22,6 @@
 *****************************************************/
 package yuis.framework.rule
 {
-    [ExcludeClass]
-    public interface IStateful {
+    public interface IStatefulObject {
     }
 }

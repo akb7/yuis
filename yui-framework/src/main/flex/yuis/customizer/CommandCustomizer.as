@@ -22,16 +22,14 @@
 *****************************************************/
 package yuis.customizer
 {
-    import __AS3__.vec.Vector;
-
     import mx.core.UIComponent;
+    
+    import yuis.Yuis;
+    import yuis.convention.NamingConvention;
     import yuis.core.reflection.ClassRef;
     import yuis.core.reflection.PropertyRef;
-    import yuis.Yuis;
-    import yuis.util.UIComponentUtil;
-    import yuis.logging.debug;
-    import yuis.convention.NamingConvention;
     import yuis.framework.InstanceCache;
+    import yuis.util.UIComponentUtil;
     
     [ExcludeClass]
     public final class CommandCustomizer extends AbstractComponentCustomizer {

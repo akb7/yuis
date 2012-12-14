@@ -22,15 +22,6 @@
 *****************************************************/
 package yuis.logging
 {
-    import flash.errors.IllegalOperationError;
-    import flash.utils.getDefinitionByName;
-    
-    import mx.core.ClassFactory;
-    import mx.core.IFactory;
-    
-    import yuis.core.ClassLoader;
-    import yuis.core.reflection.ClassRef;
-    import yuis.framework.YuiFrameworkController;
     import yuis.core.logging.ILogger;
     import yuis.core.logging.ILoggerFactory;
     

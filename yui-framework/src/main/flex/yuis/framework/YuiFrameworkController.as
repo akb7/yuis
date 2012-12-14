@@ -58,10 +58,6 @@ package yuis.framework
         import flash.events.UncaughtErrorEvent;
     }
 
-    
-    
-    
-    
     use namespace yui_internal;
     
     [ExcludeClass]
@@ -129,7 +125,7 @@ package yuis.framework
         public override function customizeView( container:DisplayObjectContainer ):void{
             var viewCustomizer_:IViewCustomizer;
             var view:UIComponent = container as UIComponent;
-            if( view == null && !isView(view) ){   
+            if( view == null ){   
                 return;
             }
             CONFIG::DEBUG{
@@ -161,9 +157,9 @@ package yuis.framework
         public override function uncustomizeView( container:DisplayObjectContainer ):void{
             var viewCustomizer_:IViewCustomizer;
             var view:UIComponent = container as UIComponent;
-            if( !isView(view) ){   
-                return;
-            }
+			if( view == null ){   
+				return;
+			}
             if( !view.initialized ){     
                 CONFIG::DEBUG {
                     _debug("ViewUncustomizeInitializeError",view);       
@@ -345,70 +341,6 @@ package yuis.framework
             callLater( processApplicationStart );
         }
         
-        protected override function getDefaultCustomizerClasses():Array{
-            const styleManager:IStyleManager2 = StyleManagerUtil.getStyleManager();
-            const customizersDef:CSSStyleDeclaration = styleManager.getStyleDeclaration(".customizers");
-            const defaultFactory:Function = customizersDef.defaultFactory;
-            
-            const result:Array = [];
-            const keys:Array = [];
-            
-            var customizers:Object = {};
-            var customizer:Class;
-            var numKeys:int;
-            
-            if (defaultFactory != null){
-                defaultFactory.prototype = {};
-                customizers = new defaultFactory();
-            }
-            
-            for( var key:String in customizers ){
-                keys.push(key);
-            }
-            keys.sort();
-            numKeys = keys.length;
-            for( var i:int = 0; i < numKeys; i++ ){
-                customizer = customizers[keys[i]] as Class;
-                result.push(customizer);
-            }
-            CONFIG::DEBUG{
-                _debug("CustomizerLoaded",result);
-            }
-            return result;
-        }
-        
-        protected override function doRegisterComponent( target:DisplayObject ):void{
-            const settings:YuiFrameworkSettings = Yuis.public::settings;
-            
-            var component:UIComponent = target as UIComponent;
-            if( component == null || !component.initialized ){
-                return;
-            }
-            if( isView(component) ){
-                customizeView(component);
-            } else {
-                if( settings.isAutoMonitoring ){
-                    customizeComponent(getDocumentOf(component),component);
-                }
-            }
-        }
-        
-        protected override function doUnregisterComponent(target:DisplayObject):void{
-            const settings:YuiFrameworkSettings = Yuis.public::settings;
-            
-            var component:UIComponent = target as UIComponent;
-            if( component == null || !component.initialized ){
-                return;
-            }
-            if( isView(component)){
-                uncustomizeView( component as DisplayObjectContainer);
-            } else {
-                if( settings.isAutoMonitoring ){
-                    uncustomizeComponent(getDocumentOf(component),component);
-                }
-            }
-        }
-        
         private function processApplicationRegisteration(component:DisplayObjectContainer):void{
             CONFIG::DEBUG{
                 _debug("ApplicationRegistered",component.toString());
@@ -480,31 +412,92 @@ package yuis.framework
         }
 
         private function processViewRegister( container:DisplayObjectContainer ):void{
-            if( isView(container)){
-                const namingConvention:NamingConvention = Yuis.public::namingConvention;
-                const componentId:String = namingConvention.getComponentName(container);
-                if( !ViewComponentRepository.hasComponent( componentId )){
-                    ViewComponentRepository.addComponent( container );
-                    CONFIG::DEBUG{
-                        _debug("ViewRegistered",container.toString());
-                    }
+            const namingConvention:NamingConvention = Yuis.public::namingConvention;
+            const componentId:String = namingConvention.getComponentName(container);
+            if( !ViewComponentRepository.hasComponent( componentId )){
+                ViewComponentRepository.addComponent( container );
+                CONFIG::DEBUG{
+                    _debug("ViewRegistered",container.toString());
                 }
             }
         }
         
         private function processViewUnregister( container:DisplayObjectContainer ):void{
-            if( isView(container)){
-                const namingConvention:NamingConvention = Yuis.public::namingConvention;
-                const componentId:String = namingConvention.getComponentName(container);
-                if( ViewComponentRepository.hasComponent( componentId )){
-                    ViewComponentRepository.removeComponent( container );
-                    CONFIG::DEBUG{
-                        _debug("ViewUnRegistered",container.toString());
-                    }
+            const namingConvention:NamingConvention = Yuis.public::namingConvention;
+            const componentId:String = namingConvention.getComponentName(container);
+            if( ViewComponentRepository.hasComponent( componentId )){
+                ViewComponentRepository.removeComponent( container );
+                CONFIG::DEBUG{
+                    _debug("ViewUnRegistered",container.toString());
                 }
             }
         }
-        
+		
+		
+		protected override function getDefaultCustomizerClasses():Array{
+			const styleManager:IStyleManager2 = StyleManagerUtil.getStyleManager();
+			const customizersDef:CSSStyleDeclaration = styleManager.getStyleDeclaration(".customizers");
+			const defaultFactory:Function = customizersDef.defaultFactory;
+			
+			const result:Array = [];
+			const keys:Array = [];
+			
+			var customizers:Object = {};
+			var customizer:Class;
+			var numKeys:int;
+			
+			if (defaultFactory != null){
+				defaultFactory.prototype = {};
+				customizers = new defaultFactory();
+			}
+			
+			for( var key:String in customizers ){
+				keys.push(key);
+			}
+			keys.sort();
+			numKeys = keys.length;
+			for( var i:int = 0; i < numKeys; i++ ){
+				customizer = customizers[keys[i]] as Class;
+				result.push(customizer);
+			}
+			CONFIG::DEBUG{
+				_debug("CustomizerLoaded",result);
+			}
+				return result;
+		}
+		
+		protected override function doRegisterComponent( target:DisplayObject ):void{
+			const settings:YuiFrameworkSettings = Yuis.public::settings;
+			
+			var component:UIComponent = target as UIComponent;
+			if( component == null || !component.initialized ){
+				return;
+			}
+			if( isView(component) ){
+				customizeView(component);
+			} else {
+				if( settings.isAutoMonitoring ){
+					customizeComponent(getDocumentOf(component),component);
+				}
+			}
+		}
+		
+		protected override function doUnregisterComponent(target:DisplayObject):void{
+			const settings:YuiFrameworkSettings = Yuis.public::settings;
+			
+			var component:UIComponent = target as UIComponent;
+			if( component == null || !component.initialized ){
+				return;
+			}
+			if( isView(component)){
+				uncustomizeView( component as DisplayObjectContainer);
+			} else {
+				if( settings.isAutoMonitoring ){
+					uncustomizeComponent(getDocumentOf(component),component);
+				}
+			}
+		}
+		
         yui_internal function systemManagerMonitoringStart( root:DisplayObject ):void{
             CONFIG::DEBUG{
                 Logging.initialize();

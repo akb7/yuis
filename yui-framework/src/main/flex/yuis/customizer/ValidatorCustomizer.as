@@ -22,19 +22,17 @@
 *****************************************************/
 package yuis.customizer
 {
-    import __AS3__.vec.Vector;
-
     import mx.core.UIComponent;
     
+    import __AS3__.vec.Vector;
+    
+    import yuis.Yuis;
+    import yuis.convention.NamingConvention;
     import yuis.core.reflection.ClassRef;
     import yuis.core.reflection.PropertyRef;
-    import yuis.Yuis;
-    import yuis.framework.ILifeCyclable;
+    import yuis.framework.InstanceCache;
     import yuis.ns.viewpart;
     import yuis.util.UIComponentUtil;
-    import yuis.logging.debug;
-    import yuis.framework.InstanceCache;
-    import yuis.convention.NamingConvention;
 
     [ExcludeClass]
     public final class ValidatorCustomizer extends AbstractComponentCustomizer {
@@ -85,10 +83,6 @@ package yuis.customizer
                 //
                 const validatorMap:Object = viewProperties[NamingConvention.VALIDATOR];
                 for each( var validator:Object in validatorMap){
-                    if( validator is ILifeCyclable ){
-                        (validator as ILifeCyclable).stop();
-                    }
-                    //
                     setPropertiesValue(validator,viewClassName,null);
                 }
                 viewProperties[NamingConvention.VALIDATOR] = null;
@@ -132,10 +126,6 @@ package yuis.customizer
                 setViewParts(container,validatorClassRef,validator);
 
                 prop.setValue(obj,validator);
-                //
-                if( validator is ILifeCyclable ){
-                    (validator as ILifeCyclable).start();
-                }
             }
         }
         

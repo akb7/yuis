@@ -22,18 +22,16 @@
 *****************************************************/
 package yuis.customizer
 {
-    import __AS3__.vec.Vector;
-
     import mx.core.UIComponent;
-
+    
+    import __AS3__.vec.Vector;
+    
+    import yuis.Yuis;
+    import yuis.convention.NamingConvention;
     import yuis.core.reflection.ClassRef;
     import yuis.core.reflection.PropertyRef;
-    import yuis.Yuis;
-    import yuis.util.UIComponentUtil;
-    import yuis.framework.ILifeCyclable;
-    import yuis.logging.debug;
     import yuis.framework.InstanceCache;
-    import yuis.convention.NamingConvention;
+    import yuis.util.UIComponentUtil;
 
     [ExcludeClass]
     public final class BehaviorCustomizer extends AbstractComponentCustomizer {
@@ -63,9 +61,6 @@ package yuis.customizer
                             prop.setValue(action,behavior);
                             behaviors.push(behavior);
     
-                            if( behavior is ILifeCyclable ){
-                                (behavior as ILifeCyclable).start();
-                            }
                             CONFIG::DEBUG {
                                 _debug("Customized",viewClassName,prop.typeClassRef.name);
                             }
@@ -108,9 +103,7 @@ package yuis.customizer
                         _debug("Uncustomizing",viewClassName,behaviorClassName);
                     }
                     
-                    if( behavior is ILifeCyclable ){
-                        (behavior as ILifeCyclable).stop();
-                    }
+					//
 
                     CONFIG::DEBUG {
                         _debug("Uncustomized",viewClassName,behaviorClassName);

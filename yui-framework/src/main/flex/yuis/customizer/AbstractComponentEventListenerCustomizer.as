@@ -22,11 +22,11 @@
 *****************************************************/
 package yuis.customizer
 {
-    import __AS3__.vec.Vector;
-    
     import flash.events.IEventDispatcher;
     
     import mx.core.UIComponent;
+    
+    import __AS3__.vec.Vector;
     
     import yuis.core.reflection.ClassRef;
     import yuis.core.reflection.FunctionRef;

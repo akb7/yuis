@@ -22,13 +22,10 @@
 *****************************************************/
 package yuis.framework
 {
-    import flash.display.DisplayObject;
-    import flash.display.DisplayObjectContainer;
     import flash.utils.Dictionary;
     
     import yuis.core.reflection.ClassRef;
     import yuis.framework.rule.IVolatileObject;
-    import yuis.logging.debug;
     
     [ExcludeClass]
     /**
@@ -56,13 +53,30 @@ package yuis.framework
             } else {
                 result = classRef.newInstance.apply(null,args);
                 if( result is IVolatileObject ){
-                } else {
+					//
+				} else {
                     cache[ classRef.name ] = result;
                 }
             }
             return result;
         }
-
+		
+		/**
+		 * 
+		 * @param classRef
+		 * @param args
+		 * @return 
+		 * 
+		 */
+		public static function clearInstanceCacheByName(className:String):void{
+			var result:Object = null;
+			var cache:Dictionary = getCurrentInstanceRefCache();
+			if( className in cache ){
+				cache[ className ] = null;
+				delete cache[ className];
+			}
+		}
+		
         /**
          * 
          * @param root

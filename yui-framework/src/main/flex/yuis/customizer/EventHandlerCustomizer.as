@@ -22,22 +22,22 @@
 *****************************************************/
 package yuis.customizer
 {
-    import __AS3__.vec.Vector;
-
     import flash.events.IEventDispatcher;
+    
     import mx.core.IMXMLObject;
-    import mx.core.UIComponent;
     import mx.core.IUIComponent;
-    import mx.core.UIComponentDescriptor;
+    import mx.core.UIComponent;
     import mx.core.mx_internal;
     import mx.effects.IEffect;
+    
+    import __AS3__.vec.Vector;
+    
+    import yuis.Yuis;
+    import yuis.convention.NamingConvention;
     import yuis.core.reflection.ClassRef;
     import yuis.core.reflection.FunctionRef;
     import yuis.core.reflection.PropertyRef;
-    import yuis.Yuis;
     import yuis.util.UIComponentUtil;
-    import yuis.logging.debug;
-    import yuis.convention.NamingConvention;
     
     use namespace mx_internal;
 
@@ -279,8 +279,6 @@ package yuis.customizer
         }
 
         protected function doCustomizeByComponent(view:UIComponent,componentName:String,component:IEventDispatcher,action:Object,functionRefs:Vector.<FunctionRef>,priority:int):void {
-            var componentName:String;
-
             if(componentName != null) {
                 if(component == null) {
                     if(view.hasOwnProperty(componentName)) {
@@ -336,9 +334,6 @@ package yuis.customizer
         }
 
         protected function doUncustomizeByComponent(view:UIComponent,componentName:String,component:IEventDispatcher,action:Object,functionRefs:Vector.<FunctionRef>):void {
-            var componentName:String;
-            var component:IEventDispatcher;
-
             if(componentName != null) {
                 if(component == null) {
                     if(view.hasOwnProperty(componentName)) {

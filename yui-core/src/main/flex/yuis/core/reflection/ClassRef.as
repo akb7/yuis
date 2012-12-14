@@ -22,14 +22,14 @@
 *****************************************************/
 package yuis.core.reflection
 {
-    import __AS3__.vec.Vector;
-
+    import flash.utils.Dictionary;
     import flash.utils.describeType;
     import flash.utils.getQualifiedClassName;
-    import flash.utils.Dictionary;
-
+    
+    import __AS3__.vec.Vector;
+    
     import yuis.core.ClassLoader;
-    import yuis.core.error.ClassNotFoundError;
+    import yuis.logging.debug;
     
     [ExcludeClass]
     public final class ClassRef extends AnnotatedObjectRef {
@@ -86,6 +86,14 @@ package yuis.core.reflection
         public static function getCanonicalName( object:Object ):String{
             return getTypeString(flash.utils.getQualifiedClassName(object));
         }
+		
+		public static function clearClassRefCache( target: Object ): void {
+			var key:Class;
+			
+			for (key in CLASS_REF_CACHE) {
+				delete CLASS_REF_CACHE[key];
+			}
+		}
 
         private static function isTargetAccessor( rootDescribeTypeXml:XML ):Boolean{
             const name_:String = rootDescribeTypeXml.@name.toString();

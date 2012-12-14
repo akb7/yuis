@@ -1,21 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+<flexLibProperties includeAllClasses="false" useMultiPlatformConfig="false" version="3">
   <includeClasses>
+    <classEntry path="convert"/>
+    <classEntry path="findClass"/>
+    <classEntry path="getCanonicalName"/>
+    <classEntry path="getClassRef"/>
+    <classEntry path="sendEvent"/>
+    <classEntry path="sendMessage"/>
+    <classEntry path="sendNotification"/>
     <classEntry path="yuis.cmd.AsyncCommand"/>
-    <classEntry path="yuis.cmd.SequenceCommand"/>
     <classEntry path="yuis.cmd.CallBackCommand"/>
     <classEntry path="yuis.cmd.Command"/>
-    <classEntry path="yuis.cmd.core.IComplexCommand"/>
-    <classEntry path="yuis.cmd.core.impl.EventListener"/>
-    <classEntry path="yuis.cmd.events.CommandEvent"/>
-    <classEntry path="yuis.cmd.core.ICommand"/>
-    <classEntry path="yuis.cmd.core.impl.AbstractCommand"/>
-    <classEntry path="yuis.cmd.WaitCommand"/>
-    <classEntry path="yuis.cmd.core.impl.AbstractAsyncCommand"/>
+    <classEntry path="yuis.cmd.SequenceCommand"/>
     <classEntry path="yuis.cmd.SwitchCommand"/>
+    <classEntry path="yuis.cmd.WaitCommand"/>
+    <classEntry path="yuis.cmd.core.ICommand"/>
+    <classEntry path="yuis.cmd.core.IComplexCommand"/>
     <classEntry path="yuis.cmd.core.ISubCommand"/>
+    <classEntry path="yuis.cmd.core.impl.AbstractAsyncCommand"/>
+    <classEntry path="yuis.cmd.core.impl.AbstractCommand"/>
     <classEntry path="yuis.cmd.core.impl.AbstractComplexCommand"/>
     <classEntry path="yuis.cmd.core.impl.AbstractSubCommand"/>
+    <classEntry path="yuis.cmd.core.impl.EventListener"/>
+    <classEntry path="yuis.cmd.events.CommandEvent"/>
+    <classEntry path="yuis.core.ClassLoader"/>
+    <classEntry path="yuis.core.Environment"/>
+    <classEntry path="yuis.core.data.Converter"/>
+    <classEntry path="yuis.core.error.ClassNotFoundError"/>
+    <classEntry path="yuis.core.error.NotFoundError"/>
+    <classEntry path="yuis.core.event.MessageEvent"/>
+    <classEntry path="yuis.core.event.NotificationEvent"/>
+    <classEntry path="yuis.core.logging.ILogger"/>
+    <classEntry path="yuis.core.logging.ILoggerFactory"/>
+    <classEntry path="yuis.core.ns.handler"/>
+    <classEntry path="yuis.core.ns.yui_internal"/>
+    <classEntry path="yuis.core.reflection.AnnotatedObjectRef"/>
+    <classEntry path="yuis.core.reflection.ClassRef"/>
+    <classEntry path="yuis.core.reflection.FunctionInvoker"/>
+    <classEntry path="yuis.core.reflection.FunctionRef"/>
+    <classEntry path="yuis.core.reflection.IAnnotatedReflector"/>
+    <classEntry path="yuis.core.reflection.IReflector"/>
+    <classEntry path="yuis.core.reflection.MetadataRef"/>
+    <classEntry path="yuis.core.reflection.ObjectRef"/>
+    <classEntry path="yuis.core.reflection.ParameterRef"/>
+    <classEntry path="yuis.core.reflection.PropertyRef"/>
+    <classEntry path="yuis.logging.Logging"/>
+    <classEntry path="yuis.logging.SimpleLogger"/>
+    <classEntry path="yuis.logging.SimpleLoggerFactory"/>
+    <classEntry path="yuis.logging.debug"/>
+    <classEntry path="yuis.logging.dump"/>
+    <classEntry path="yuis.logging.info"/>
+    <classEntry path="yuis.util.ArrayUtil"/>
+    <classEntry path="yuis.util.DateUtil"/>
+    <classEntry path="yuis.util.StringUtil"/>
+    <classEntry path="yuis.util.URLUtil"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

@@ -22,7 +22,7 @@
 *****************************************************/
 package yuis.customizer
 {
-    import mx.core.UIComponent;
+    
 
     [ExcludeClass]
     public interface IElementCustomizer

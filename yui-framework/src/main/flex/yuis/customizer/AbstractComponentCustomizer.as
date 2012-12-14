@@ -28,12 +28,11 @@ package yuis.customizer
     
     import __AS3__.vec.Vector;
     
-    import yuis.logging.debug;
-    import yuis.message.MessageManager;
-    
     import yuis.core.ns.yui_internal;
     import yuis.core.reflection.ClassRef;
     import yuis.core.reflection.PropertyRef;
+    import yuis.logging.debug;
+    import yuis.message.MessageManager;
     
     [ExcludeClass]
     public class AbstractComponentCustomizer implements IViewCustomizer {

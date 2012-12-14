@@ -25,7 +25,6 @@ package yuis.framework
     import flash.display.DisplayObject;
     import flash.display.DisplayObjectContainer;
 
-    [ExcludeClass]
     /**
      * 
      */

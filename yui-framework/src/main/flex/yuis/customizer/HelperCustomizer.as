@@ -28,10 +28,9 @@ package yuis.customizer
     
     import yuis.Yuis;
     import yuis.convention.NamingConvention;
-    import yuis.framework.ILifeCyclable;
-    import yuis.framework.InstanceCache;
     import yuis.core.reflection.ClassRef;
     import yuis.core.reflection.PropertyRef;
+    import yuis.framework.InstanceCache;
     import yuis.ns.viewpart;
     import yuis.util.UIComponentUtil;
 
@@ -86,10 +85,6 @@ package yuis.customizer
                 //
                 const helperMap:Object = viewProperties[NamingConvention.HELPER];
                 for each( var helper:Object in helperMap){
-                    if( helper is ILifeCyclable ){
-                        (helper as ILifeCyclable).stop();
-                    }
-                    //
                     setPropertiesValue(helper,viewClassName,null);
                 }
                 viewProperties[NamingConvention.HELPER] = null;
@@ -165,10 +160,6 @@ package yuis.customizer
                 setViewParts(container,helperClassRef,helper);
 
                 prop.setValue(obj,helper);
-                //
-                if( helper is ILifeCyclable ){
-                    (helper as ILifeCyclable).start();
-                }
             }
         }
 

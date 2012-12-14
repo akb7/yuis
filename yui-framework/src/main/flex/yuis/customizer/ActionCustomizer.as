@@ -22,21 +22,13 @@
 *****************************************************/
 package yuis.customizer
 {
-    import __AS3__.vec.Vector;
-
-    import flash.events.IEventDispatcher;
-
     import mx.core.UIComponent;
-
-    import yuis.core.reflection.ClassRef;
-    import yuis.core.reflection.FunctionRef;
-    import yuis.core.reflection.PropertyRef;
+    
     import yuis.Yuis;
-    import yuis.util.UIComponentUtil;
-    import yuis.framework.ILifeCyclable;
-    import yuis.logging.debug;
-    import yuis.framework.InstanceCache;
     import yuis.convention.NamingConvention;
+    import yuis.core.reflection.ClassRef;
+    import yuis.framework.InstanceCache;
+    import yuis.util.UIComponentUtil;
 
     [ExcludeClass]
     public final class ActionCustomizer extends AbstractComponentCustomizer {
@@ -57,9 +49,6 @@ package yuis.customizer
                 
                 viewProperties[NamingConvention.ACTION] = action;
                 
-                if( action is ILifeCyclable ){
-                    (action as ILifeCyclable).start();
-                }
                 //
                 CONFIG::DEBUG {
                     _debug("Customized",viewClassName,actionClassName);
@@ -80,10 +69,8 @@ package yuis.customizer
                 CONFIG::DEBUG {
                     _debug("Uncustomizing",viewClassName,actionClassName);
                 }
+				//
                 const action:Object = viewProperties[NamingConvention.ACTION];
-                if( action is ILifeCyclable ){
-                    (action as ILifeCyclable).stop();
-                }
                 //
                 viewProperties[NamingConvention.ACTION] = null;
                 delete viewProperties[NamingConvention.ACTION];

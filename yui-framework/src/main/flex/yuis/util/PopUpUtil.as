@@ -81,7 +81,7 @@ package yuis.util
                                                ):IFlexDisplayObject{
             var parent:UIComponent = null;
             if( relatedOwner == null ){
-                parent = Yuis.yui_internal::frameworkBridge.application as UIComponent;
+                parent = Yuis.frameworkBridge.application as UIComponent;
             } else {
                 parent = relatedOwner.parentApplication as UIComponent;
             }

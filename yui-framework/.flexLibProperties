@@ -1,28 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<flexLibProperties includeAllClasses="false" useMultiPlatformConfig="false" version="1">
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="1">
   <includeClasses>
-    <classEntry path="yuis.framework.YuiApplication"/>
-    <classEntry path="yuis.framework.YuiApplicationConsts"/>
     <classEntry path="yuis.Yuis"/>
     <classEntry path="yuis.bridge.DefaultFrameworkBridgePlugin"/>
     <classEntry path="yuis.bridge.FrameworkBridge"/>
     <classEntry path="yuis.bridge.IFrameworkBridgePlugin"/>
     <classEntry path="yuis.convention.NamingConvention"/>
-    <classEntry path="yuis.framework.ILifeCyclable"/>
-    <classEntry path="yuis.framework.IYuiFrameworkController"/>
-    <classEntry path="yuis.framework.InstanceCache"/>
-    <classEntry path="yuis.framework.ViewComponentRepository"/>
-    <classEntry path="yuis.framework.YuiFrameworkController"/>
-    <classEntry path="yuis.framework.YuiFrameworkControllerBase"/>
-    <classEntry path="yuis.framework.YuiFrameworkControllerCore"/>
-    <classEntry path="yuis.framework.YuiFrameworkSettings"/>
-    <classEntry path="yuis.framework.mixin.YuiFrameworkMixin"/>
-    <classEntry path="yuis.framework.rule.IAction"/>
-    <classEntry path="yuis.framework.rule.IBehavior"/>
-    <classEntry path="yuis.framework.rule.IHelper"/>
-    <classEntry path="yuis.framework.rule.IStateful"/>
-    <classEntry path="yuis.framework.rule.IValidator"/>
-    <classEntry path="yuis.framework.rule.IVolatileObject"/>
     <classEntry path="yuis.customizer.AbstractComponentCustomizer"/>
     <classEntry path="yuis.customizer.AbstractComponentEventCustomizer"/>
     <classEntry path="yuis.customizer.AbstractComponentEventListenerCustomizer"/>
@@ -39,12 +22,17 @@
     <classEntry path="yuis.error.YuiFrameworkError"/>
     <classEntry path="yuis.event.RuntimeErrorEvent"/>
     <classEntry path="yuis.event.YuiFrameworkEvent"/>
-    <classEntry path="yuis.logging.Logging"/>
-    <classEntry path="yuis.logging.SimpleLogger"/>
-    <classEntry path="yuis.logging.SimpleLoggerFactory"/>
-    <classEntry path="yuis.logging.debug"/>
-    <classEntry path="yuis.logging.dump"/>
-    <classEntry path="yuis.logging.info"/>
+    <classEntry path="yuis.framework.IYuiFrameworkController"/>
+    <classEntry path="yuis.framework.InstanceCache"/>
+    <classEntry path="yuis.framework.ViewComponentRepository"/>
+    <classEntry path="yuis.framework.YuiApplication"/>
+    <classEntry path="yuis.framework.YuiApplicationConsts"/>
+    <classEntry path="yuis.framework.YuiFrameworkController"/>
+    <classEntry path="yuis.framework.YuiFrameworkControllerBase"/>
+    <classEntry path="yuis.framework.YuiFrameworkControllerCore"/>
+    <classEntry path="yuis.framework.YuiFrameworkSettings"/>
+    <classEntry path="yuis.framework.mixin.YuiFrameworkMixin"/>
+    <classEntry path="yuis.framework.rule.IStatefulObject"/>
     <classEntry path="yuis.message.MessageManager"/>
     <classEntry path="yuis.message.Messages"/>
     <classEntry path="yuis.ns.action"/>
@@ -58,12 +46,12 @@
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="locale/en_US/errors.properties" sourcePath="locale/en_US/errors.properties"/>
-    <resourceEntry destPath="locale/ja_JP/errors.properties" sourcePath="locale/ja_JP/errors.properties"/>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
-    <resourceEntry destPath="locale/ja_JP/yui_framework.properties" sourcePath="locale/ja_JP/yui_framework.properties"/>
+    <resourceEntry destPath="locale/ja_JP/errors.properties" sourcePath="locale/ja_JP/errors.properties"/>
     <resourceEntry destPath="locale/en_US/messages.properties" sourcePath="locale/en_US/messages.properties"/>
-    <resourceEntry destPath="locale/en_US/yui_framework.properties" sourcePath="locale/en_US/yui_framework.properties"/>
+    <resourceEntry destPath="locale/ja_JP/yui_framework.properties" sourcePath="locale/ja_JP/yui_framework.properties"/>
     <resourceEntry destPath="locale/en_US/application.properties" sourcePath="locale/en_US/application.properties"/>
+    <resourceEntry destPath="locale/en_US/yui_framework.properties" sourcePath="locale/en_US/yui_framework.properties"/>
     <resourceEntry destPath="locale/ja_JP/messages.properties" sourcePath="locale/ja_JP/messages.properties"/>
     <resourceEntry destPath="locale/ja_JP/application.properties" sourcePath="locale/ja_JP/application.properties"/>
   </includeResources>

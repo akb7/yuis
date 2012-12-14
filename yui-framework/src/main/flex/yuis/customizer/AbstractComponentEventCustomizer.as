@@ -29,14 +29,10 @@ package yuis.customizer
     import mx.core.UIComponent;
     import mx.core.UIComponentDescriptor;
     
+    import yuis.Yuis;
     import yuis.core.event.MessageEvent;
     import yuis.core.event.NotificationEvent;
-    import yuis.core.reflection.ClassRef;
     import yuis.core.reflection.FunctionRef;
-    import yuis.Yuis;
-    import yuis.convention.NamingConvention;
-    import yuis.event.RuntimeErrorEvent;
-    import yuis.logging.debug;
     import yuis.util.UIComponentUtil;
     
     [ExcludeClass]
