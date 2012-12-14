@@ -39,7 +39,7 @@ package yuis.util
     import yuis.Yuis;
     import yuis.framework.YuiFrameworkController;
     
-    import yuis.core.ns.yui_internal;
+    import yuis.core.ns.yuis_internal;
     import yuis.util.StringUtil;
     
     [ExcludeClass]

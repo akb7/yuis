@@ -42,6 +42,8 @@ package yuis.framework
 	import yuis.Yuis;
 	import yuis.bridge.FrameworkBridge;
 	import yuis.convention.NamingConvention;
+	import yuis.core.Environment;
+	import yuis.core.ns.yuis_internal;
 	import yuis.customizer.IComponentCustomizer;
 	import yuis.customizer.IElementCustomizer;
 	import yuis.customizer.IViewCustomizer;
@@ -50,15 +52,12 @@ package yuis.framework
 	import yuis.logging.Logging;
 	import yuis.logging.debug;
 	import yuis.util.StyleManagerUtil;
-	
-	import yuis.core.Environment;
-	import yuis.core.ns.yui_internal;
 
     CONFIG::UNCAUGHT_ERROR_GLOBAL{
         import flash.events.UncaughtErrorEvent;
     }
 
-    use namespace yui_internal;
+    use namespace yuis_internal;
     
     [ExcludeClass]
     public final class YuiFrameworkController extends YuiFrameworkControllerBase {
@@ -347,8 +346,8 @@ package yuis.framework
             }
             const frameworkBridge:FrameworkBridge = Yuis.public::frameworkBridge as FrameworkBridge;
             frameworkBridge.application = component;
-            Environment.yui_internal::setRoot( component );
-            Environment.yui_internal::setParameters( frameworkBridge.parameters );
+            Environment.yuis_internal::setRoot( component );
+            Environment.yuis_internal::setParameters( frameworkBridge.parameters );
             
             const root:DisplayObject = frameworkBridge.systemManager;
             CONFIG::UNCAUGHT_ERROR_GLOBAL{
@@ -412,25 +411,29 @@ package yuis.framework
         }
 
         private function processViewRegister( container:DisplayObjectContainer ):void{
-            const namingConvention:NamingConvention = Yuis.public::namingConvention;
-            const componentId:String = namingConvention.getComponentName(container);
-            if( !ViewComponentRepository.hasComponent( componentId )){
-                ViewComponentRepository.addComponent( container );
-                CONFIG::DEBUG{
-                    _debug("ViewRegistered",container.toString());
-                }
-            }
+			if( isView(container)){
+	            const namingConvention:NamingConvention = Yuis.public::namingConvention;
+	            const componentId:String = namingConvention.getComponentName(container);
+	            if( !ViewComponentRepository.hasComponent( componentId )){
+	                ViewComponentRepository.addComponent( container );
+	                CONFIG::DEBUG{
+	                    _debug("ViewRegistered",container.toString());
+	                }
+	            }
+			}
         }
         
         private function processViewUnregister( container:DisplayObjectContainer ):void{
-            const namingConvention:NamingConvention = Yuis.public::namingConvention;
-            const componentId:String = namingConvention.getComponentName(container);
-            if( ViewComponentRepository.hasComponent( componentId )){
-                ViewComponentRepository.removeComponent( container );
-                CONFIG::DEBUG{
-                    _debug("ViewUnRegistered",container.toString());
-                }
-            }
+			if( isView(container)){
+	            const namingConvention:NamingConvention = Yuis.public::namingConvention;
+	            const componentId:String = namingConvention.getComponentName(container);
+	            if( ViewComponentRepository.hasComponent( componentId )){
+	                ViewComponentRepository.removeComponent( container );
+	                CONFIG::DEBUG{
+	                    _debug("ViewUnRegistered",container.toString());
+	                }
+	            }
+			}
         }
 		
 		
@@ -498,7 +501,7 @@ package yuis.framework
 			}
 		}
 		
-        yui_internal function systemManagerMonitoringStart( root:DisplayObject ):void{
+        yuis_internal function systemManagerMonitoringStart( root:DisplayObject ):void{
             CONFIG::DEBUG{
                 Logging.initialize();
             }
@@ -524,7 +527,7 @@ package yuis.framework
             );
         }
         
-        yui_internal function systemManagerMonitoringStop( root:DisplayObject ):void{
+		yuis_internal function systemManagerMonitoringStop( root:DisplayObject ):void{
             
             root.removeEventListener(
                 FlexEvent.APPLICATION_COMPLETE,
@@ -550,7 +553,7 @@ package yuis.framework
             );
         }
         
-        yui_internal override function componentMonitoringStart(root:DisplayObject):void{
+        yuis_internal override function componentMonitoringStart(root:DisplayObject):void{
             super.componentMonitoringStart(root);
             root.addEventListener(
                 FlexEvent.CREATION_COMPLETE,
@@ -560,7 +563,7 @@ package yuis.framework
             );
         }
         
-        yui_internal override function componentMonitoringStop(root:DisplayObject):void{
+        yuis_internal override function componentMonitoringStop(root:DisplayObject):void{
             super.componentMonitoringStop(root);
             root.addEventListener(
                 FlexEvent.CREATION_COMPLETE,

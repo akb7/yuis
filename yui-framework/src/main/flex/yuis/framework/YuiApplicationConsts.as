@@ -22,10 +22,7 @@
 *****************************************************/
 package yuis.framework
 {
-    import flash.events.Event;
-    import flash.utils.Dictionary;
     
-    import mx.events.FlexEvent;
     
     [ExcludeClass]
     public final class YuiApplicationConsts {

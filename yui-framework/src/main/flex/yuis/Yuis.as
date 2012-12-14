@@ -34,11 +34,11 @@ package yuis
     
     import yuis.bridge.FrameworkBridge;
     import yuis.convention.NamingConvention;
-    import yuis.core.ns.yui_internal;
+    import yuis.core.ns.yuis_internal;
     import yuis.framework.YuiFrameworkSettings;
     import yuis.util.StyleManagerUtil;
     
-    use namespace yui_internal;
+    use namespace yuis_internal;
 
     [ExcludeClass]
     public final class Yuis
@@ -63,19 +63,19 @@ package yuis
         
         private static var _namingConventionClassFactory:IFactory;
         
-        yui_internal static function setFrameworkBridge(value:FrameworkBridge):void{
+        yuis_internal static function setFrameworkBridge(value:FrameworkBridge):void{
             _frameworkBridge = value;
         }
         
-        yui_internal static function setNamingConvention( value:NamingConvention ):void{
+        yuis_internal static function setNamingConvention( value:NamingConvention ):void{
             _namingConvention = value;
         }
         
-        yui_internal static function setSettings(value:YuiFrameworkSettings):void{
+        yuis_internal static function setSettings(value:YuiFrameworkSettings):void{
             _settings = value;
         }
         
-        yui_internal static function initNamingConventionClassFactory():void{
+        yuis_internal static function initNamingConventionClassFactory():void{
             var styleManager:IStyleManager2 = StyleManagerUtil.getStyleManager();
             var namingConventionClassFactoryDef:CSSStyleDeclaration = styleManager.getStyleDeclaration("yuis.framework.core.YuiFrameworkSettings");
             if( namingConventionClassFactoryDef == null ){
@@ -86,13 +86,13 @@ package yuis
             }
         }
 
-        yui_internal static function initNamingConvention():void{
+        yuis_internal static function initNamingConvention():void{
             initNamingConventionClassFactory();
 
             var namingConvention:NamingConvention = _namingConventionClassFactory.newInstance() as NamingConvention;
             namingConvention.conventions = Vector.<String>(ResourceManager.getInstance().getStringArray("conventions","package"));
 
-            Yuis.yui_internal::setNamingConvention( namingConvention );
+            Yuis.yuis_internal::setNamingConvention( namingConvention );
         }
 		
 		//

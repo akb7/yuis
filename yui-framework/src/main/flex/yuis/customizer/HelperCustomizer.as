@@ -31,7 +31,7 @@ package yuis.customizer
     import yuis.core.reflection.ClassRef;
     import yuis.core.reflection.PropertyRef;
     import yuis.framework.InstanceCache;
-    import yuis.ns.viewpart;
+    import yuis.ns.yuis_viewpart;
     import yuis.util.UIComponentUtil;
 
     [ExcludeClass]
@@ -110,7 +110,7 @@ package yuis.customizer
             for each( var helper:Object in helperMap){
                 var helperClassRef:ClassRef = getClassRef(helper);
                 var helperPropRef:PropertyRef = helperClassRef.getPropertyRef(componentName);
-                if( helperPropRef != null && helperPropRef.uri == viewpart.toString()){
+                if( helperPropRef != null && helperPropRef.uri == yuis_viewpart.toString()){
                     helperPropRef.setValue(helper,component);                   
                 }
             }
@@ -126,7 +126,7 @@ package yuis.customizer
             for each( var helper:Object in helperMap){
                 var helperClassRef:ClassRef = getClassRef(helper);
                 var helperPropRef:PropertyRef = helperClassRef.getPropertyRef(componentName);
-                if( helperPropRef != null && helperPropRef.uri == viewpart.toString()){
+                if( helperPropRef != null && helperPropRef.uri == yuis_viewpart.toString()){
                     helperPropRef.setValue(helper,null);                   
                 }
             }
@@ -164,7 +164,7 @@ package yuis.customizer
         }
 
         private function setViewParts(container:UIComponent,helperClassRef:ClassRef,helper:Object):void{
-            const ns:Namespace = viewpart;
+            const ns:Namespace = yuis_viewpart;
             const helperProps:Vector.<PropertyRef> = helperClassRef.properties;
             
             for each(var helperProp:PropertyRef in helperProps) {

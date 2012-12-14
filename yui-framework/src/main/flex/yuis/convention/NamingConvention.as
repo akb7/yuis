@@ -28,7 +28,7 @@ package yuis.convention
     
     import __AS3__.vec.Vector;
     
-    import yuis.core.ns.handler;
+    import yuis.core.ns.yuis_handler;
     
     [ExcludeClass]
     public class NamingConvention {
@@ -154,7 +154,7 @@ package yuis.convention
         }
         
         public function getEventName(functionName:String,functionUri:String,componentName:String):String {
-            const ns:Namespace = handler;
+            const ns:Namespace = yuis_handler;
             const eventWord:String = functionName.substr(componentName.length);
             const handlerIndex:int = eventWord.lastIndexOf(getHandlerSuffix());
             var result:String = null;

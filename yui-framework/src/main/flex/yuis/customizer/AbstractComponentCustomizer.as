@@ -28,7 +28,7 @@ package yuis.customizer
     
     import __AS3__.vec.Vector;
     
-    import yuis.core.ns.yui_internal;
+    import yuis.core.ns.yuis_internal;
     import yuis.core.reflection.ClassRef;
     import yuis.core.reflection.PropertyRef;
     import yuis.logging.debug;
@@ -58,7 +58,7 @@ package yuis.customizer
         
         CONFIG::DEBUG {
             protected function _debug(resourceName:String,...parameters):void{
-                debug( this, MessageManager.yui_internal::yuiframework.getMessage.apply(null,[resourceName].concat(parameters)));
+                debug( this, MessageManager.yuis_internal::yuiframework.getMessage.apply(null,[resourceName].concat(parameters)));
             }
         }
     }

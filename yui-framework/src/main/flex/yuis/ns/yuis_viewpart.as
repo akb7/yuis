@@ -20,8 +20,7 @@
 *  All Rights Reserved.
 *
 *****************************************************/
-package yuis.core.ns
+package yuis.ns
 {
-[Exclude]
-public namespace yui_internal = "library://akb7.jp/yuis/internal";
+    public namespace yuis_viewpart = "library://akb7.jp/yuis/viewpart";
 }

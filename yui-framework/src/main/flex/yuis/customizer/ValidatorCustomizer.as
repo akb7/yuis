@@ -31,7 +31,7 @@ package yuis.customizer
     import yuis.core.reflection.ClassRef;
     import yuis.core.reflection.PropertyRef;
     import yuis.framework.InstanceCache;
-    import yuis.ns.viewpart;
+    import yuis.ns.yuis_viewpart;
     import yuis.util.UIComponentUtil;
 
     [ExcludeClass]
@@ -130,7 +130,7 @@ package yuis.customizer
         }
         
         private function setViewParts(container:UIComponent,validatorClassRef:ClassRef,validator:Object):void{
-            const ns:Namespace = viewpart;
+            const ns:Namespace = yuis_viewpart;
             const validatorProps:Vector.<PropertyRef> = validatorClassRef.properties;
             
             for each(var validatorProp:PropertyRef in validatorProps) {

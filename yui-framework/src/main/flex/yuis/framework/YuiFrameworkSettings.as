@@ -27,10 +27,10 @@ package yuis.framework
     import mx.styles.IStyleClient;
     
     import yuis.Yuis;
+    import yuis.core.ns.yuis_internal;
     import yuis.framework.mixin.YuiFrameworkMixin;
     import yuis.message.MessageManager;
-    
-    import yuis.core.ns.yui_internal;
+	import yuis.service.ServiceGatewayUrlResolver;
     
     [Style(name="namingConventionClass", inherit="no", type="Class")]
     [Style(name="frameworkBridgePlugin", inherit="no", type="Class")]
@@ -40,6 +40,7 @@ package yuis.framework
         {
             YuiFrameworkMixin;
             MessageManager;
+			ServiceGatewayUrlResolver;
         }
         
         /**
@@ -67,7 +68,7 @@ package yuis.framework
          * 
          */
         public function YuiFrameworkSettings(){
-            Yuis.yui_internal::setSettings( this );
+            Yuis.yuis_internal::setSettings( this );
         }
 
         /**

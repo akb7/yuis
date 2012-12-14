@@ -22,34 +22,23 @@
 *****************************************************/
 package yuis.framework
 {
+	import flash.display.DisplayObject;
+	import flash.events.Event;
+	
+	import __AS3__.vec.Vector;
+	
+	import yuis.Yuis;
+	import yuis.bridge.FrameworkBridge;
+	import yuis.core.ns.yuis_internal;
+	import yuis.customizer.IElementCustomizer;
+	import yuis.event.RuntimeErrorEvent;
+	import yuis.event.YuiFrameworkEvent;
+
     CONFIG::UNCAUGHT_ERROR_GLOBAL{
         import flash.events.UncaughtErrorEvent;
     }
 
-    import __AS3__.vec.Vector;
-    
-    import flash.events.Event;
-    import flash.system.Capabilities;
-    
-    import flash.display.DisplayObjectContainer;
-    import flash.display.DisplayObject;
-    
-    import yuis.Yuis;
-    import yuis.bridge.FrameworkBridge;
-    import yuis.customizer.IComponentCustomizer;
-    import yuis.customizer.IViewCustomizer;
-    import yuis.customizer.IElementCustomizer;
-    import yuis.event.RuntimeErrorEvent;
-    import yuis.error.YuiFrameworkError;
-    import yuis.event.YuiFrameworkEvent;
-    import yuis.logging.debug;
-    import yuis.logging.info;
-    import yuis.logging.dump;
-    import yuis.util.UIComponentUtil;
-    import yuis.convention.NamingConvention;
-    import yuis.core.ns.yui_internal;
-    
-    use namespace yui_internal;
+    use namespace yuis_internal;
     
     [ExcludeClass]
     /**
@@ -171,7 +160,7 @@ package yuis.framework
         }
         
         CONFIG::UNCAUGHT_ERROR_GLOBAL{
-            yui_internal function loaderInfoUncaughtErrorHandler(event:UncaughtErrorEvent):void
+            yuis_internal function loaderInfoUncaughtErrorHandler(event:UncaughtErrorEvent):void
             {
                 const frameworkBridge:FrameworkBridge = Yuis.public::frameworkBridge as FrameworkBridge;
                 const runtimeErrorEvent:RuntimeErrorEvent = RuntimeErrorEvent.createEvent(event.error);
@@ -186,7 +175,7 @@ package yuis.framework
          * @param root
          * 
          */
-        yui_internal function applicationMonitoringStart(root:DisplayObject):void{
+        yuis_internal function applicationMonitoringStart(root:DisplayObject):void{
             const settings:YuiFrameworkSettings = Yuis.public::settings;
             //
             if( settings.isAutoMonitoring ){
@@ -204,7 +193,7 @@ package yuis.framework
          * @param root
          * 
          */
-        yui_internal function applicationMonitoringStop(root:DisplayObject):void{
+        yuis_internal function applicationMonitoringStop(root:DisplayObject):void{
             const settings:YuiFrameworkSettings = Yuis.public::settings;
             //stop detecting component addition for register
             if( settings.isAutoMonitoring ){
@@ -221,7 +210,7 @@ package yuis.framework
          * @param root
          * 
          */
-        yui_internal function componentMonitoringStart(root:DisplayObject):void{
+        yuis_internal function componentMonitoringStart(root:DisplayObject):void{
             
             //detecting component addition for assemble
             if( root.hasEventListener(Event.ADDED_TO_STAGE)){
@@ -259,7 +248,7 @@ package yuis.framework
          * @param root
          * 
          */
-        yui_internal function componentMonitoringStop(root:DisplayObject):void{
+        yuis_internal function componentMonitoringStop(root:DisplayObject):void{
             root.removeEventListener(
                 Event.ADDED_TO_STAGE,
                 systemManager_addedToStageHandler,

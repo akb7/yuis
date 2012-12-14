@@ -20,7 +20,8 @@
 *  All Rights Reserved.
 *
 *****************************************************/
-package yuis.ns
+package yuis.core.ns
 {
-    public namespace behavior = "library://akb7.jp/yuis/behavior";
+[Exclude]
+public namespace yuis_internal = "library://akb7.jp/yuis/internal";
 }

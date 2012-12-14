@@ -26,10 +26,8 @@ package yuis.framework {
     import flash.display.DisplayObjectContainer;
     import flash.utils.Dictionary;
     
-    import yuis.core.reflection.ClassRef;
     import yuis.Yuis;
     import yuis.error.ComponentDuplicatedRegistrationError;
-    import yuis.util.UIComponentUtil;
 
     [ExcludeClass]
     /**

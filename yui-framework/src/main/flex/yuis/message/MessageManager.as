@@ -24,7 +24,7 @@ package yuis.message
 {
     import mx.resources.ResourceManager;
     
-    import yuis.core.ns.yui_internal;
+    import yuis.core.ns.yuis_internal;
     import yuis.util.StringUtil;
     
     
@@ -36,6 +36,6 @@ package yuis.message
         public static const messages:Messages = new Messages("messages");
         public static const application:Messages = new Messages("application");
         public static const errors:Messages = new Messages("errors");
-        yui_internal static const yuiframework:Messages = new Messages("yui_framework");
+        yuis_internal static const yuiframework:Messages = new Messages("yui_framework");
     }
 }

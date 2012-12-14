@@ -29,7 +29,6 @@ package yuis.core.reflection
     import __AS3__.vec.Vector;
     
     import yuis.core.ClassLoader;
-    import yuis.logging.debug;
     
     [ExcludeClass]
     public final class ClassRef extends AnnotatedObjectRef {
@@ -88,7 +87,7 @@ package yuis.core.reflection
         }
 		
 		public static function clearClassRefCache( target: Object ): void {
-			var key:Class;
+			var key:Object;
 			
 			for (key in CLASS_REF_CACHE) {
 				delete CLASS_REF_CACHE[key];

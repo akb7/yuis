@@ -31,7 +31,7 @@ package yuis.framework.mixin
     import yuis.bridge.FrameworkBridge;
     import yuis.framework.YuiFrameworkController;
     
-    import yuis.core.ns.yui_internal;
+    import yuis.core.ns.yuis_internal;
 
     [ExcludeClass]
     [Mixin]
@@ -51,12 +51,12 @@ package yuis.framework.mixin
         public static function init( flexModuleFactory:IFlexModuleFactory ):void{            
             _this = new YuiFrameworkMixin();
             _container = new YuiFrameworkController();
-            Yuis.yui_internal::setFrameworkBridge( FrameworkBridge.initialize() );
+            Yuis.yuis_internal::setFrameworkBridge( FrameworkBridge.initialize() );
 
             if( flexModuleFactory is ISystemManager ){
                 var systemManager_:ISystemManager = flexModuleFactory as ISystemManager;
                 var root:DisplayObject = systemManager_ as DisplayObject;
-                _container.yui_internal::systemManagerMonitoringStart(root);
+                _container.yuis_internal::systemManagerMonitoringStart(root);
             }
         }
     }

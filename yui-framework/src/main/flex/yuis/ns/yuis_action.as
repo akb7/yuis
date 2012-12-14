@@ -22,5 +22,5 @@
 *****************************************************/
 package yuis.ns
 {
-    public namespace helper = "library://akb7.jp/yuis/helper";
+    public namespace yuis_action = "library://akb7.jp/yuis/action";
 }

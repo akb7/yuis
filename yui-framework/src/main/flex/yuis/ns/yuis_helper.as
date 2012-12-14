@@ -22,5 +22,5 @@
 *****************************************************/
 package yuis.ns
 {
-    public namespace viewpart = "library://akb7.jp/yuis/viewpart";
+    public namespace yuis_helper = "library://akb7.jp/yuis/helper";
 }

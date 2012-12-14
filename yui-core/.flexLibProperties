@@ -32,8 +32,8 @@
     <classEntry path="yuis.core.event.NotificationEvent"/>
     <classEntry path="yuis.core.logging.ILogger"/>
     <classEntry path="yuis.core.logging.ILoggerFactory"/>
-    <classEntry path="yuis.core.ns.handler"/>
-    <classEntry path="yuis.core.ns.yui_internal"/>
+    <classEntry path="yuis.core.ns.yuis_handler"/>
+    <classEntry path="yuis.core.ns.yuis_internal"/>
     <classEntry path="yuis.core.reflection.AnnotatedObjectRef"/>
     <classEntry path="yuis.core.reflection.ClassRef"/>
     <classEntry path="yuis.core.reflection.FunctionInvoker"/>

@@ -29,15 +29,14 @@ package yuis.framework
     import __AS3__.vec.Vector;
     
     import yuis.convention.NamingConvention;
+    import yuis.core.ns.yuis_internal;
+    import yuis.core.reflection.FunctionInvoker;
     import yuis.customizer.IElementCustomizer;
     import yuis.logging.debug;
     import yuis.logging.info;
     import yuis.message.MessageManager;
     
-    import yuis.core.ns.yui_internal;
-    import yuis.core.reflection.FunctionInvoker;
-    
-    use namespace yui_internal;
+    use namespace yuis_internal;
     
     [ExcludeClass]
     /**
@@ -166,7 +165,7 @@ package yuis.framework
              * 
              */
             protected function _debug(resourceName:String,...parameters):void{
-                debug(this,MessageManager.yui_internal::yuiframework.getMessage.apply(null,[resourceName].concat(parameters)));
+                debug(this,MessageManager.yuis_internal::yuiframework.getMessage.apply(null,[resourceName].concat(parameters)));
             }
         }
         CONFIG::DEBUG{
@@ -177,7 +176,7 @@ package yuis.framework
              * 
              */
             protected function _info(resourceName:String,...parameters):void{
-                info(this,MessageManager.yui_internal::yuiframework.getMessage.apply(null,[resourceName].concat(parameters)));
+                info(this,MessageManager.yuis_internal::yuiframework.getMessage.apply(null,[resourceName].concat(parameters)));
             }
         }
         

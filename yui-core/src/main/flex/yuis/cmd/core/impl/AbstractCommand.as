@@ -27,7 +27,7 @@ package yuis.cmd.core.impl
     
     import yuis.cmd.core.ICommand;
     import yuis.cmd.events.CommandEvent;
-    import yuis.core.ns.handler;
+    import yuis.core.ns.yuis_handler;
     import yuis.core.reflection.ClassRef;
     import yuis.core.reflection.FunctionRef;
     
@@ -208,7 +208,7 @@ package yuis.cmd.core.impl
                 const completeMethod:String = _name + "_" + CommandEvent.COMPLETE;
                 const errorMethod:String = _name + "_" + CommandEvent.ERROR;
                 
-                const ns:Namespace = handler;
+                const ns:Namespace = yuis_handler;
                 const completeFuncDef:FunctionRef = classRef.getFunctionRef( completeMethod, ns );
                 const errorFuncDef:FunctionRef = classRef.getFunctionRef( errorMethod, ns );
 

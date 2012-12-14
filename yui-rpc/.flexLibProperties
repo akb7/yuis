@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="false" useMultiPlatformConfig="false" version="1">
+  <includeClasses>
+    <classEntry path="yuis.rpc.AbstractRpcOperation"/>
+    <classEntry path="yuis.rpc.AbstractRpcService"/>
+    <classEntry path="yuis.rpc.RemotingConnection"/>
+    <classEntry path="yuis.rpc.RemotingConnectionFactory"/>
+    <classEntry path="yuis.rpc.RemotingOperation"/>
+    <classEntry path="yuis.rpc.RemotingService"/>
+    <classEntry path="yuis.rpc.RpcPendingCall"/>
+    <classEntry path="yuis.rpc.local.LocalOperation"/>
+    <classEntry path="yuis.rpc.responder.AbstractRpcEventResponder"/>
+    <classEntry path="yuis.rpc.responder.IRpcResponder"/>
+    <classEntry path="yuis.rpc.responder.RpcDefaultEventResponder"/>
+    <classEntry path="yuis.rpc.responder.RpcNoneResponder"/>
+    <classEntry path="yuis.rpc.responder.RpcObjectResponder"/>
+    <classEntry path="yuis.rpc.responder.RpcResponderFactory"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>

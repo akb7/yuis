@@ -26,10 +26,9 @@ package yuis.framework
     
     import mx.core.UIComponent;
     
-    import yuis.error.YuiFrameworkError;
-	import yuis.framework.YuiApplicationConsts;
-    
     import spark.components.Application;
+    
+    import yuis.error.YuiFrameworkError;
 
     [Style(name="rootViewClass", type="Class",inherit="no")]
     public class YuiApplication extends Application {

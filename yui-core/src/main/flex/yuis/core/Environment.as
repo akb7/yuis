@@ -23,7 +23,7 @@
 package yuis.core
 {
     import flash.display.DisplayObject;
-    import yuis.core.ns.yui_internal;
+    import yuis.core.ns.yuis_internal;
 
     public final class Environment {
         
@@ -47,11 +47,11 @@ package yuis.core
             }
         }
         
-        yui_internal static function setParameters( value:Object ):void{
+        yuis_internal static function setParameters( value:Object ):void{
             _parameters = value;
         }
         
-        yui_internal static function setRoot(value:DisplayObject):void{
+        yuis_internal static function setRoot(value:DisplayObject):void{
             _root = value;
         }
 

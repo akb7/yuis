@@ -20,7 +20,7 @@
 *  All Rights Reserved.
 *
 *****************************************************/
-package yuis.ns
+package yuis.core.ns
 {
-    public namespace action = "library://akb7.jp/yuis/action";
+    public namespace yuis_handler = "library://akb7.jp/yuis/handler";
 }
