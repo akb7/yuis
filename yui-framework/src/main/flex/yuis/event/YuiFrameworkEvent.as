@@ -32,6 +32,8 @@ package yuis.event
         public static const APPLICATION_MONITOR_STOP:String = "applicationMonitorStop";
         
         public static const APPLICATION_START:String = "applicationStart";
+        
+        public static const APPLICATION_START_REQUEST:String = "applicationStartRequest";
 
         public static const VIEW_INITIALIZED:String = "viewInitialized";
         

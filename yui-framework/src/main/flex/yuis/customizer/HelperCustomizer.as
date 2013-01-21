@@ -89,6 +89,7 @@ package yuis.customizer
                 }
                 viewProperties[NamingConvention.HELPER] = null;
                 delete viewProperties[NamingConvention.HELPER];
+                ClassRef.clearCache(helperClassName);
                 //
                 CONFIG::DEBUG {
                     _debug("Uncustomized",viewClassName,helperClassName);

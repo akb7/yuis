@@ -22,6 +22,7 @@
 *****************************************************/
 package yuis.core.reflection
 {
+    import flash.system.System;
 
     [ExcludeClass]
     internal class ObjectRef implements IReflector {
@@ -82,6 +83,11 @@ package yuis.core.reflection
 
             _name = getName( describeTypeXml );
             _uri = getUri( describeTypeXml );
+        }
+        
+        public function dispose():void{
+            System.disposeXML(_describeTypeXml);
+            _describeTypeXml = null;
         }
 
         protected function getName( rootDescribeTypeXml:XML ):String{

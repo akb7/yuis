@@ -291,6 +291,15 @@ package yuis.framework
             applicationInitialize();           
         }
         
+        private function systemManager_applicationStartRequestHandler( event:YuiFrameworkEvent ):void{
+            CONFIG::DEBUG{
+                _info("ApplicationStart");
+            }  
+            var root:ISystemManager = event.target as ISystemManager;
+            root.removeEventListener(YuiFrameworkEvent.APPLICATION_START_REQUEST,systemManager_applicationStartRequestHandler);  
+			callLater(doApplicationStart);
+        }
+        
         private function systemManager_addedToStageHandler( event:Event ):void{
             CONFIG::DEBUG_EVENT{
                 dump(this,event);
@@ -345,7 +354,11 @@ package yuis.framework
                 _debug("ApplicationRegistered",component.toString());
             }
             const frameworkBridge:FrameworkBridge = Yuis.public::frameworkBridge as FrameworkBridge;
-            frameworkBridge.application = component;
+            var app:UIComponent = component as UIComponent;
+            app.mouseEnabled = false;
+            app.setVisible(false,true);
+            frameworkBridge.application = app;
+            
             Environment.yuis_internal::setRoot( component );
             Environment.yuis_internal::setParameters( frameworkBridge.parameters );
             
@@ -374,16 +387,33 @@ package yuis.framework
         
         private function processApplicationStart():void{
             const frameworkBridge:FrameworkBridge = Yuis.public::frameworkBridge as FrameworkBridge;
+            const app:UIComponent = frameworkBridge.application as UIComponent;
+            var event:YuiFrameworkEvent = new YuiFrameworkEvent(YuiFrameworkEvent.APPLICATION_START);
+            if( app.dispatchEvent(event)){
+                if( event.isDefaultPrevented() ){
+                    CONFIG::DEBUG{
+                        _info("ApplicationStart");
+                    }
+                    doApplicationStart();
+                    return;
+                }
+            }
+            CONFIG::DEBUG{
+                _info("ApplicationStartPending");
+            }
+            app.systemManager.addEventListener(YuiFrameworkEvent.APPLICATION_START_REQUEST,systemManager_applicationStartRequestHandler);
+        }
+        
+        private function doApplicationStart():void{
+            const frameworkBridge:FrameworkBridge = Yuis.public::frameworkBridge as FrameworkBridge;
             const settings:YuiFrameworkSettings = Yuis.public::settings;
             
             const root:DisplayObject = frameworkBridge.systemManager;
             const app:UIComponent = frameworkBridge.application as UIComponent;
             const rootView:DisplayObjectContainer = frameworkBridge.rootView as DisplayObjectContainer;
-            CONFIG::DEBUG{
-                _info("ApplicationStart");
-            }
-
+                
             app.setVisible(true,true);
+            app.mouseEnabled = false;
             if( rootView != null ){
                 if( rootView.hasEventListener(YuiFrameworkEvent.APPLICATION_START)){
                     rootView.dispatchEvent( new YuiFrameworkEvent(YuiFrameworkEvent.APPLICATION_START));
@@ -391,18 +421,18 @@ package yuis.framework
                 rootView.visible = true;
             }
 
-            var allView:Dictionary = ViewComponentRepository.allView;
-            var fevent:YuiFrameworkEvent;
-            for each (var view:UIComponent in allView) 
-            {
-                if( view === rootView ){
-                    continue;
-                }
-                if( view.hasEventListener(YuiFrameworkEvent.APPLICATION_START)){
-                    fevent = new YuiFrameworkEvent(YuiFrameworkEvent.APPLICATION_START);
-                    view.dispatchEvent( fevent );
-                }
-            }
+//            var allView:Dictionary = ViewComponentRepository.allView;
+//            var fevent:YuiFrameworkEvent;
+//            for each (var view:UIComponent in allView) 
+//            {
+//                if( view === rootView ){
+//                    continue;
+//                }
+//                if( view.hasEventListener(YuiFrameworkEvent.APPLICATION_START)){
+//                    fevent = new YuiFrameworkEvent(YuiFrameworkEvent.APPLICATION_START);
+//                    view.dispatchEvent( fevent );
+//                }
+//            }
             _isApplicationStarted = true;
             
             if( settings.isAutoMonitoring ){
@@ -466,7 +496,7 @@ package yuis.framework
 			CONFIG::DEBUG{
 				_debug("CustomizerLoaded",result);
 			}
-				return result;
+			return result;
 		}
 		
 		protected override function doRegisterComponent( target:DisplayObject ):void{

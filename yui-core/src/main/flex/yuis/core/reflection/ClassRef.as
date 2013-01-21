@@ -81,6 +81,37 @@ package yuis.core.reflection
 
             return classRef;
         }
+        public static function clearCache( target:Object ):void{
+            if( target == null ){
+                return;
+            }
+            var clazz:Class = null;
+            try {
+                switch( true ){
+                    case ( target is Class ):
+                        clazz = target as Class;
+                        break;
+                    
+                    case ( target is String ):
+                        clazz = classLoader.findClass(target as String);
+                        break;
+                    
+                    default:
+                        clazz = classLoader.findClass(getQualifiedClassName(target));
+                }
+            } catch( e:Error ){
+                throw e;
+            }
+            
+            var classRef:ClassRef = null;
+            if( clazz != null ){
+                if( clazz in CLASS_REF_CACHE ){
+                    classRef = CLASS_REF_CACHE[ clazz ];
+                    classRef.dispose();
+                    delete CLASS_REF_CACHE[ clazz ];
+                }
+            }
+        }
 
         public static function getCanonicalName( object:Object ):String{
             return getTypeString(flash.utils.getQualifiedClassName(object));

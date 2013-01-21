@@ -52,7 +52,7 @@ package yuis.customizer
                     var behaviors:Array = viewProperties[NamingConvention.BEHAVIOR] = [];
                     var behavior:Object;
                     for each(var prop:PropertyRef in props) {
-                        if( Yuis.namingConvention.isBehaviorOfView( viewClassName, prop.typeClassRef.name )){
+                        if( Yuis.namingConvention.isBehaviorClassName( prop.typeClassRef.name )){
     
                             CONFIG::DEBUG {
                                 _debug("Customizing",viewClassName,prop.typeClassRef.name);
@@ -97,18 +97,18 @@ package yuis.customizer
                 var behaviors:Array = viewProperties[NamingConvention.BEHAVIOR];
                 var behaviorClassName:String;
                 for each(var behavior:Object in behaviors) {
-
-                    behaviorClassName = getCanonicalName(behavior);
                     CONFIG::DEBUG {
                         _debug("Uncustomizing",viewClassName,behaviorClassName);
                     }
-                    
 					//
-
+                    behaviorClassName = getCanonicalName(behavior);
+                    ClassRef.clearCache(behaviorClassName);
+                    //
                     CONFIG::DEBUG {
                         _debug("Uncustomized",viewClassName,behaviorClassName);
                     }
                 }
+                viewProperties[NamingConvention.BEHAVIOR] = null;
             } catch(e:Error) {
                 CONFIG::DEBUG {
                     _debug("CustomizeError",view,e.getStackTrace());

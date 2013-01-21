@@ -71,9 +71,9 @@ package yuis.customizer
                 }
 				//
                 const action:Object = viewProperties[NamingConvention.ACTION];
-                //
                 viewProperties[NamingConvention.ACTION] = null;
                 delete viewProperties[NamingConvention.ACTION];
+                ClassRef.clearCache(actionClassName);
                 //
                 CONFIG::DEBUG {
                     _debug("Uncustomized",viewClassName,actionClassName);
