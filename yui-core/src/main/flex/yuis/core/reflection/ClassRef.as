@@ -179,6 +179,9 @@ package yuis.core.reflection
 
         public function get isEvent():Boolean
         {
+            if( !_isInitialiedSuperClasses){
+                assembleSuperClasses(_describeTypeXml);
+            }
             return _isEvent;
         }
 
@@ -186,6 +189,9 @@ package yuis.core.reflection
 
         public function get isDisplayObject():Boolean
         {
+            if( !_isInitialiedSuperClasses){
+                assembleSuperClasses(_describeTypeXml);
+            }
             return _isDisplayObject;
         }
 
@@ -193,6 +199,9 @@ package yuis.core.reflection
 
         public function get isEventDispatcher():Boolean
         {
+            if( !_isInitialiedSuperClasses){
+                assembleSuperClasses(_describeTypeXml);
+            }
             return _isEventDispatcher;
         }
 
@@ -474,7 +483,7 @@ package yuis.core.reflection
             _superClasses = new Vector.<String>();
             _superClassMap = {};
 
-            var extendsClassXMLList:XMLList = rootDescribeTypeXml.extendsClass;
+            var extendsClassXMLList:XMLList = rootDescribeTypeXml.factory.extendsClass;
             var className:String;
             for each( var extendsClassXML:XML in extendsClassXMLList ){
                 className = getTypeString(extendsClassXML.@type);

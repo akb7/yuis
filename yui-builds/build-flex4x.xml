@@ -8,12 +8,12 @@
     <!-- -->
     <target name="all">
         <antcall target="basic" />
-        <antcall target="mobile" />
-
-    	<antcall target="rpc" />
+        <antcall target="ds" />
 
     	<!--
-        <antcall target="ds" />
+        <antcall target="mobile" />
+
+        <antcall target="rpc" />
         
         <antcall target="air" />
         <antcall target="airrpc" />

@@ -51,10 +51,10 @@ package yuis.ds {
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.remoting.mxml.RemoteObject;
 	
+	import yuis.core.ns.yuis_internal;
 	import yuis.ds.local.LocalOperation;
 	import yuis.service.IManagedService;
 	import yuis.service.IPendingCall;
-	import yuis.service.IService;
 	import yuis.service.OperationCallBack;
 	import yuis.service.ServiceGatewayUrlResolver;
 	import yuis.service.ServiceManager;
@@ -66,7 +66,7 @@ package yuis.ds {
 	use namespace mx_internal;
 	
 	public dynamic class RemotingService extends RemoteObject implements IManagedService {
-		
+        
 		public static const HTTP_AMF_ENDPOINT_NAME:String = "http-amf";
 		
 		public static const HTTPS_AMF_ENDPOINT_NAME:String = "https-amf";
@@ -95,19 +95,26 @@ package yuis.ds {
 			registerClassAlias( "flex.messaging.messages.MessagePerformanceInfo", MessagePerformanceInfo);
 			registerClassAlias( "flex.messaging.messages.RemotingMessage", RemotingMessage);
 		}
-		
+        
+        yuis_internal var pendingCallClass:Class = DsPendingCall;
+        
 		private var _parentApplication:UIComponent;
 		
 		private var _isInitialzed:Boolean;
 		
 		private var _pendingCallMap:Dictionary;
 		
+        private var _name:String;
+        
 		public function get name():String{
-			return destination;
+			return _name;
 		}
-		public function set name(value:String):void{
-		}
-		public override function set destination(value:String):void{
+		
+        public function set name(value:String):void{
+		    _name = value;
+        }
+		
+        public override function set destination(value:String):void{
 			super.destination = value;
 			super.source = value;
 		}
@@ -209,7 +216,7 @@ package yuis.ds {
 			}
 			var asyncToken:AsyncToken = super.callProperty.apply(null, [name].concat(args));
 			asyncToken.message.destination = destination;
-			var result:DsPendingCall = new DsPendingCall(asyncToken.message);
+			var result:DsPendingCall = new yuis_internal::pendingCallClass(asyncToken.message);
 			result.setInternalAsyncToken(asyncToken,getOperation(name.localName));
 			
 			if( OperationCallBack.invokeCallBack != null ){

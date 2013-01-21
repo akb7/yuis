@@ -23,32 +23,37 @@ package yuis.ds {
     import mx.rpc.events.FaultEvent;
     import mx.rpc.events.ResultEvent;
     
+    import yuis.core.ns.yuis_internal;
     import yuis.core.reflection.ClassRef;
     import yuis.core.reflection.FunctionRef;
     import yuis.core.reflection.ParameterRef;
-    import yuis.service.IManagedService;
-    import yuis.service.IPendingCall;
-    import yuis.service.IService;
-    import yuis.service.OperationCallBack;
     import yuis.ds.responder.RpcDefaultEventResponder;
     import yuis.ds.responder.RpcEventResponder;
     import yuis.ds.responder.RpcNoneResponder;
     import yuis.ds.responder.RpcObjectResponder;
     import yuis.ds.responder.RpcResponderFactory;
+    import yuis.service.IManagedService;
+    import yuis.service.IPendingCall;
+    import yuis.service.IService;
+    import yuis.service.OperationCallBack;
     import yuis.service.resonder.IServiceResponder;
     import yuis.service.resonder.ServiceResponderFactory;
 
     use namespace mx_internal;
 
     [ExcludeClass]
-    public final class DsPendingCall extends AsyncToken implements IPendingCall {
+    public class DsPendingCall extends AsyncToken implements IPendingCall {
 
+        yuis_internal static var RpcObjectResponderClass:Class = RpcObjectResponder;
+        yuis_internal static var RpcEventResponderClass:Class = RpcDefaultEventResponder;
+        yuis_internal static var RpcNoneResponderClass:Class = RpcNoneResponder;
+        
         private static const RESULT_HANDLER:String = "ResultHandler";
 
         private static const FAULT_HANDLER:String = "FaultHandler";
 
         private static const RESPONDER_FACTORY:ServiceResponderFactory = new RpcResponderFactory();
-
+        
         private static function createResponder( destination:String,operationName:String, responder:Object ):IResponder{
             const classRef:ClassRef = getClassRef(responder);
             const resultFuncDef:FunctionRef = RESPONDER_FACTORY.findResultFunctionRef( classRef, destination, operationName );
@@ -57,13 +62,13 @@ package yuis.ds {
             var result:IResponder = null;
             var responderClass:Class;
             if( resultFuncDef.parameters.length <= 0 ){
-                responderClass = RpcNoneResponder;
+                responderClass = yuis_internal::RpcNoneResponderClass;
             } else {
                 var parameter:ParameterRef = resultFuncDef.parameters[0] as ParameterRef;
                 if( parameter.isEvent ){
-                    responderClass = RpcDefaultEventResponder;
+                    responderClass = yuis_internal::RpcEventResponderClass;
                 } else {
-                    responderClass = RpcObjectResponder;
+                    responderClass = yuis_internal::RpcObjectResponderClass;
                 }
             }
             if( faultFuncDef == null){
@@ -74,13 +79,13 @@ package yuis.ds {
             return result;
         }
 
-        private var _internalAsyncToken:AsyncToken;
+        protected var _internalAsyncToken:AsyncToken;
 
-        private var _responder:IResponder;
+        protected var _responder:IResponder;
 
-        private var _responderOwner:Object;
+        protected var _responderOwner:Object;
 
-        private var _operation:AbstractOperation;
+        protected var _operation:AbstractOperation;
 
         public function DsPendingCall(message:IMessage=null)
         {

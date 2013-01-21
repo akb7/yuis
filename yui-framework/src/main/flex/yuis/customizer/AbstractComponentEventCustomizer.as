@@ -33,6 +33,7 @@ package yuis.customizer
     import yuis.core.event.MessageEvent;
     import yuis.core.event.NotificationEvent;
     import yuis.core.reflection.FunctionRef;
+    import yuis.core.reflection.ParameterRef;
     import yuis.util.UIComponentUtil;
     
     [ExcludeClass]
@@ -81,13 +82,7 @@ CONFIG::UNCAUGHT_ERROR_EVENT {
                     try {
                         var proto:Function = callee.properties[FUNCTION_PROTO] as Function;
                         if(proto != null) {
-                            if( event is MessageEvent ){
-                                proto.apply(null,[(event as MessageEvent).data]);
-                            } else if( event is NotificationEvent ){
-                                proto.apply(null,[(event as NotificationEvent).data]);
-                            } else {
-                                proto.apply(null,[event]);
-                            }
+                            proto.apply(null,[event]);
                         } else {
                             throw new Error("EnhancedEventHandler doesn't have proto Handler");
                         }
@@ -110,13 +105,7 @@ CONFIG::UNCAUGHT_ERROR_GLOBAL {
                     var callee:Object = arguments.callee;
                     var proto:Function = callee.properties[FUNCTION_PROTO] as Function;
                     if(proto != null) {
-                        if( event is MessageEvent ){
-                            proto.apply(null,[(event as MessageEvent).data]);
-                        } else if( event is NotificationEvent ){
-                            proto.apply(null,[(event as NotificationEvent).data]);
-                        } else {
-                            proto.apply(null,[event]);
-                        }
+                        proto.apply(null,[event]);
                     } else {
                         throw new Error("EnhancedEventHandler doesn't have proto Handler");
                     }
@@ -129,6 +118,62 @@ CONFIG::UNCAUGHT_ERROR_GLOBAL {
             return func_ as Function;
         }
 
+        protected function createEnhancedObjectHandler(owner:IEventDispatcher,handler:Function):Function {
+CONFIG::UNCAUGHT_ERROR_EVENT {
+            const func_:Object = 
+                function(event:Event):void {
+                    var callee:Object = arguments.callee;
+                    try {
+                        var proto:Function = callee.properties[FUNCTION_PROTO] as Function;
+                        if(proto != null) {
+                            if( event is MessageEvent ){
+                                proto.apply(null,[(event as MessageEvent).data]);
+                            } else if( event is NotificationEvent ){
+                                proto.apply(null,[(event as NotificationEvent).data]);
+                            } else {
+                                proto.apply(null,[event]);
+                            }
+                        } else {
+                            throw new Error("EnhancedEventHandler doesn't have proto Handler");
+                        }
+                    } catch(e:Error) {
+                        CONFIG::DEBUG {
+                            debug(this,e.getStackTrace());
+                        }
+                            var owner:Object = callee.properties[FUNCTION_OWNER];
+                        if(owner is IEventDispatcher) {
+                            (owner as IEventDispatcher).dispatchEvent(RuntimeErrorEvent.createEvent(e));
+                        } else {
+                            throw e;
+                        }
+                    }
+                };
+}
+CONFIG::UNCAUGHT_ERROR_GLOBAL {
+                const func_:Object = 
+                    function(event:Event):void {
+                        var callee:Object = arguments.callee;
+                        var proto:Function = callee.properties[FUNCTION_PROTO] as Function;
+                        if(proto != null) {
+                            if( event is MessageEvent ){
+                                proto.apply(null,[(event as MessageEvent).data]);
+                            } else if( event is NotificationEvent ){
+                                proto.apply(null,[(event as NotificationEvent).data]);
+                            } else {
+                                proto.apply(null,[event]);
+                            }
+                        } else {
+                            throw new Error("EnhancedEventHandler doesn't have proto Handler");
+                        }
+                    };
+}               
+            const properties:Dictionary = new Dictionary(true);
+            properties[FUNCTION_OWNER] = owner;
+            properties[FUNCTION_PROTO] = handler;
+            func_.properties = properties;
+            return func_ as Function;
+        }
+        
         protected function createEnhancedEventNoneHandler(owner:IEventDispatcher,handler:Function):Function {
 CONFIG::UNCAUGHT_ERROR_EVENT {
             const func_:Object =
@@ -188,7 +233,12 @@ CONFIG::UNCAUGHT_ERROR_GLOBAL {
                 }
 
                 if(functionRef.parameters.length > 0) {
-                    enhancedFunction = createEnhancedEventHandler(view,functionRef.getFunction(listener));
+                    var param:ParameterRef = functionRef.parameters[0] as ParameterRef;
+                    if( param.isEvent ){
+                        enhancedFunction = createEnhancedEventHandler(view,functionRef.getFunction(listener));
+                    } else {
+                        enhancedFunction = createEnhancedObjectHandler(view,functionRef.getFunction(listener));
+                    }
                 } else {
                     enhancedFunction = createEnhancedEventNoneHandler(view,functionRef.getFunction(listener));
                 }
