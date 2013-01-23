@@ -181,11 +181,6 @@ package yuis.framework
             if( settings.isAutoMonitoring ){
                 componentMonitoringStart(root);
             }
-            
-            //
-            if( root.hasEventListener(YuiFrameworkEvent.APPLICATION_MONITOR_START)){
-                root.dispatchEvent(new YuiFrameworkEvent(YuiFrameworkEvent.APPLICATION_MONITOR_START));
-            }
         }
         
         /**
@@ -198,10 +193,6 @@ package yuis.framework
             //stop detecting component addition for register
             if( settings.isAutoMonitoring ){
                 componentMonitoringStop(root);
-            }
-            
-            if( root.hasEventListener(YuiFrameworkEvent.APPLICATION_MONITOR_STOP)){
-                root.dispatchEvent(new YuiFrameworkEvent(YuiFrameworkEvent.APPLICATION_MONITOR_STOP));
             }
         }
         

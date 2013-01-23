@@ -28,9 +28,14 @@ package yuis.framework
     
     import spark.components.Application;
     
+    import yuis.core.ns.yuis_internal;
     import yuis.error.YuiFrameworkError;
+    import yuis.event.YuiFrameworkEvent;
+    
+    use namespace yuis_internal;
 
     [Style(name="rootViewClass", type="Class",inherit="no")]
+    [Event(name="applicationStart", type="yuis.event.YuiFrameworkEvent")]
     public class YuiApplication extends Application {
         
         private static const ROOT_VIEW_CLASS:String = "rootViewClass";
@@ -39,13 +44,13 @@ package yuis.framework
         
         private var _setting:YuiFrameworkSettings;
 
-        public function get setting():YuiFrameworkSettings{
+        public final function get setting():YuiFrameworkSettings{
             return _setting;
         }
 
         private var _rootView:UIComponent;
 
-        public function get rootView():UIComponent{
+        public final function get rootView():UIComponent{
             return _rootView;
         }
 
@@ -55,15 +60,15 @@ package yuis.framework
             _setting = new YuiFrameworkSettings();
         }
 
-        public override function dispatchEvent(event:Event):Boolean{
+        public final override function dispatchEvent(event:Event):Boolean{
             var result:Boolean = super.dispatchEvent(event);
-            if( result ){
-                if( event.isDefaultPrevented()){
-                    if( !(event.type in YuiApplicationConsts.UNRECOMMEND_EVENT_MAP)){
-                        if( result ){
-                            if( initialized && _rootView != null && _rootView.initialized ){
-                                result = _rootView.dispatchEvent(event);
-                            }
+            if( event.isDefaultPrevented()){
+                
+            } else {
+                if( !(event.type in YuiApplicationConsts.UNRECOMMEND_EVENT_MAP)){
+                    if( result ){
+                        if( initialized && _rootView != null && _rootView.initialized ){
+                            result = _rootView.dispatchEvent(event);
                         }
                     }
                 }
@@ -71,7 +76,7 @@ package yuis.framework
             return result;
         }
         
-        protected override function createChildren():void{
+        protected final override function createChildren():void{
             super.createChildren();
             
             createRootView();
@@ -90,5 +95,8 @@ package yuis.framework
             }
         }
 
+        protected final function requestApplicationStart():void{
+            systemManager.dispatchEvent(new YuiFrameworkEvent(YuiFrameworkEvent.yuis_internal::APPLICATION_START_REQUEST));
+        }
     }
 }

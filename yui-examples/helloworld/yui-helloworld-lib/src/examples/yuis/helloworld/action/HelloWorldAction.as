@@ -2,13 +2,16 @@ package examples.yuis.helloworld.action
 {
     import examples.yuis.helloworld.helper.HelloWorldHelper;
     
-    import yuis.core.ns.yui_internal;
+    import yuis.core.ns.yuis_handler;
     
     public class HelloWorldAction {
         
         public var helloWorldHelper:HelloWorldHelper;
         
-        public function showHelloWorld_clickHandler():void{
+        /**
+         * 
+         */
+        yuis_handler function showHelloWorld_click():void {
             helloWorldHelper.showMessage(helloWorldHelper.getInputValue());
         }
     }

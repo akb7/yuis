@@ -389,19 +389,19 @@ package yuis.framework
             const frameworkBridge:FrameworkBridge = Yuis.public::frameworkBridge as FrameworkBridge;
             const app:UIComponent = frameworkBridge.application as UIComponent;
             var event:YuiFrameworkEvent = new YuiFrameworkEvent(YuiFrameworkEvent.APPLICATION_START);
-            if( app.dispatchEvent(event)){
-                if( event.isDefaultPrevented() ){
-                    CONFIG::DEBUG{
-                        _info("ApplicationStart");
-                    }
-                    doApplicationStart();
-                    return;
+            app.dispatchEvent(event);
+            if( event.isDefaultPrevented() ){
+                CONFIG::DEBUG{
+                    _info("ApplicationStartPending");
                 }
+                app.systemManager.addEventListener(YuiFrameworkEvent.APPLICATION_START_REQUEST,systemManager_applicationStartRequestHandler);
+            } else {
+                CONFIG::DEBUG{
+                    _info("ApplicationStart");
+                }
+                doApplicationStart();
+                return;
             }
-            CONFIG::DEBUG{
-                _info("ApplicationStartPending");
-            }
-            app.systemManager.addEventListener(YuiFrameworkEvent.APPLICATION_START_REQUEST,systemManager_applicationStartRequestHandler);
         }
         
         private function doApplicationStart():void{
