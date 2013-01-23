@@ -42,7 +42,7 @@ package yuis.customizer
     use namespace mx_internal;
 
     [ExcludeClass]
-    public class EventHandlerCustomizer extends AbstractComponentEventListenerCustomizer implements IComponentCustomizer {
+    public class EventHandlerCustomizer extends AbstractComponentEventCustomizer implements IComponentCustomizer {
         
         public function customizeComponent( owner:UIComponent, component:UIComponent ):void{
             const componentName:String = Yuis.namingConvention.getComponentName(component);
@@ -115,7 +115,7 @@ package yuis.customizer
                 }
                 doCustomize(view,action_,int.MAX_VALUE>>1);
                 
-                super.doEventCustomize(viewName,view,action_);
+                doEventCustomize(viewName,view,action_);
                 CONFIG::DEBUG {
                     _debug("Customized",viewClassName,actionClassName);
                 }
@@ -132,7 +132,7 @@ package yuis.customizer
                     }
                     doCustomize(view,behavior_,int.MAX_VALUE>>1);
                     
-                    super.doEventCustomize(viewName,view,behavior_);
+                    doEventCustomize(viewName,view,behavior_);
                     CONFIG::DEBUG {
                         _debug("Customized",viewClassName,behaviorClassName);
                     }
@@ -212,7 +212,7 @@ package yuis.customizer
                 }
                 doUncustomize(view,action_);
                 
-                super.doEventUncustomize(view,action_);
+                doEventUncustomize(view,action_);
                 CONFIG::DEBUG {
                     _debug("Uncustomized",viewClassName,actionClassName);
                 }
@@ -229,7 +229,7 @@ package yuis.customizer
                     }
                     doUncustomize(view,behavior_);
                     
-                    super.doEventUncustomize(view,behavior_);
+                    doEventUncustomize(view,behavior_);
                     CONFIG::DEBUG {
                         _debug("Uncustomized",viewClassName,behaviorClassName);
                     }
@@ -255,9 +255,9 @@ package yuis.customizer
                                     child as IEventDispatcher,
                                     action,
                                     actionClassRef.functions.filter(
-                                    function(item:*,index:int,array:Vector.<FunctionRef>):Boolean {
-                                        return ((item as FunctionRef).name.indexOf(prop.name) == 0);
-                                    }
+                                        function(item:*,index:int,array:Vector.<FunctionRef>):Boolean {
+                                            return ((item as FunctionRef).name.indexOf(prop.name) == 0);
+                                        }
                                     ),
                                     priority
                                     );
@@ -270,9 +270,9 @@ package yuis.customizer
                             null,
                             action,
                             actionClassRef.functions.filter(
-                            function(item:*,index:int,array:Vector.<FunctionRef>):Boolean {
-                                return ((item as FunctionRef).name.indexOf(Yuis.namingConvention.getOwnHandlerPrefix()) == 0);
-                            }
+                                function(item:*,index:int,array:Vector.<FunctionRef>):Boolean {
+                                    return ((item as FunctionRef).name.indexOf(Yuis.namingConvention.getOwnHandlerPrefix()) == 0);
+                                }
                             ),
                             priority
                             );
@@ -312,9 +312,9 @@ package yuis.customizer
                                     child as IEventDispatcher,
                                     action,
                                     actionClassRef.functions.filter(
-                                    function(item:*,index:int,array:Vector.<FunctionRef>):Boolean {
-                                        return ((item as FunctionRef).name.indexOf(prop.name) == 0);
-                                    }
+                                        function(item:*,index:int,array:Vector.<FunctionRef>):Boolean {
+                                            return ((item as FunctionRef).name.indexOf(prop.name) == 0);
+                                        }
                                     )
                                     );
                 }
@@ -326,9 +326,9 @@ package yuis.customizer
                             null,
                             action,
                             actionClassRef.functions.filter(
-                            function(item:*,index:int,array:Vector.<FunctionRef>):Boolean {
-                                return ((item as FunctionRef).name.indexOf(Yuis.namingConvention.getOwnHandlerPrefix()) == 0);
-                            }
+                                function(item:*,index:int,array:Vector.<FunctionRef>):Boolean {
+                                    return ((item as FunctionRef).name.indexOf(Yuis.namingConvention.getOwnHandlerPrefix()) == 0);
+                                }
                             )
                             );
         }
@@ -347,6 +347,55 @@ package yuis.customizer
                 component = view;
             }
             doUnCustomizingByComponent(view,componentName,component,action,functionRefs);
+        }
+        
+        protected function doEventCustomize(name:String,component:UIComponent,listener:Object):void {
+            const listenerClassRef:ClassRef = getClassRef(listener);
+            const props:Vector.<PropertyRef> = listenerClassRef.properties;
+            
+            var child:Object;
+            for each(var prop:PropertyRef in props) {
+                child = prop.getValue(listener);
+                
+                if(child != null && child is IEventDispatcher) {
+                    doCustomizingByComponent(
+                        component,
+                        prop.name,
+                        child as IEventDispatcher,
+                        listener,
+                        listenerClassRef.functions.filter(
+                            function(item:*,index:int,array:Vector.<FunctionRef>):Boolean {
+                                return ((item as FunctionRef).name.indexOf(prop.name) == 0);
+                            }
+                        ),
+                        int.MAX_VALUE>>2
+                    );
+                }
+            }
+        }
+        
+        protected function doEventUncustomize(component:UIComponent,listener:Object):void {
+            const listenerClassRef:ClassRef = getClassRef(listener);
+            const props:Vector.<PropertyRef> = listenerClassRef.properties;
+            
+            var child:Object;
+            for each(var prop:PropertyRef in props) {
+                child = prop.getValue(listener);
+                
+                if(child != null && child is IEventDispatcher) {
+                    doUnCustomizingByComponent(
+                        component,
+                        prop.name,
+                        child as IEventDispatcher,
+                        listener,
+                        listenerClassRef.functions.filter(
+                            function(item:*,index:int,array:Vector.<FunctionRef>):Boolean {
+                                return ((item as FunctionRef).name.indexOf(prop.name) == 0);
+                            }
+                        )
+                    );
+                }
+            }
         }
     }
 }
