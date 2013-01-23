@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<componentPackage>
+   <component id="YuiFrameworkSettings" class="yuis.framework.YuiFrameworkSettings"/>
+   <component id="YuiApplication" class="yuis.framework.YuiApplication"/>
+</componentPackage>

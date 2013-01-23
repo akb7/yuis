@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="yuis" basedir="." default="all">
+    <!-- -->
+    <target name="all" depends="flex4x">
+    </target>
+    <target name="flex4x">
+        <ant antfile="build-flex4x.xml"/>
+    </target>
+    <target name="rb">
+        <ant antfile="build-rb.xml"/>
+    </target>
+</project>

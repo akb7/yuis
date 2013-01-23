@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="false" useMultiPlatformConfig="false" version="1">
+  <includeClasses>
+    <classEntry path="yuis.Yuis"/>
+    <classEntry path="yuis.bridge.DefaultFrameworkBridgePlugin"/>
+    <classEntry path="yuis.bridge.FrameworkBridge"/>
+    <classEntry path="yuis.bridge.IFrameworkBridgePlugin"/>
+    <classEntry path="yuis.convention.NamingConvention"/>
+    <classEntry path="yuis.customizer.AbstractComponentCustomizer"/>
+    <classEntry path="yuis.customizer.AbstractComponentEventCustomizer"/>
+    <classEntry path="yuis.customizer.AbstractComponentEventListenerCustomizer"/>
+    <classEntry path="yuis.customizer.ActionCustomizer"/>
+    <classEntry path="yuis.customizer.BehaviorCustomizer"/>
+    <classEntry path="yuis.customizer.CommandCustomizer"/>
+    <classEntry path="yuis.customizer.EventHandlerCustomizer"/>
+    <classEntry path="yuis.customizer.HelperCustomizer"/>
+    <classEntry path="yuis.customizer.IComponentCustomizer"/>
+    <classEntry path="yuis.customizer.IElementCustomizer"/>
+    <classEntry path="yuis.customizer.IViewCustomizer"/>
+    <classEntry path="yuis.customizer.ServiceCustomizer"/>
+    <classEntry path="yuis.customizer.ValidatorCustomizer"/>
+    <classEntry path="yuis.error.ComponentDuplicatedRegistrationError"/>
+    <classEntry path="yuis.error.YuiFrameworkError"/>
+    <classEntry path="yuis.event.RuntimeErrorEvent"/>
+    <classEntry path="yuis.event.YuiFrameworkEvent"/>
+    <classEntry path="yuis.framework.IYuiFrameworkController"/>
+    <classEntry path="yuis.framework.InstanceCache"/>
+    <classEntry path="yuis.framework.ViewComponentRepository"/>
+    <classEntry path="yuis.framework.YuiApplication"/>
+    <classEntry path="yuis.framework.YuiApplicationConsts"/>
+    <classEntry path="yuis.framework.YuiFrameworkController"/>
+    <classEntry path="yuis.framework.YuiFrameworkControllerBase"/>
+    <classEntry path="yuis.framework.YuiFrameworkControllerCore"/>
+    <classEntry path="yuis.framework.YuiFrameworkSettings"/>
+    <classEntry path="yuis.framework.mixin.YuiFrameworkMixin"/>
+    <classEntry path="yuis.framework.rule.IStatefulObject"/>
+    <classEntry path="yuis.framework.rule.IVolatileObject"/>
+    <classEntry path="yuis.message.MessageManager"/>
+    <classEntry path="yuis.message.Messages"/>
+    <classEntry path="yuis.ns.yuis_action"/>
+    <classEntry path="yuis.ns.yuis_behavior"/>
+    <classEntry path="yuis.ns.yuis_fault"/>
+    <classEntry path="yuis.ns.yuis_helper"/>
+    <classEntry path="yuis.ns.yuis_result"/>
+    <classEntry path="yuis.ns.yuis_service"/>
+    <classEntry path="yuis.ns.yuis_viewpart"/>
+    <classEntry path="yuis.service.IManagedService"/>
+    <classEntry path="yuis.service.IOperation"/>
+    <classEntry path="yuis.service.IPendingCall"/>
+    <classEntry path="yuis.service.IService"/>
+    <classEntry path="yuis.service.OperationCallBack"/>
+    <classEntry path="yuis.service.ServiceGatewayUrlResolver"/>
+    <classEntry path="yuis.service.ServiceManager"/>
+    <classEntry path="yuis.service.ServiceMethod"/>
+    <classEntry path="yuis.service.error.ErrorCode"/>
+    <classEntry path="yuis.service.error.IllegalDestinationError"/>
+    <classEntry path="yuis.service.error.IllegalGatewayError"/>
+    <classEntry path="yuis.service.error.IllegalOperationError"/>
+    <classEntry path="yuis.service.event.AbstractServiceEvent"/>
+    <classEntry path="yuis.service.event.FaultEvent"/>
+    <classEntry path="yuis.service.event.FaultStatus"/>
+    <classEntry path="yuis.service.event.InvokeEvent"/>
+    <classEntry path="yuis.service.event.ResultEvent"/>
+    <classEntry path="yuis.service.local.LocalServiceInvoker"/>
+    <classEntry path="yuis.service.resonder.AbstractServiceResponder"/>
+    <classEntry path="yuis.service.resonder.IServiceResponder"/>
+    <classEntry path="yuis.service.resonder.ServiceResponderFactory"/>
+    <classEntry path="yuis.util.PopUpUtil"/>
+    <classEntry path="yuis.util.StyleManagerUtil"/>
+    <classEntry path="yuis.util.SystemManagerUtil"/>
+    <classEntry path="yuis.util.UIComponentUtil"/>
+  </includeClasses>
+  <includeResources>
+    <resourceEntry destPath="locale/en_US/errors.properties" sourcePath="locale/en_US/errors.properties"/>
+    <resourceEntry destPath="locale/ja_JP/errors.properties" sourcePath="locale/ja_JP/errors.properties"/>
+    <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
+    <resourceEntry destPath="locale/ja_JP/yui_framework.properties" sourcePath="locale/ja_JP/yui_framework.properties"/>
+    <resourceEntry destPath="locale/en_US/messages.properties" sourcePath="locale/en_US/messages.properties"/>
+    <resourceEntry destPath="locale/en_US/yui_framework.properties" sourcePath="locale/en_US/yui_framework.properties"/>
+    <resourceEntry destPath="locale/en_US/application.properties" sourcePath="locale/en_US/application.properties"/>
+    <resourceEntry destPath="locale/ja_JP/messages.properties" sourcePath="locale/ja_JP/messages.properties"/>
+    <resourceEntry destPath="locale/ja_JP/application.properties" sourcePath="locale/ja_JP/application.properties"/>
+  </includeResources>
+  <namespaceManifests>
+    <namespaceManifestEntry manifest="../resources/Manifest.xml" namespace="library://akb7.jp/yuis/1.0"/>
+  </namespaceManifests>
+</flexLibProperties>
