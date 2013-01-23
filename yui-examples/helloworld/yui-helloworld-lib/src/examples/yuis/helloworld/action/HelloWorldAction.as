@@ -6,13 +6,13 @@ package examples.yuis.helloworld.action
     
     public class HelloWorldAction {
         
-        public var helloWorldHelper:HelloWorldHelper;
+        public var helper:HelloWorldHelper;
         
         /**
          * 
          */
         yuis_handler function showHelloWorld_click():void {
-            helloWorldHelper.showMessage(helloWorldHelper.getInputValue());
+            helper.showMessage(helper.getInputValue());
         }
     }
 }

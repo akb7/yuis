@@ -5,14 +5,14 @@ package examples.yuis.helloworld.helper
     public class HelloWorldHelper
     {
         public var view:HelloWorldView;
-		
+        
         public function showMessage( message:String ):void{
-			view.textDisplay.text = message;
+            view.textDisplay.text = message;
         }
-		
-		public function getInputValue():String
-		{
-			return view.inputDisplay.text;
-		}
-	}
+        
+        public function getInputValue():String
+        {
+            return view.inputDisplay.text;
+        }
+    }
 }
