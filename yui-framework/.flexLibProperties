@@ -8,7 +8,6 @@
     <classEntry path="yuis.convention.NamingConvention"/>
     <classEntry path="yuis.customizer.AbstractComponentCustomizer"/>
     <classEntry path="yuis.customizer.AbstractComponentEventCustomizer"/>
-    <classEntry path="yuis.customizer.AbstractComponentEventListenerCustomizer"/>
     <classEntry path="yuis.customizer.ActionCustomizer"/>
     <classEntry path="yuis.customizer.BehaviorCustomizer"/>
     <classEntry path="yuis.customizer.CommandCustomizer"/>
