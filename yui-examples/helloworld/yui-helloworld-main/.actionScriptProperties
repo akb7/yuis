@@ -4,51 +4,61 @@
     <compilerSourcePath/>
     <libraryPath defaultLinkType="3">
       <libraryPathEntry kind="4" path="">
-        <modifiedEntries>
-          <libraryPathEntry applicationDomain="default" forceLoad="false" index="8" kind="3" linkType="4" path="${PROJECT_FRAMEWORKS}/libs/osmf.swc" useDefaultLinkType="true">
-            <crossDomainRsls>
-              <crossDomainRslEntry autoExtract="true" policyFileUrl="http://fpdownload.adobe.com/pub/swz/crossdomain.xml" rslUrl="http://fpdownload.adobe.com/pub/swz/flex/4.6.0.23201/osmf_1.0.0.16316.swz"/>
-              <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="osmf_1.0.0.16316.swz"/>
-            </crossDomainRsls>
-          </libraryPathEntry>
-        </modifiedEntries>
         <excludedEntries>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/playerglobal_rb.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/rpc_rb.swc" useDefaultLinkType="false"/>
           <libraryPathEntry applicationDomain="default" forceLoad="false" index="10" kind="3" linkType="4" path="${PROJECT_FRAMEWORKS}/libs/advancedgrids.swc" useDefaultLinkType="true">
             <crossDomainRsls>
               <crossDomainRslEntry autoExtract="true" policyFileUrl="http://fpdownload.adobe.com/pub/swz/crossdomain.xml" rslUrl="http://fpdownload.adobe.com/pub/swz/flex/4.6.0.23201/advancedgrids_4.6.0.23201.swz"/>
               <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="advancedgrids_4.6.0.23201.swz"/>
             </crossDomainRsls>
           </libraryPathEntry>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/flash-integration_rb.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/airspark_rb.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/tool_air_rb.swc" useDefaultLinkType="false"/>
           <libraryPathEntry applicationDomain="default" forceLoad="false" index="9" kind="3" linkType="4" path="${PROJECT_FRAMEWORKS}/libs/mx/mx.swc" useDefaultLinkType="true">
             <crossDomainRsls>
               <crossDomainRslEntry autoExtract="true" policyFileUrl="http://fpdownload.adobe.com/pub/swz/crossdomain.xml" rslUrl="http://fpdownload.adobe.com/pub/swz/flex/4.6.0.23201/mx_4.6.0.23201.swz"/>
               <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="mx_4.6.0.23201.swz"/>
             </crossDomainRsls>
           </libraryPathEntry>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/advancedgrids_rb.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/mx_rb.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/experimental_rb.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/automation_rb.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/spark_rb.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/automation_agent_rb.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/core.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/framework_rb.swc" useDefaultLinkType="false"/>
           <libraryPathEntry applicationDomain="default" forceLoad="false" index="7" kind="3" linkType="4" path="${PROJECT_FRAMEWORKS}/libs/spark_dmv.swc" useDefaultLinkType="true">
             <crossDomainRsls>
               <crossDomainRslEntry autoExtract="true" policyFileUrl="http://fpdownload.adobe.com/pub/swz/crossdomain.xml" rslUrl="http://fpdownload.adobe.com/pub/swz/flex/4.6.0.23201/spark_dmv_4.6.0.23201.swz"/>
               <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="spark_dmv_4.6.0.23201.swz"/>
             </crossDomainRsls>
           </libraryPathEntry>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/apache_rb.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/charts_rb.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/mobilecomponents_rb.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/airframework_rb.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/textLayout_rb.swc" useDefaultLinkType="false"/>
         </excludedEntries>
-      </libraryPathEntry>
-      <libraryPathEntry applicationDomain="default" forceLoad="false" kind="3" linkType="4" path="${DOCUMENTS}/yui-examples/helloworld/yui-helloworld-lib/libs/yuis-1.0.0-alpha1-snapshot.swc" useDefaultLinkType="true">
-        <crossDomainRsls>
-          <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="yuis-1.0.0-alpha1-snapshot.swf"/>
-        </crossDomainRsls>
       </libraryPathEntry>
       <libraryPathEntry applicationDomain="default" forceLoad="false" kind="3" linkType="4" path="/yui-helloworld-lib/bin/yui-helloworld-lib.swc" useDefaultLinkType="true">
         <crossDomainRsls>
           <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="yui-helloworld-lib.swf"/>
         </crossDomainRsls>
       </libraryPathEntry>
-      <libraryPathEntry applicationDomain="default" forceLoad="false" kind="3" linkType="4" path="${DOCUMENTS}/yui-examples/helloworld/yui-helloworld-lib/libs/yuis-rb-1.0.0-alpha1-snapshot.swc" useDefaultLinkType="true">
+      <libraryPathEntry applicationDomain="default" forceLoad="false" kind="3" linkType="4" path="/yui-framework/bin/yui-framework.swc" useDefaultLinkType="true">
         <crossDomainRsls>
-          <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="yuis-rb-1.0.0-alpha1-snapshot.swf"/>
+          <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="yui-framework.swf"/>
         </crossDomainRsls>
       </libraryPathEntry>
+      <libraryPathEntry applicationDomain="default" forceLoad="false" kind="3" linkType="4" path="/yui-core/bin/yui-core.swc" useDefaultLinkType="true">
+        <crossDomainRsls>
+          <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="yui-core.swf"/>
+        </crossDomainRsls>
+      </libraryPathEntry>
+      <libraryPathEntry kind="1" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/{locale}"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>

@@ -24,20 +24,17 @@ package yuis.event
 {
     import flash.events.Event;
     
-    [ExcludeClass]
+    import yuis.core.ns.yuis_internal;
+    
     public final class YuiFrameworkEvent extends Event {
         
-        public static const APPLICATION_MONITOR_START:String = "applicationMonitorStart";
-        
-        public static const APPLICATION_MONITOR_STOP:String = "applicationMonitorStop";
-        
         public static const APPLICATION_START:String = "applicationStart";
-        
-        public static const APPLICATION_START_REQUEST:String = "applicationStartRequest";
 
         public static const VIEW_INITIALIZED:String = "viewInitialized";
         
-        public function YuiFrameworkEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false){
+        yuis_internal static const APPLICATION_START_REQUEST:String = "applicationStartRequest";
+        
+        public function YuiFrameworkEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=true){
             super(type, bubbles, cancelable);
         }
         
