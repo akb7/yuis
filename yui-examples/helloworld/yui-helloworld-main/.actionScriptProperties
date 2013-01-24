@@ -44,19 +44,24 @@
         </excludedEntries>
       </libraryPathEntry>
       <libraryPathEntry kind="1" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/{locale}"/>
-      <libraryPathEntry applicationDomain="default" forceLoad="false" kind="3" linkType="4" path="rsls/yuis-1.0.0-alpha1-snapshot.swc" useDefaultLinkType="true">
-        <crossDomainRsls>
-          <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="yuis-1.0.0-alpha1-snapshot.swf"/>
-        </crossDomainRsls>
-      </libraryPathEntry>
-      <libraryPathEntry applicationDomain="default" forceLoad="false" kind="3" linkType="4" path="rsls/yuis-rb-1.0.0-alpha1-snapshot.swc" useDefaultLinkType="true">
-        <crossDomainRsls>
-          <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="yuis-rb-1.0.0-alpha1-snapshot.swf"/>
-        </crossDomainRsls>
-      </libraryPathEntry>
       <libraryPathEntry applicationDomain="default" forceLoad="false" kind="3" linkType="4" path="/yui-helloworld-lib/bin/yui-helloworld-lib.swc" useDefaultLinkType="true">
         <crossDomainRsls>
           <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="yui-helloworld-lib.swf"/>
+        </crossDomainRsls>
+      </libraryPathEntry>
+      <libraryPathEntry applicationDomain="default" forceLoad="false" kind="3" linkType="4" path="/yui-core/bin/yui-core.swc" useDefaultLinkType="false">
+        <crossDomainRsls>
+          <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="yui-core.swf"/>
+        </crossDomainRsls>
+      </libraryPathEntry>
+      <libraryPathEntry applicationDomain="default" forceLoad="false" kind="3" linkType="4" path="/yui-ds/target/swc/yui-ds.swc" useDefaultLinkType="true">
+        <crossDomainRsls>
+          <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="yui-ds.swf"/>
+        </crossDomainRsls>
+      </libraryPathEntry>
+      <libraryPathEntry applicationDomain="default" forceLoad="false" kind="3" linkType="4" path="/yui-framework/bin/yui-framework.swc" useDefaultLinkType="true">
+        <crossDomainRsls>
+          <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="yui-framework.swf"/>
         </crossDomainRsls>
       </libraryPathEntry>
     </libraryPath>

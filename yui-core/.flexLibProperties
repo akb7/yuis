@@ -38,8 +38,6 @@
     <classEntry path="yuis.core.reflection.ClassRef"/>
     <classEntry path="yuis.core.reflection.FunctionInvoker"/>
     <classEntry path="yuis.core.reflection.FunctionRef"/>
-    <classEntry path="yuis.core.reflection.IAnnotatedReflector"/>
-    <classEntry path="yuis.core.reflection.IReflector"/>
     <classEntry path="yuis.core.reflection.MetadataRef"/>
     <classEntry path="yuis.core.reflection.ObjectRef"/>
     <classEntry path="yuis.core.reflection.ParameterRef"/>

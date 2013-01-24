@@ -75,20 +75,20 @@ package yuis.core.reflection
             return result;
         }
 
-        private function assembleThis( rootDescribeTypeXml:XML ):void{
-            var access:String = rootDescribeTypeXml.@access.toString();
-            _returnType = getTypeString(rootDescribeTypeXml.@returnType.toString());
-            _declaredBy = getTypeString(rootDescribeTypeXml.@declaredBy.toString());
+        private function assembleThis( describeTypeXml:XML ):void{
+            var access:String = describeTypeXml.@access.toString();
+            _returnType = getTypeString(describeTypeXml.@returnType.toString());
+            _declaredBy = getTypeString(describeTypeXml.@declaredBy.toString());
 
             _isReturnAnyType = ( _returnType == TYPE_ANY );
         }
 
-        private function assembleParameter( rootDescribeTypeXml:XML ):void{
+        private function assembleParameter( describeTypeXml:XML ):void{
             _parameters = new Vector.<ParameterRef>();
             _parameterMap = {};
 
             var parameterRef:ParameterRef = null;
-            var parametersXMLList:XMLList = rootDescribeTypeXml.parameter;
+            var parametersXMLList:XMLList = describeTypeXml.parameter;
             for each( var parameterXML:XML in parametersXMLList ){
                 parameterRef = new ParameterRef(parameterXML);
 

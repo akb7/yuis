@@ -125,10 +125,10 @@ package yuis.core.reflection
 			}
 		}
 
-        private static function isTargetAccessor( rootDescribeTypeXml:XML ):Boolean{
-            const name_:String = rootDescribeTypeXml.@name.toString();
-            const declaredBy_:String = rootDescribeTypeXml.@declaredBy.toString();
-            const uri_:String = rootDescribeTypeXml.@uri.toString();
+        private static function isTargetAccessor( describeTypeXml:XML ):Boolean{
+            const name_:String = describeTypeXml.@name.toString();
+            const declaredBy_:String = describeTypeXml.@declaredBy.toString();
+            const uri_:String = describeTypeXml.@uri.toString();
 
             return (name_.indexOf(_UNDER_) != 0) && 
                 (!(
@@ -137,10 +137,10 @@ package yuis.core.reflection
                 ));
         }
 
-        private static function isTargetVariable( rootDescribeTypeXml:XML ):Boolean{
-            const name_:String = rootDescribeTypeXml.@name.toString();
-            const declaredBy_:String = rootDescribeTypeXml.@declaredBy.toString();
-            const uri_:String = rootDescribeTypeXml.@uri.toString();
+        private static function isTargetVariable( describeTypeXml:XML ):Boolean{
+            const name_:String = describeTypeXml.@name.toString();
+            const declaredBy_:String = describeTypeXml.@declaredBy.toString();
+            const uri_:String = describeTypeXml.@uri.toString();
 
             return (name_.indexOf(_UNDER_) != 0) &&
                 (!(
@@ -149,10 +149,10 @@ package yuis.core.reflection
                 ));
         }
 
-        private static function isTargetFunction( rootDescribeTypeXml:XML ):Boolean{
-            const name_:String = rootDescribeTypeXml.@name.toString();
-            const declaredBy_:String = rootDescribeTypeXml.@declaredBy.toString();
-            const uri_:String = rootDescribeTypeXml.@uri.toString();
+        private static function isTargetFunction( describeTypeXml:XML ):Boolean{
+            const name_:String = describeTypeXml.@name.toString();
+            const declaredBy_:String = describeTypeXml.@declaredBy.toString();
+            const uri_:String = describeTypeXml.@uri.toString();
 
             return (name_.indexOf(_UNDER_) != 0) &&
                 (!(
@@ -385,13 +385,13 @@ package yuis.core.reflection
             return _typeToPropertyMap[ propertyType ];
         }
 
-        private final function assemblePropertyRef( rootDescribeTypeXml:XML ):void{
+        private final function assemblePropertyRef( describeTypeXml:XML ):void{
 
             _properties = new Vector.<PropertyRef>();
 
-            const typeName:String = describeType.@type.toString();
+            const typeName:String = _describeTypeXml.@type.toString();
 
-            var propertysXMLList:XMLList = rootDescribeTypeXml.accessor;
+            var propertysXMLList:XMLList = describeTypeXml.accessor;
             var propertyRef:PropertyRef = null;
             for each( var accessorXML:XML in propertysXMLList ){
                 if( isTargetAccessor(accessorXML) ){
@@ -404,7 +404,7 @@ package yuis.core.reflection
                 }
             }
 
-            propertysXMLList = rootDescribeTypeXml.variable;
+            propertysXMLList = describeTypeXml.variable;
             for each( var variableXML:XML in propertysXMLList ){
                 if( isTargetVariable(variableXML) ){
                     variableXML.@access = "readwrite";
@@ -429,13 +429,13 @@ package yuis.core.reflection
             rproperties_.push(propertyRef);
         }
 
-        private final function assembleFunctionRef( rootDescribeTypeXml:XML ):void{
+        private final function assembleFunctionRef( describeTypeXml:XML ):void{
             _functions = new Vector.<FunctionRef>();
 
             _functionMap = {};
             _returnTypeToFunctionMap = {};
 
-            const functionsXMLList:XMLList = rootDescribeTypeXml.method;
+            const functionsXMLList:XMLList = describeTypeXml.method;
 
             var functionRef:FunctionRef = null;
             var rfunctions_:Array;
@@ -463,11 +463,11 @@ package yuis.core.reflection
             _isInitialiedFunctions = true;
         }
 
-        private final function assembleInterfaces( rootDescribeTypeXml:XML ):void{
+        private final function assembleInterfaces( describeTypeXml:XML ):void{
             _interfaces = new Vector.<String>();
             _interfaceMap = {};
 
-            const interfacesXMLList:XMLList = rootDescribeTypeXml.implementsInterface;
+            const interfacesXMLList:XMLList = describeTypeXml.implementsInterface;
 
             var interfaceName:String = null;
             for each( var interfaceXML:XML in interfacesXMLList ){
@@ -479,11 +479,11 @@ package yuis.core.reflection
             _isInitialiedInterfaces = true;
         }
 
-        private final function assembleSuperClasses( rootDescribeTypeXml:XML ):void{
+        private final function assembleSuperClasses( describeTypeXml:XML ):void{
             _superClasses = new Vector.<String>();
             _superClassMap = {};
 
-            var extendsClassXMLList:XMLList = rootDescribeTypeXml.factory.extendsClass;
+            var extendsClassXMLList:XMLList = describeTypeXml.factory.extendsClass;
             var className:String;
             for each( var extendsClassXML:XML in extendsClassXMLList ){
                 className = getTypeString(extendsClassXML.@type);
@@ -506,22 +506,22 @@ package yuis.core.reflection
             _isInitialiedSuperClasses = true;
         }
 
-        private final function assemblePackage( rootDescribeTypeXml:XML ):void{
+        private final function assemblePackage( describeTypeXml:XML ):void{
             _package = _name.substring(0,_name.lastIndexOf(DOT));
         }
 
-        private final function assembleThis( rootDescribeTypeXml:XML ):void{
+        private final function assembleThis( describeTypeXml:XML ):void{
             _isPrimitive = ( name in PRIMITIVE_CLASS_MAP );
             _isTopLevel = ( name in TOPLEVEL_CLASS_MAP );
             
             _isArray = ( name == ARRAY_CLASS );
             _isVector = ( name.indexOf(VECTOR_CLASS) == 0 );
             
-            _isInterface = (rootDescribeTypeXml.factory.extendsClass as XMLList).length() == 0;
+            _isInterface = (describeTypeXml.factory.extendsClass as XMLList).length() == 0;
         }
 
-        protected override function getName( rootDescribeTypeXml:XML ):String{
-            return getTypeString(rootDescribeTypeXml.@name.toString());
+        protected override function getName( describeTypeXml:XML ):String{
+            return getTypeString(describeTypeXml.@name.toString());
         }
     }
 }

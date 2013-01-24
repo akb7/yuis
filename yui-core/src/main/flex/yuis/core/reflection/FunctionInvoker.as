@@ -23,10 +23,8 @@
 package yuis.core.reflection
 {
     import flash.display.DisplayObject;
-    import flash.display.Stage;
     import flash.events.Event;
     import flash.events.TimerEvent;
-    import flash.utils.Dictionary;
     import flash.utils.Timer;
     
     [ExcludeClass]

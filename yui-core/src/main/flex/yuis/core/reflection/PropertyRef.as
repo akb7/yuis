@@ -84,12 +84,12 @@ package yuis.core.reflection
             }
         }
 
-        private function assembleThis( rootDescribeTypeXml:XML ):void{
-            var access:String = rootDescribeTypeXml.@access.toString();
+        private function assembleThis( describeTypeXml:XML ):void{
+            var access:String = describeTypeXml.@access.toString();
             _isReadable = ( access == READ_ONLY || access == READ_WRITE );
             _isWriteable = ( access == WRITE_ONLY || access == READ_WRITE );
-            _type = getTypeString(rootDescribeTypeXml.@type.toString());
-            _declaredBy = getTypeString(rootDescribeTypeXml.@declaredBy.toString());
+            _type = getTypeString(describeTypeXml.@type.toString());
+            _declaredBy = getTypeString(describeTypeXml.@declaredBy.toString());
         }
     }
 }
