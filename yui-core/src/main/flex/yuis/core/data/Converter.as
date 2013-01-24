@@ -22,16 +22,11 @@
 *****************************************************/
 package yuis.core.data
 {
-    import flash.net.getClassByAlias;
     import flash.utils.ByteArray;
     
-    import mx.core.mx_internal;
-    
     import yuis.core.reflection.ClassRef;
-    import yuis.core.reflection.MetadataRef;
     import yuis.core.reflection.PropertyRef;
     
-    [ExcludeClass]
     public final class Converter {
         
         private static var cloneBuffer:ByteArray = new ByteArray();

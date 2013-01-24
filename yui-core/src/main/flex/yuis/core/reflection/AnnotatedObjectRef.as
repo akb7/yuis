@@ -25,7 +25,7 @@ package yuis.core.reflection
     import __AS3__.vec.Vector;
 
     [ExcludeClass]
-    internal class AnnotatedObjectRef extends ObjectRef implements IAnnotatedReflector {
+    internal class AnnotatedObjectRef extends ObjectRef {
 
         private static const METADATA_HELP:String = "__go_to_definition_help";
 
@@ -55,7 +55,7 @@ package yuis.core.reflection
 
         public function get metadatas():Vector.<MetadataRef>{
             if( !_isInitialiedMetadata ){
-                assembleMetadataRef(describeType);
+                assembleMetadataRef(_describeTypeXml);
             }
             return _metadatas;
         }
@@ -76,9 +76,9 @@ package yuis.core.reflection
             return _metadataMap[metadataName];
         }
 
-        protected final function assembleMetadataRef( rootDescribeTypeXml:XML ):void{
+        protected final function assembleMetadataRef( describeTypeXml:XML ):void{
             var metadataRef:MetadataRef = null;
-            var metadatasXMLList:XMLList = rootDescribeTypeXml.metadata;
+            var metadatasXMLList:XMLList = describeTypeXml.metadata;
             for each( var metadataXML:XML in metadatasXMLList ){
                 if( isTargetMetadata(metadataXML)){
                     metadataRef = new MetadataRef(metadataXML);

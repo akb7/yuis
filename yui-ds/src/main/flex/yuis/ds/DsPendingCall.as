@@ -36,8 +36,8 @@ package yuis.ds {
     import yuis.service.IPendingCall;
     import yuis.service.IService;
     import yuis.service.OperationCallBack;
-    import yuis.service.resonder.IServiceResponder;
-    import yuis.service.resonder.ServiceResponderFactory;
+    import yuis.service.responder.IServiceResponder;
+    import yuis.service.responder.ServiceResponderFactory;
 
     use namespace mx_internal;
 
@@ -94,12 +94,6 @@ package yuis.ds {
 
         public function clear():void{
             _responder = null;
-        }
-
-        public function setInternalAsyncToken( asyncToken:AsyncToken, operation:AbstractOperation ):void{
-            _internalAsyncToken = asyncToken;
-            _internalAsyncToken.addResponder( new mx.rpc.Responder(onResult,onStatus));
-            _operation = operation;
         }
 
         public function setResponder( responder:Object ):void{
@@ -164,6 +158,12 @@ package yuis.ds {
             _responderOwner = null;
             _operation = null;
             _internalAsyncToken = null;
+        }
+        
+        yuis_internal function setInternalAsyncToken( asyncToken:AsyncToken, operation:AbstractOperation ):void{
+            _internalAsyncToken = asyncToken;
+            _internalAsyncToken.addResponder( new mx.rpc.Responder(onResult,onStatus));
+            _operation = operation;
         }
         
         mx_internal override function setResult(newResult:Object):void

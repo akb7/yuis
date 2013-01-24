@@ -67,16 +67,16 @@ package yuis.core.reflection
             assembleThis( describeTypeXml );
         }
 
-        private function assembleThis( rootDescribeTypeXml:XML ):void{
-            _index = parseInt( rootDescribeTypeXml.@index.toString());
-            _type = getTypeString(rootDescribeTypeXml.@type.toString());
-            _isOptional = ( rootDescribeTypeXml.@type.toString() == ObjectRef.BOOL_TRUE);
+        private function assembleThis( describeTypeXml:XML ):void{
+            _index = parseInt( describeTypeXml.@index.toString());
+            _type = getTypeString(describeTypeXml.@type.toString());
+            _isOptional = ( describeTypeXml.@type.toString() == ObjectRef.BOOL_TRUE);
 
             _isAnyType = ( _type == ObjectRef.TYPE_ANY );
         }
 
-        protected override function getName( rootDescribeTypeXml:XML ):String{
-            return rootDescribeTypeXml.@index.toString();
+        protected override function getName( describeTypeXml:XML ):String{
+            return describeTypeXml.@index.toString();
         }
     }
 }

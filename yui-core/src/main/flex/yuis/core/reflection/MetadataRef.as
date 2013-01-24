@@ -61,11 +61,11 @@ package yuis.core.reflection
             return toString_;
         }
 
-        private function assembleArgs( rootDescribeTypeXml:XML ):void{
+        private function assembleArgs( describeTypeXml:XML ):void{
             _args = new Vector.<String>();
             _argMap = {};
 
-            var argsXMLList:XMLList = rootDescribeTypeXml.arg;
+            var argsXMLList:XMLList = describeTypeXml.arg;
             var name:String;
             var value:Object;
             for each( var argXML:XML in argsXMLList ){

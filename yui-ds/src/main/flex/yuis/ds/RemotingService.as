@@ -44,6 +44,7 @@ package yuis.ds {
 	import mx.messaging.messages.CommandMessage;
 	import mx.messaging.messages.CommandMessageExt;
 	import mx.messaging.messages.ErrorMessage;
+	import mx.messaging.messages.IMessage;
 	import mx.messaging.messages.MessagePerformanceInfo;
 	import mx.messaging.messages.RemotingMessage;
 	import mx.rpc.AbstractOperation;
@@ -184,7 +185,7 @@ package yuis.ds {
 		}
 		
 		public function invokeMethod(name:String,args:Array):IPendingCall{
-			return internalInvoke( new QName(name),args);
+			return internalInvoke( new QName(null,name),args);
 		}
 		
 		private function creationCompleteHandler( event:FlexEvent ):void{
@@ -216,8 +217,8 @@ package yuis.ds {
 			}
 			var asyncToken:AsyncToken = super.callProperty.apply(null, [name].concat(args));
 			asyncToken.message.destination = destination;
-			var result:DsPendingCall = new yuis_internal::pendingCallClass(asyncToken.message);
-			result.setInternalAsyncToken(asyncToken,getOperation(name.localName));
+			var result:DsPendingCall = createPendingCall(asyncToken.message) as DsPendingCall;
+			result.yuis_internal::setInternalAsyncToken(asyncToken,getOperation(name.localName));
 			
 			if( OperationCallBack.invokeCallBack != null ){
 				var methodName:String = name.localName;
@@ -228,7 +229,13 @@ package yuis.ds {
 			}
 			return result;
 		}
-		
+        
+        protected function createPendingCall(message:IMessage):DsPendingCall
+        {
+            var result:DsPendingCall = new yuis_internal::pendingCallClass(message);
+            return result;
+        }
+        
 		flash_proxy override function callProperty(name:*, ... args:Array):*{
 			return internalInvoke(name,args);
 		}

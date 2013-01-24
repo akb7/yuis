@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package yuis.service.resonder {
+package yuis.service.responder {
 
     import yuis.service.event.FaultEvent;
     import yuis.service.event.ResultEvent;
