@@ -25,7 +25,7 @@ package yuis.core.reflection
     import flash.system.System;
 
     [ExcludeClass]
-    internal class ObjectRef implements IReflector {
+    internal class ObjectRef {
         
         internal static const BOOL_TRUE:String = "true";
         
@@ -62,10 +62,6 @@ package yuis.core.reflection
 
         protected var _describeTypeXml:XML;
 
-        public function get describeType():XML{
-            return _describeTypeXml;
-        }
-
         protected var _name:String;
 
         public function get name():String{
@@ -90,12 +86,12 @@ package yuis.core.reflection
             _describeTypeXml = null;
         }
 
-        protected function getName( rootDescribeTypeXml:XML ):String{
-            return rootDescribeTypeXml.@name.toString();
+        protected function getName( describeTypeXml:XML ):String{
+            return describeTypeXml.@name.toString();
         }
 
-        protected function getUri( rootDescribeTypeXml:XML ):String{
-            return rootDescribeTypeXml.@uri.toString();
+        protected function getUri( describeTypeXml:XML ):String{
+            return describeTypeXml.@uri.toString();
         }
     }
 }
