@@ -61,9 +61,9 @@
     <classEntry path="yuis.service.event.InvokeEvent"/>
     <classEntry path="yuis.service.event.ResultEvent"/>
     <classEntry path="yuis.service.local.LocalServiceInvoker"/>
-    <classEntry path="yuis.service.resonder.AbstractServiceResponder"/>
-    <classEntry path="yuis.service.resonder.IServiceResponder"/>
-    <classEntry path="yuis.service.resonder.ServiceResponderFactory"/>
+    <classEntry path="yuis.service.responder.AbstractServiceResponder"/>
+    <classEntry path="yuis.service.responder.IServiceResponder"/>
+    <classEntry path="yuis.service.responder.ServiceResponderFactory"/>
     <classEntry path="yuis.util.PopUpUtil"/>
     <classEntry path="yuis.util.StyleManagerUtil"/>
     <classEntry path="yuis.util.SystemManagerUtil"/>

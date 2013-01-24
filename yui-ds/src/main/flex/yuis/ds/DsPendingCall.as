@@ -36,8 +36,8 @@ package yuis.ds {
     import yuis.service.IPendingCall;
     import yuis.service.IService;
     import yuis.service.OperationCallBack;
-    import yuis.service.resonder.IServiceResponder;
-    import yuis.service.resonder.ServiceResponderFactory;
+    import yuis.service.responder.IServiceResponder;
+    import yuis.service.responder.ServiceResponderFactory;
 
     use namespace mx_internal;
 

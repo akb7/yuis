@@ -16,7 +16,7 @@
 package yuis.ds.responder
 {
     import yuis.core.reflection.ClassRef;
-    import yuis.service.resonder.ServiceResponderFactory;
+    import yuis.service.responder.ServiceResponderFactory;
 
     [ExcludeClass]
     public final class RpcResponderFactory extends ServiceResponderFactory

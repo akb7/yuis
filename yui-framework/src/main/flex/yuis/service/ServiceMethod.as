@@ -21,7 +21,7 @@ package yuis.service
     import yuis.core.event.MessageEvent;
     import yuis.service.event.FaultEvent;
     import yuis.service.event.ResultEvent;
-    import yuis.service.resonder.IServiceResponder;
+    import yuis.service.responder.IServiceResponder;
     
     public class ServiceMethod extends EventDispatcher implements IServiceResponder{
         
