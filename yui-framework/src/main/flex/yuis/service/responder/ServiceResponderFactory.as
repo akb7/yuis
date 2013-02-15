@@ -85,7 +85,7 @@ package yuis.service.responder
                 }
             }while(false);
             if( functionRef == null ){
-                throw new NotFoundError( classRef.name, "public function " + serviceMethod + RESULT_HANDLER + " or rpc_result function " + serviceMethod);
+                throw new NotFoundError( classRef.name, "\"public function " + serviceMethod + RESULT_HANDLER + "\" or \"yuis_result function " + serviceMethod + "\"");
             }
             return functionRef;
         }
