@@ -111,6 +111,6 @@ package yuis
 				}
 			}
 		}();
-		public static const VERSION:String = "1.0.0."+REVISION+"-alpha1-snapshot" + (DEBUG?"-debug":"");
+		public static const VERSION:String = "1.0.0."+REVISION+"-beta1-snapshot" + (DEBUG?"-debug":"");
     }
 }
