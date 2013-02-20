@@ -36,7 +36,6 @@ package examples.yuis.helloworld.action
         yuis_handler function on_stateChangeComplete():void{
             setTimeout(function():void{
                 //something...
-                trace(1);
             },100);
         }
     }

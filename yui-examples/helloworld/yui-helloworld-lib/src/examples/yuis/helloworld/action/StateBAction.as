@@ -22,6 +22,7 @@ package examples.yuis.helloworld.action
         yuis_handler function on_viewInitialized():void{
             setTimeout(function():void{
                 //something...
+                trace("StateBAction.enclosing_method()");
             },100);
         }
         
