@@ -6,13 +6,11 @@ package examples.yuis.helloworld.helper
     {
         public var view:HelloWorldView;
         
-        public function showMessage( message:String ):void{
-            view.textDisplay.text = message;
+        public function changeStateA():void{
+            view.currentState = "stateA";
         }
-        
-        public function getInputValue():String
-        {
-            return view.inputDisplay.text;
+        public function changeStateB():void{
+            view.currentState = "stateB";
         }
     }
 }

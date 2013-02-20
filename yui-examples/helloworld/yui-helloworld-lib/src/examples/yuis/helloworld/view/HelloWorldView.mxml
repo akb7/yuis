@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
-          xmlns:s="library://ns.adobe.com/flex/spark">
-    <s:TextInput id="inputDisplay" text="HelloWorld"/>
-    <s:Button id="showHelloWorld" label="表示"/>
-    <s:Label id="textDisplay"/>    
+          xmlns:s="library://ns.adobe.com/flex/spark" xmlns:view="examples.yuis.helloworld.view.*">
+    <s:states>
+        <s:State name="stateA"/>
+        <s:State name="stateB"/>
+    </s:states>
+    <s:Button id="stateAButton"/>
+    <s:Button id="stateBButton"/>
+    <view:StateAView includeIn="stateA"/>
+    <view:StateBView includeIn="stateB"/>
 </s:VGroup>
