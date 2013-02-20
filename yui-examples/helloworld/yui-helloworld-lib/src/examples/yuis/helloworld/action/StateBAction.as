@@ -29,8 +29,16 @@ package examples.yuis.helloworld.action
         /**
          * 
          */
-        yuis_handler function showHelloWorld_click():void {
-            helper.showMessage(helper.getInputValue());
+        yuis_handler function showPopup_click():void {
+            helper.showPopup();
+        }
+        
+        /**
+         * 
+         */
+        yuis_handler function closeButton_click():void {
+            trace(1);
+            helper.hidePopup();
         }
     }
 }

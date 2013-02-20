@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
           xmlns:s="library://ns.adobe.com/flex/spark">
-    <s:Label text="stateB"/>
-    <s:TextInput id="inputDisplay" text="HelloWorld"/>
-    <s:Button id="showHelloWorld" label="表示"/>
-    <s:Label id="textDisplay"/>    
+    <s:Button id="showPopup" label="ポップアップ表示"/>
+    <s:PopUpAnchor id="popUp" 
+                   left="0" bottom="0" 
+                   popUpPosition="below">
+        <s:BorderContainer>
+            <s:VGroup>
+                <s:TextInput id="textInput"/>
+                <s:Button id="closeButton"/>
+            </s:VGroup>
+        </s:BorderContainer>
+    </s:PopUpAnchor>
 </s:VGroup>

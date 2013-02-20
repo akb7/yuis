@@ -15,16 +15,14 @@ package examples.yuis.helloworld.helper
         /**
          * 
          */
-        public function showMessage( message:String ):void{
-            view.textDisplay.text = message;
+        public function showPopup():void{
+            view.popUp.displayPopUp = true;
         }
-        
         /**
          * 
          */
-        public function getInputValue():String
-        {
-            return view.inputDisplay.text;
+        public function hidePopup():void{
+            view.popUp.displayPopUp = false;
         }
     }
 }

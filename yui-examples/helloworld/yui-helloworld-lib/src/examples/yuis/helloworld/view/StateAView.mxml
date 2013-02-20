@@ -4,5 +4,5 @@
     <s:Label text="stateA"/>
     <s:TextInput id="inputDisplay" text="HelloWorld"/>
     <s:Button id="showHelloWorld" label="表示"/>
-    <s:Label id="textDisplay"/>    
+    <s:Label id="textDisplay"/>  
 </s:VGroup>
