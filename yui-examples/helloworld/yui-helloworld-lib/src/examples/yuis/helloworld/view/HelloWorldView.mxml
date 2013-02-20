@@ -7,6 +7,6 @@
     </s:states>
     <s:Button id="stateAButton"/>
     <s:Button id="stateBButton"/>
-    <view:StateAView includeIn="stateA"/>
-    <view:StateBView includeIn="stateB"/>
+    <view:StateAView id="a" includeIn="stateA"/>
+    <view:StateBView id="b" includeIn="stateB"/>
 </s:VGroup>
