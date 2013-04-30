@@ -22,8 +22,6 @@
 *****************************************************/
 package yuis.core.reflection
 {
-    import flash.system.System;
-
     [ExcludeClass]
     internal class ObjectRef {
         
@@ -60,7 +58,7 @@ package yuis.core.reflection
             return result;
         }
 
-        protected var _describeTypeXml:XML;
+//        protected var _describeTypeXml:XML;
 
         protected var _name:String;
 
@@ -75,15 +73,13 @@ package yuis.core.reflection
         }
 
         public function ObjectRef( describeTypeXml:XML ){
-            _describeTypeXml = describeTypeXml;
+//            _describeTypeXml = describeTypeXml;
 
             _name = getName( describeTypeXml );
             _uri = getUri( describeTypeXml );
         }
         
         public function dispose():void{
-            System.disposeXML(_describeTypeXml);
-            _describeTypeXml = null;
         }
 
         protected function getName( describeTypeXml:XML ):String{

@@ -22,6 +22,8 @@
 *****************************************************/
 package yuis.core.reflection
 {
+    import flash.system.System;
+    
     import __AS3__.vec.Vector;
 
     [ExcludeClass]
@@ -39,6 +41,7 @@ package yuis.core.reflection
         {
             super( describeTypeXml );
             assembleArgs( describeTypeXml );
+            System.disposeXML(describeTypeXml);
         }
 
         public function hasArgs():Boolean{

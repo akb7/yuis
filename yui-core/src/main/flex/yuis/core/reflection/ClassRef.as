@@ -22,6 +22,7 @@
 *****************************************************/
 package yuis.core.reflection
 {
+    import flash.system.System;
     import flash.utils.Dictionary;
     import flash.utils.describeType;
     import flash.utils.getQualifiedClassName;
@@ -179,9 +180,6 @@ package yuis.core.reflection
 
         public function get isEvent():Boolean
         {
-            if( !_isInitialiedSuperClasses){
-                assembleSuperClasses(_describeTypeXml);
-            }
             return _isEvent;
         }
 
@@ -189,9 +187,6 @@ package yuis.core.reflection
 
         public function get isDisplayObject():Boolean
         {
-            if( !_isInitialiedSuperClasses){
-                assembleSuperClasses(_describeTypeXml);
-            }
             return _isDisplayObject;
         }
 
@@ -200,7 +195,6 @@ package yuis.core.reflection
         public function get isEventDispatcher():Boolean
         {
             if( !_isInitialiedSuperClasses){
-                assembleSuperClasses(_describeTypeXml);
             }
             return _isEventDispatcher;
         }
@@ -216,9 +210,6 @@ package yuis.core.reflection
         private var _properties:Vector.<PropertyRef>;
 
         public function get properties():Vector.<PropertyRef>{
-            if( !_isInitialiedProperties){ 
-                assemblePropertyRef(_describeTypeXml.factory[0]);
-            }
             return _properties;
         }
 
@@ -232,7 +223,6 @@ package yuis.core.reflection
 
         public function get functions():Vector.<FunctionRef>{
             if( !_isInitialiedFunctions ){ 
-                assembleFunctionRef(_describeTypeXml.factory[0]);
             }
             return _functions;
         }
@@ -247,7 +237,6 @@ package yuis.core.reflection
         
         public function get superClasses():Vector.<String>{
             if( !_isInitialiedSuperClasses ){ 
-                assembleSuperClasses(_describeTypeXml.factory[0]);
             }
             return _superClasses;
         }
@@ -260,7 +249,6 @@ package yuis.core.reflection
         
         public function get interfaces():Vector.<String>{
             if( !_isInitialiedInterfaces ){
-                assembleInterfaces(_describeTypeXml.factory[0]);
             }
             return _interfaces;
         }
@@ -313,6 +301,11 @@ package yuis.core.reflection
 
             assemblePackage( describeTypeXml );
             assembleThis( describeTypeXml );
+            assembleInterfaces( describeTypeXml.factory[0]);
+            assembleSuperClasses( describeTypeXml.factory[0]);
+            assembleFunctionRef( describeTypeXml.factory[0]);
+            assemblePropertyRef( describeTypeXml.factory[0]);
+            System.disposeXML(describeTypeXml);
         }
 
         public function newInstance(... args):Object{
@@ -378,10 +371,6 @@ package yuis.core.reflection
         }
 
         public function getPropertyRefByType( propertyType:String ):Vector.<PropertyRef>{
-            if( !_isInitialiedProperties){ 
-                assemblePropertyRef(_describeTypeXml.factory[0]);
-                _isInitialiedProperties = true;
-            }
             return _typeToPropertyMap[ propertyType ];
         }
 
@@ -389,7 +378,7 @@ package yuis.core.reflection
 
             _properties = new Vector.<PropertyRef>();
 
-            const typeName:String = _describeTypeXml.@type.toString();
+            const typeName:String = describeTypeXml.@type.toString();
 
             var propertysXMLList:XMLList = describeTypeXml.accessor;
             var propertyRef:PropertyRef = null;

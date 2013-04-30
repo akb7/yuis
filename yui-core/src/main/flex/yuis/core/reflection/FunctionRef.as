@@ -22,6 +22,8 @@
 *****************************************************/
 package yuis.core.reflection
 {
+    import flash.system.System;
+    
     import __AS3__.vec.Vector;
 
     [ExcludeClass]
@@ -32,9 +34,6 @@ package yuis.core.reflection
         private var _parameters:Vector.<ParameterRef>;
 
         public function get parameters():Vector.<ParameterRef>{
-            if( !_isInitialiedParameters ){
-                assembleParameter(_describeTypeXml );
-            }
             return _parameters;
         }
 
@@ -62,6 +61,8 @@ package yuis.core.reflection
         {
             super( describeTypeXml );
             assembleThis( describeTypeXml );
+            assembleParameter(describeTypeXml );
+            System.disposeXML(describeTypeXml);
         }
 
         public function getFunction( object:Object ):Function{

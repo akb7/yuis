@@ -22,6 +22,8 @@
 *****************************************************/
 package yuis.core.reflection
 {
+    import flash.system.System;
+
     [ExcludeClass]
     public final class ParameterRef extends ObjectRef {
         
@@ -65,6 +67,7 @@ package yuis.core.reflection
         {
             super( describeTypeXml );
             assembleThis( describeTypeXml );
+            System.disposeXML(describeTypeXml);
         }
 
         private function assembleThis( describeTypeXml:XML ):void{

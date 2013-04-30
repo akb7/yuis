@@ -22,6 +22,8 @@
 *****************************************************/
 package yuis.core.reflection
 {
+    import flash.system.System;
+
     [ExcludeClass]
     public final class PropertyRef extends AnnotatedObjectRef {
         
@@ -62,6 +64,7 @@ package yuis.core.reflection
         public function PropertyRef( describeTypeXml:XML ){
             super( describeTypeXml );
             assembleThis( describeTypeXml );
+            System.disposeXML(describeTypeXml);
         }
 
         public function getValue( target:Object ):Object{

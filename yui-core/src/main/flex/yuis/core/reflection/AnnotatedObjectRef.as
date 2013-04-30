@@ -54,9 +54,6 @@ package yuis.core.reflection
         private var _metadatas:Vector.<MetadataRef>;
 
         public function get metadatas():Vector.<MetadataRef>{
-            if( !_isInitialiedMetadata ){
-                assembleMetadataRef(_describeTypeXml);
-            }
             return _metadatas;
         }
 
@@ -66,6 +63,7 @@ package yuis.core.reflection
             super( describeTypeXml );
             _metadatas = new Vector.<MetadataRef>();
             _metadataMap = {};
+            assembleMetadataRef( describeTypeXml );
         }
 
         public function hasMetadata( metadataName:String ):Boolean{
