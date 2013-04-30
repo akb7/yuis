@@ -50,18 +50,20 @@ package yuis.core.reflection
         public function get isAnyType():Boolean{
             return _isAnyType;
         }
-
-        public function get isEvent():Boolean{
-            return getClassRef(_type).isEvent;
-        }
-
-        public function get isEventDispatcher():Boolean{
-            return getClassRef(_type).isEventDispatcher;
-        }
-
-        public function get isDisplayObject():Boolean{
-            return getClassRef(_type).isDisplayObject;
-        }
+        
+//        private var _isEvent:Boolean;
+//        
+//        public function get isEvent():Boolean{
+//            return _isEvent;
+//        }
+//
+//        public function get isEventDispatcher():Boolean{
+//            return getClassRef(_type).isEventDispatcher;
+//        }
+//
+//        public function get isDisplayObject():Boolean{
+//            return getClassRef(_type).isDisplayObject;
+//        }
 
         public function ParameterRef( describeTypeXml:XML )
         {
@@ -71,10 +73,10 @@ package yuis.core.reflection
         }
 
         private function assembleThis( describeTypeXml:XML ):void{
+            var type:String = describeTypeXml.@type.toString();
             _index = parseInt( describeTypeXml.@index.toString());
-            _type = getTypeString(describeTypeXml.@type.toString());
-            _isOptional = ( describeTypeXml.@type.toString() == ObjectRef.BOOL_TRUE);
-
+            _type = getTypeString(type);
+            _isOptional = ( type == ObjectRef.BOOL_TRUE);
             _isAnyType = ( _type == ObjectRef.TYPE_ANY );
         }
 

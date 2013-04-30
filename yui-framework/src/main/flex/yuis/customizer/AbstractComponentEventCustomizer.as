@@ -73,20 +73,20 @@ package yuis.customizer
             return descriptor.events[eventName];
         }
 
-        private final function createEnhancedEventHandler(owner:IEventDispatcher,handler:Function):Function {
-            const func_:Object = 
-                function(event:Event):void {
-                    var callee:Object = arguments.callee;
-                    var proto:Function = callee[FUNCTION_PROTO] as Function;
-                    if(proto != null) {
-                        proto.apply(null,[event]);
-                    } else {
-                        throw new Error("EnhancedEventHandler doesn't have proto Handler");
-                    }
-                };
-            func_[FUNCTION_PROTO] = handler;
-            return func_ as Function;
-        }
+//        private final function createEnhancedEventHandler(owner:IEventDispatcher,handler:Function):Function {
+//            const func_:Object = 
+//                function(event:Event):void {
+//                    var callee:Object = arguments.callee;
+//                    var proto:Function = callee[FUNCTION_PROTO] as Function;
+//                    if(proto != null) {
+//                        proto.apply(null,[event]);
+//                    } else {
+//                        throw new Error("EnhancedEventHandler doesn't have proto Handler");
+//                    }
+//                };
+//            func_[FUNCTION_PROTO] = handler;
+//            return func_ as Function;
+//        }
 
         private final function createEnhancedObjectHandler(owner:IEventDispatcher,handler:Function):Function {
             const func_:Object = 
@@ -139,12 +139,7 @@ package yuis.customizer
                 }
 
                 if(functionRef.parameters.length > 0) {
-                    var param:ParameterRef = functionRef.parameters[0] as ParameterRef;
-                    if( param.isEvent ){
-                        enhancedFunction = createEnhancedEventHandler(view,functionRef.getFunction(listener));
-                    } else {
-                        enhancedFunction = createEnhancedObjectHandler(view,functionRef.getFunction(listener));
-                    }
+                    enhancedFunction = createEnhancedObjectHandler(view,functionRef.getFunction(listener));
                 } else {
                     enhancedFunction = createEnhancedEventNoneHandler(view,functionRef.getFunction(listener));
                 }
