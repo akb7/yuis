@@ -32,7 +32,6 @@ package yuis.customizer
     import yuis.core.event.MessageEvent;
     import yuis.core.event.NotificationEvent;
     import yuis.core.reflection.FunctionRef;
-    import yuis.core.reflection.ParameterRef;
     import yuis.util.UIComponentUtil;
     
     [ExcludeClass]
@@ -72,21 +71,6 @@ package yuis.customizer
             var descriptor:UIComponentDescriptor = UIComponentUtil.getDescriptor(component);
             return descriptor.events[eventName];
         }
-
-//        private final function createEnhancedEventHandler(owner:IEventDispatcher,handler:Function):Function {
-//            const func_:Object = 
-//                function(event:Event):void {
-//                    var callee:Object = arguments.callee;
-//                    var proto:Function = callee[FUNCTION_PROTO] as Function;
-//                    if(proto != null) {
-//                        proto.apply(null,[event]);
-//                    } else {
-//                        throw new Error("EnhancedEventHandler doesn't have proto Handler");
-//                    }
-//                };
-//            func_[FUNCTION_PROTO] = handler;
-//            return func_ as Function;
-//        }
 
         private final function createEnhancedObjectHandler(owner:IEventDispatcher,handler:Function):Function {
             const func_:Object = 

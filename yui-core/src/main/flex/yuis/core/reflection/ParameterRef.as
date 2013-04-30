@@ -51,20 +51,6 @@ package yuis.core.reflection
             return _isAnyType;
         }
         
-//        private var _isEvent:Boolean;
-//        
-//        public function get isEvent():Boolean{
-//            return _isEvent;
-//        }
-//
-//        public function get isEventDispatcher():Boolean{
-//            return getClassRef(_type).isEventDispatcher;
-//        }
-//
-//        public function get isDisplayObject():Boolean{
-//            return getClassRef(_type).isDisplayObject;
-//        }
-
         public function ParameterRef( describeTypeXml:XML )
         {
             super( describeTypeXml );

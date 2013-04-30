@@ -176,27 +176,6 @@ package yuis.core.reflection
             return _isInterface;
         }
 
-//        private var _isEvent:Boolean;
-//
-//        public function get isEvent():Boolean
-//        {
-//            return _isEvent;
-//        }
-
-//        private var _isDisplayObject:Boolean;
-//
-//        public function get isDisplayObject():Boolean
-//        {
-//            return _isDisplayObject;
-//        }
-
-//        private var _isEventDispatcher:Boolean;
-//
-//        public function get isEventDispatcher():Boolean
-//        {
-//            return _isEventDispatcher;
-//        }
-
         private var _className:String;
 
         public function get className():String{
@@ -228,30 +207,6 @@ package yuis.core.reflection
         private var _functionMap:Object;
 
         private var _returnTypeToFunctionMap:Object;
-        
-//        private var _isInitialiedSuperClasses:Boolean;
-//
-//        private var _superClasses:Vector.<String>;
-//        
-//        public function get superClasses():Vector.<String>{
-//            if( !_isInitialiedSuperClasses ){ 
-//            }
-//            return _superClasses;
-//        }
-//        
-//        private var _superClassMap:Object;
-        
-//        private var _isInitialiedInterfaces:Boolean;
-//
-//        private var _interfaces:Vector.<String>;
-//        
-//        public function get interfaces():Vector.<String>{
-//            if( !_isInitialiedInterfaces ){
-//            }
-//            return _interfaces;
-//        }
-//
-//        private var _interfaceMap:Object;
 
         private var _package:String;
 
@@ -288,17 +243,12 @@ package yuis.core.reflection
             const describeTypeXml:XML = flash.utils.describeType(clazz);
             
             _functionMap = {};
-//            _interfaceMap = {};
             _propertyMap = {};
-//            _superClassMap = {};
             _typeToPropertyMap = {};
             
             super( describeTypeXml );
             _className = getTypeName(_name);
 
-//            assembleThis( describeTypeXml );
-//            assembleInterfaces( describeTypeXml.factory[0]);
-//            assembleSuperClasses( describeTypeXml.factory[0]);
             assembleFunctionRef( describeTypeXml.factory[0]);
             assemblePropertyRef( describeTypeXml.factory[0]);
             assemblePackage( describeTypeXml );
@@ -448,49 +398,6 @@ package yuis.core.reflection
             }
             _isInitialiedFunctions = true;
         }
-
-//        private final function assembleInterfaces( describeTypeXml:XML ):void{
-//            _interfaces = new Vector.<String>();
-//            _interfaceMap = {};
-//
-//            const interfacesXMLList:XMLList = describeTypeXml.implementsInterface;
-//
-//            var interfaceName:String = null;
-//            for each( var interfaceXML:XML in interfacesXMLList ){
-//                interfaceName = getTypeString(interfaceXML.@type);
-//
-//                _interfaces.push( interfaceName );
-//                _interfaceMap[ interfaceName ] = 1;
-//            }
-//            _isInitialiedInterfaces = true;
-//        }
-
-//        private final function assembleSuperClasses( describeTypeXml:XML ):void{
-//            _superClasses = new Vector.<String>();
-//            _superClassMap = {};
-//
-//            var extendsClassXMLList:XMLList = describeTypeXml.factory.extendsClass;
-//            var className:String;
-//            for each( var extendsClassXML:XML in extendsClassXMLList ){
-//                className = getTypeString(extendsClassXML.@type);
-//                _superClasses.push(className);
-//                _superClassMap[ className ] = 1;
-//                switch( className ){
-//                    case "flash.events.Event":
-//                        _isEvent = true;
-//                        break;
-//                    case "flash.events.EventDispatcher":
-//                        _isEventDispatcher = true;
-//                        break;
-//                    case "flash.display.DisplayObject":
-//                        _isDisplayObject = true;
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            }
-//            _isInitialiedSuperClasses = true;
-//        }
 
         private final function assemblePackage( describeTypeXml:XML ):void{
             _package = _name.substring(0,_name.lastIndexOf(DOT));

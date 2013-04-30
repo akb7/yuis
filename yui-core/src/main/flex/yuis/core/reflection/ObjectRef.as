@@ -58,8 +58,6 @@ package yuis.core.reflection
             return result;
         }
 
-//        protected var _describeTypeXml:XML;
-
         protected var _name:String;
 
         public function get name():String{
@@ -73,8 +71,6 @@ package yuis.core.reflection
         }
 
         public function ObjectRef( describeTypeXml:XML ){
-//            _describeTypeXml = describeTypeXml;
-
             _name = getName( describeTypeXml );
             _uri = getUri( describeTypeXml );
         }
