@@ -112,14 +112,14 @@ package yuis.framework
                 _rootView = new viewClass();
                 _rootView.name = ROOT_VIEW;
                 _rootView.setVisible(false,true);
-                LayoutManager.getInstance().addEventListener(FlexEvent.UPDATE_COMPLETE,rootView_updateCompleteHandler);
+                _rootView.addEventListener(FlexEvent.UPDATE_COMPLETE,rootView_updateCompleteHandler);
                 addElement(_rootView);
             }
         }
         
         private final function rootView_updateCompleteHandler(event:FlexEvent):void
         {
-            LayoutManager.getInstance().removeEventListener(FlexEvent.UPDATE_COMPLETE,rootView_updateCompleteHandler);
+            _rootView.removeEventListener(FlexEvent.UPDATE_COMPLETE,rootView_updateCompleteHandler);
             CONFIG::DEBUG{
                 debug(this,"RootView Created.");
             }

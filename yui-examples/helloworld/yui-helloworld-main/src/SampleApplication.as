@@ -19,6 +19,7 @@ package
         protected override function createRootView():void{
             booting.text = "1秒後に起動します。";
             setTimeout(super.createRootView,1000);
+//            super.createRootView();
         }
     }
 }
