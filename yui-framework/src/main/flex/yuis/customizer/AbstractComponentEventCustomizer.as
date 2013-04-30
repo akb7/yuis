@@ -73,7 +73,7 @@ package yuis.customizer
             return descriptor.events[eventName];
         }
 
-        protected function createEnhancedEventHandler(owner:IEventDispatcher,handler:Function):Function {
+        protected final function createEnhancedEventHandler(owner:IEventDispatcher,handler:Function):Function {
             const func_:Object = 
                 function(event:Event):void {
                     var callee:Object = arguments.callee;
@@ -88,7 +88,7 @@ package yuis.customizer
             return func_ as Function;
         }
 
-        protected function createEnhancedObjectHandler(owner:IEventDispatcher,handler:Function):Function {
+        protected final function createEnhancedObjectHandler(owner:IEventDispatcher,handler:Function):Function {
             const func_:Object = 
                 function(event:Event):void {
                     var callee:Object = arguments.callee;
@@ -109,7 +109,7 @@ package yuis.customizer
             return func_ as Function;
         }
         
-        protected function createEnhancedEventNoneHandler(owner:IEventDispatcher,handler:Function):Function {
+        protected final function createEnhancedEventNoneHandler(owner:IEventDispatcher,handler:Function):Function {
             const func_:Object =
                 function(event:Event):void {
                     var callee:Object = arguments.callee;
@@ -124,7 +124,7 @@ package yuis.customizer
             return func_ as Function;
         }
 
-        protected function doCustomizingByComponent(view:UIComponent,componentName:String,component:IEventDispatcher,listener:Object,functionRefs:Vector.<FunctionRef>,priority:int):void {
+        protected final function doCustomizingByComponent(view:UIComponent,componentName:String,component:IEventDispatcher,listener:Object,functionRefs:Vector.<FunctionRef>,priority:int):void {
             var eventName:String;
             var enhancedEventName:String;
             var enhancedFunction:Function;
@@ -156,7 +156,7 @@ package yuis.customizer
             }
         }
 
-        protected function doUnCustomizingByComponent(view:UIComponent,componentName:String,component:IEventDispatcher,listener:Object,functionRefs:Vector.<FunctionRef>):void {
+        protected final function doUnCustomizingByComponent(view:UIComponent,componentName:String,component:IEventDispatcher,listener:Object,functionRefs:Vector.<FunctionRef>):void {
             var eventName:String;
             var enhancedEventName:String;
             var enhancedFunction:Function;
