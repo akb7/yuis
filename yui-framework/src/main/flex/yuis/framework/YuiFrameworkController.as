@@ -53,9 +53,7 @@ package yuis.framework
 	import yuis.logging.debug;
 	import yuis.util.StyleManagerUtil;
 
-    CONFIG::UNCAUGHT_ERROR_GLOBAL{
-        import flash.events.UncaughtErrorEvent;
-    }
+    import flash.events.UncaughtErrorEvent;
 
     use namespace yuis_internal;
     
@@ -327,10 +325,8 @@ package yuis.framework
             Environment.yuis_internal::setParameters( frameworkBridge.parameters );
             
             const root:DisplayObject = frameworkBridge.systemManager;
-            CONFIG::UNCAUGHT_ERROR_GLOBAL{
-                root.loaderInfo.uncaughtErrorEvents
-                    .addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, loaderInfoUncaughtErrorHandler,false,int.MAX_VALUE);
-            }
+            root.loaderInfo.uncaughtErrorEvents
+                .addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, loaderInfoUncaughtErrorHandler,false,int.MAX_VALUE);
             if( root is SystemManager ){
                 var sm:SystemManager = root as SystemManager;
                 var preloadedRSLs:Dictionary = sm.preloadedRSLs;
@@ -341,10 +337,8 @@ package yuis.framework
                     CONFIG::DEBUG{
                         debug(this,"preloadedRSLs:"+loaderInfo.url);
                     }
-                    CONFIG::UNCAUGHT_ERROR_GLOBAL{
-                        loaderInfo.loader.uncaughtErrorEvents
-                            .addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, loaderInfoUncaughtErrorHandler,false,int.MAX_VALUE);
-                    }
+                    loaderInfo.loader.uncaughtErrorEvents
+                        .addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, loaderInfoUncaughtErrorHandler,false,int.MAX_VALUE);
                 }
             }
         }

@@ -24,7 +24,6 @@ package yuis.customizer
 {
     import flash.events.Event;
     import flash.events.IEventDispatcher;
-    import flash.utils.Dictionary;
     
     import mx.core.UIComponent;
     import mx.core.UIComponentDescriptor;
@@ -33,7 +32,6 @@ package yuis.customizer
     import yuis.core.event.MessageEvent;
     import yuis.core.event.NotificationEvent;
     import yuis.core.reflection.FunctionRef;
-    import yuis.core.reflection.ParameterRef;
     import yuis.util.UIComponentUtil;
     
     [ExcludeClass]
@@ -44,181 +42,73 @@ package yuis.customizer
         private static const FUNCTION_OWNER:String = "$owner";
         private static const FUNCTION_PROTO:String = "$proto";
 
-        protected function getEventName(functionRef:FunctionRef,componentName:String):String {
+        private final function getEventName(functionRef:FunctionRef,componentName:String):String {
             return Yuis.namingConvention.getEventName(functionRef.name,functionRef.uri,componentName);
         }
 
-        protected function getEnhancedEventName(viewName:String,eventName:String,listener:Object):String {
+        private final function getEnhancedEventName(viewName:String,eventName:String,listener:Object):String {
             var listenerClassName:String = getCanonicalName(listener);
             return viewName + ENHANCED_PREFIX + listenerClassName + ENHANCED_SEPARETOR + eventName;
         }
 
-        protected function addEventListener(component:IEventDispatcher,eventName:String,handler:Function,priority:int):void {
+        private final function addEventListener(component:IEventDispatcher,eventName:String,handler:Function,priority:int):void {
             component.addEventListener(eventName,handler,false,priority,true);
         }
 
-        protected function storeEnhancedEventHandler(component:UIComponent,enhancedEventName:String,handler:Function):void {
+        private final function storeEnhancedEventHandler(component:UIComponent,enhancedEventName:String,handler:Function):void {
             var descriptor:UIComponentDescriptor = UIComponentUtil.getDescriptor(component);
             descriptor.events[enhancedEventName] = handler;
         }
 
-        protected function removeEnhancedEventHandler(component:UIComponent,enhancedEventName:String):void {
+        private final function removeEnhancedEventHandler(component:UIComponent,enhancedEventName:String):void {
             if(component.descriptor.events != null) {
                 component.descriptor.events[enhancedEventName] = null;
                 delete component.descriptor.events[enhancedEventName];
             }
         }
 
-        protected function getEnhancedEventHandler(component:UIComponent,eventName:String):Function {
+        private final function getEnhancedEventHandler(component:UIComponent,eventName:String):Function {
             var descriptor:UIComponentDescriptor = UIComponentUtil.getDescriptor(component);
             return descriptor.events[eventName];
         }
 
-        protected function createEnhancedEventHandler(owner:IEventDispatcher,handler:Function):Function {
-CONFIG::UNCAUGHT_ERROR_EVENT {
+        private final function createEnhancedObjectHandler(owner:IEventDispatcher,handler:Function):Function {
             const func_:Object = 
                 function(event:Event):void {
                     var callee:Object = arguments.callee;
-                    try {
-                        var proto:Function = callee.properties[FUNCTION_PROTO] as Function;
-                        if(proto != null) {
-                            proto.apply(null,[event]);
-                        } else {
-                            throw new Error("EnhancedEventHandler doesn't have proto Handler");
-                        }
-                    } catch(e:Error) {
-                        CONFIG::DEBUG {
-                            debug(this,e.getStackTrace());
-                        }
-                        var owner:Object = callee.properties[FUNCTION_OWNER];
-                        if(owner is IEventDispatcher) {
-                            (owner as IEventDispatcher).dispatchEvent(RuntimeErrorEvent.createEvent(e));
-                        } else {
-                            throw e;
-                        }
-                    }
-                };
-}
-CONFIG::UNCAUGHT_ERROR_GLOBAL {
-            const func_:Object = 
-                function(event:Event):void {
-                    var callee:Object = arguments.callee;
-                    var proto:Function = callee.properties[FUNCTION_PROTO] as Function;
+                    var proto:Function = callee[FUNCTION_PROTO] as Function;
                     if(proto != null) {
-                        proto.apply(null,[event]);
+                        if( event is MessageEvent ){
+                            proto.apply(null,[(event as MessageEvent).data]);
+                        } else if( event is NotificationEvent ){
+                            proto.apply(null,[(event as NotificationEvent).data]);
+                        } else {
+                            proto.apply(null,[event]);
+                        }
                     } else {
                         throw new Error("EnhancedEventHandler doesn't have proto Handler");
                     }
                 };
-}               
-            const properties:Dictionary = new Dictionary(true);
-            properties[FUNCTION_OWNER] = owner;
-            properties[FUNCTION_PROTO] = handler;
-            func_.properties = properties;
-            return func_ as Function;
-        }
-
-        protected function createEnhancedObjectHandler(owner:IEventDispatcher,handler:Function):Function {
-CONFIG::UNCAUGHT_ERROR_EVENT {
-            const func_:Object = 
-                function(event:Event):void {
-                    var callee:Object = arguments.callee;
-                    try {
-                        var proto:Function = callee.properties[FUNCTION_PROTO] as Function;
-                        if(proto != null) {
-                            if( event is MessageEvent ){
-                                proto.apply(null,[(event as MessageEvent).data]);
-                            } else if( event is NotificationEvent ){
-                                proto.apply(null,[(event as NotificationEvent).data]);
-                            } else {
-                                proto.apply(null,[event]);
-                            }
-                        } else {
-                            throw new Error("EnhancedEventHandler doesn't have proto Handler");
-                        }
-                    } catch(e:Error) {
-                        CONFIG::DEBUG {
-                            debug(this,e.getStackTrace());
-                        }
-                            var owner:Object = callee.properties[FUNCTION_OWNER];
-                        if(owner is IEventDispatcher) {
-                            (owner as IEventDispatcher).dispatchEvent(RuntimeErrorEvent.createEvent(e));
-                        } else {
-                            throw e;
-                        }
-                    }
-                };
-}
-CONFIG::UNCAUGHT_ERROR_GLOBAL {
-                const func_:Object = 
-                    function(event:Event):void {
-                        var callee:Object = arguments.callee;
-                        var proto:Function = callee.properties[FUNCTION_PROTO] as Function;
-                        if(proto != null) {
-                            if( event is MessageEvent ){
-                                proto.apply(null,[(event as MessageEvent).data]);
-                            } else if( event is NotificationEvent ){
-                                proto.apply(null,[(event as NotificationEvent).data]);
-                            } else {
-                                proto.apply(null,[event]);
-                            }
-                        } else {
-                            throw new Error("EnhancedEventHandler doesn't have proto Handler");
-                        }
-                    };
-}               
-            const properties:Dictionary = new Dictionary(true);
-            properties[FUNCTION_OWNER] = owner;
-            properties[FUNCTION_PROTO] = handler;
-            func_.properties = properties;
+            func_[FUNCTION_PROTO] = handler;
             return func_ as Function;
         }
         
-        protected function createEnhancedEventNoneHandler(owner:IEventDispatcher,handler:Function):Function {
-CONFIG::UNCAUGHT_ERROR_EVENT {
+        private final function createEnhancedEventNoneHandler(owner:IEventDispatcher,handler:Function):Function {
             const func_:Object =
                 function(event:Event):void {
                     var callee:Object = arguments.callee;
-                    try {
-                        var proto:Function = callee.properties[FUNCTION_PROTO] as Function;
-                        if(proto != null) {
-                            proto.apply(null);
-                        } else {
-                            throw new Error("EnhancedEventHandler doesn't have proto Handler");
-                        }
-                    } catch(e:Error) {
-                        CONFIG::DEBUG {
-                            debug(this,e.getStackTrace());
-                        }
-                        var owner:Object = callee.properties[FUNCTION_OWNER];
-                        if(owner is IEventDispatcher) {
-                            (owner as IEventDispatcher).dispatchEvent(RuntimeErrorEvent.createEvent(e));
-                        } else {
-                            throw e;
-                        }
-                    }
-                };
-}
-CONFIG::UNCAUGHT_ERROR_GLOBAL {
-            const func_:Object =
-                function(event:Event):void {
-                    var callee:Object = arguments.callee;
-                    var proto:Function = callee.properties[FUNCTION_PROTO] as Function;
+                    var proto:Function = callee[FUNCTION_PROTO] as Function;
                     if(proto != null) {
                         proto.apply(null);
                     } else {
                         throw new Error("EnhancedEventHandler doesn't have proto Handler");
                     }
                 };
-}
-            const properties:Dictionary = new Dictionary(true);
-            properties[FUNCTION_OWNER] = owner;
-            properties[FUNCTION_PROTO] = handler;
-            func_.properties = properties;
+            func_[FUNCTION_PROTO] = handler;
             return func_ as Function;
         }
 
-        protected function doCustomizingByComponent(view:UIComponent,componentName:String,component:IEventDispatcher,listener:Object,functionRefs:Vector.<FunctionRef>,priority:int):void {
+        protected final function doCustomizingByComponent(view:UIComponent,componentName:String,component:IEventDispatcher,listener:Object,functionRefs:Vector.<FunctionRef>,priority:int):void {
             var eventName:String;
             var enhancedEventName:String;
             var enhancedFunction:Function;
@@ -233,12 +123,7 @@ CONFIG::UNCAUGHT_ERROR_GLOBAL {
                 }
 
                 if(functionRef.parameters.length > 0) {
-                    var param:ParameterRef = functionRef.parameters[0] as ParameterRef;
-                    if( param.isEvent ){
-                        enhancedFunction = createEnhancedEventHandler(view,functionRef.getFunction(listener));
-                    } else {
-                        enhancedFunction = createEnhancedObjectHandler(view,functionRef.getFunction(listener));
-                    }
+                    enhancedFunction = createEnhancedObjectHandler(view,functionRef.getFunction(listener));
                 } else {
                     enhancedFunction = createEnhancedEventNoneHandler(view,functionRef.getFunction(listener));
                 }
@@ -250,7 +135,7 @@ CONFIG::UNCAUGHT_ERROR_GLOBAL {
             }
         }
 
-        protected function doUnCustomizingByComponent(view:UIComponent,componentName:String,component:IEventDispatcher,listener:Object,functionRefs:Vector.<FunctionRef>):void {
+        protected final function doUnCustomizingByComponent(view:UIComponent,componentName:String,component:IEventDispatcher,listener:Object,functionRefs:Vector.<FunctionRef>):void {
             var eventName:String;
             var enhancedEventName:String;
             var enhancedFunction:Function;

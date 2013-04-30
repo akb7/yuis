@@ -33,9 +33,7 @@ package yuis.framework
 	import yuis.customizer.IElementCustomizer;
 	import yuis.event.RuntimeErrorEvent;
 
-    CONFIG::UNCAUGHT_ERROR_GLOBAL{
-        import flash.events.UncaughtErrorEvent;
-    }
+    import flash.events.UncaughtErrorEvent;
 
     use namespace yuis_internal;
     
@@ -136,14 +134,12 @@ package yuis.framework
         protected function doUnregisterComponent(component:DisplayObject):void{
         }
         
-        CONFIG::UNCAUGHT_ERROR_GLOBAL{
-            yuis_internal function loaderInfoUncaughtErrorHandler(event:UncaughtErrorEvent):void
-            {
-                const frameworkBridge:FrameworkBridge = Yuis.public::frameworkBridge as FrameworkBridge;
-                const runtimeErrorEvent:RuntimeErrorEvent = RuntimeErrorEvent.createEvent(event.error);
-                frameworkBridge.application.dispatchEvent(runtimeErrorEvent);
-                event.preventDefault();
-            }
+        yuis_internal function loaderInfoUncaughtErrorHandler(event:UncaughtErrorEvent):void
+        {
+            const frameworkBridge:FrameworkBridge = Yuis.public::frameworkBridge as FrameworkBridge;
+            const runtimeErrorEvent:RuntimeErrorEvent = RuntimeErrorEvent.createEvent(event.error);
+            frameworkBridge.application.dispatchEvent(runtimeErrorEvent);
+            event.preventDefault();
         }
         
         /**

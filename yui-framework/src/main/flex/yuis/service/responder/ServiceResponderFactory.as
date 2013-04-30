@@ -53,12 +53,7 @@ package yuis.service.responder
             if( resultFuncDef.parameters.length <= 0 ){
                 responderClassRef = noneResponderClassRef;
             } else {
-                var parameter:ParameterRef = resultFuncDef.parameters[0] as ParameterRef;
-                if( parameter.isEvent ){
-                    responderClassRef = eventResoponderClassRef;
-                } else {
-                    responderClassRef = objectResponderClassRef;
-                }
+                responderClassRef = objectResponderClassRef;
             }
             if( faultFuncDef == null){
                 rpcResponder = responderClassRef.newInstance(resultFuncDef.getFunction(responder),null,true) as IServiceResponder;

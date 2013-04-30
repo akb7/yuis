@@ -64,12 +64,7 @@ package yuis.ds {
             if( resultFuncDef.parameters.length <= 0 ){
                 responderClass = yuis_internal::RpcNoneResponderClass;
             } else {
-                var parameter:ParameterRef = resultFuncDef.parameters[0] as ParameterRef;
-                if( parameter.isEvent ){
-                    responderClass = yuis_internal::RpcEventResponderClass;
-                } else {
-                    responderClass = yuis_internal::RpcObjectResponderClass;
-                }
+                responderClass = yuis_internal::RpcObjectResponderClass;
             }
             if( faultFuncDef == null){
                 result = new responderClass(resultFuncDef.getFunction(responder),null);

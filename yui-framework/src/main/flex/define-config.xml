@@ -12,15 +12,5 @@
 <value>false</value>
 </define>
 
-<define>
-<name>CONFIG::UNCAUGHT_ERROR_GLOBAL</name>
-<value>true</value>
-</define>
-
-<define>
-<name>CONFIG::UNCAUGHT_ERROR_EVENT</name>
-<value>false</value>
-</define>
-
 </compiler>
 </flex-config>
