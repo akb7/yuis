@@ -43,37 +43,37 @@ package yuis.customizer
         private static const FUNCTION_OWNER:String = "$owner";
         private static const FUNCTION_PROTO:String = "$proto";
 
-        protected function getEventName(functionRef:FunctionRef,componentName:String):String {
+        private final function getEventName(functionRef:FunctionRef,componentName:String):String {
             return Yuis.namingConvention.getEventName(functionRef.name,functionRef.uri,componentName);
         }
 
-        protected function getEnhancedEventName(viewName:String,eventName:String,listener:Object):String {
+        private final function getEnhancedEventName(viewName:String,eventName:String,listener:Object):String {
             var listenerClassName:String = getCanonicalName(listener);
             return viewName + ENHANCED_PREFIX + listenerClassName + ENHANCED_SEPARETOR + eventName;
         }
 
-        protected function addEventListener(component:IEventDispatcher,eventName:String,handler:Function,priority:int):void {
+        private final function addEventListener(component:IEventDispatcher,eventName:String,handler:Function,priority:int):void {
             component.addEventListener(eventName,handler,false,priority,true);
         }
 
-        protected function storeEnhancedEventHandler(component:UIComponent,enhancedEventName:String,handler:Function):void {
+        private final function storeEnhancedEventHandler(component:UIComponent,enhancedEventName:String,handler:Function):void {
             var descriptor:UIComponentDescriptor = UIComponentUtil.getDescriptor(component);
             descriptor.events[enhancedEventName] = handler;
         }
 
-        protected function removeEnhancedEventHandler(component:UIComponent,enhancedEventName:String):void {
+        private final function removeEnhancedEventHandler(component:UIComponent,enhancedEventName:String):void {
             if(component.descriptor.events != null) {
                 component.descriptor.events[enhancedEventName] = null;
                 delete component.descriptor.events[enhancedEventName];
             }
         }
 
-        protected function getEnhancedEventHandler(component:UIComponent,eventName:String):Function {
+        private final function getEnhancedEventHandler(component:UIComponent,eventName:String):Function {
             var descriptor:UIComponentDescriptor = UIComponentUtil.getDescriptor(component);
             return descriptor.events[eventName];
         }
 
-        protected final function createEnhancedEventHandler(owner:IEventDispatcher,handler:Function):Function {
+        private final function createEnhancedEventHandler(owner:IEventDispatcher,handler:Function):Function {
             const func_:Object = 
                 function(event:Event):void {
                     var callee:Object = arguments.callee;
@@ -88,7 +88,7 @@ package yuis.customizer
             return func_ as Function;
         }
 
-        protected final function createEnhancedObjectHandler(owner:IEventDispatcher,handler:Function):Function {
+        private final function createEnhancedObjectHandler(owner:IEventDispatcher,handler:Function):Function {
             const func_:Object = 
                 function(event:Event):void {
                     var callee:Object = arguments.callee;
@@ -109,7 +109,7 @@ package yuis.customizer
             return func_ as Function;
         }
         
-        protected final function createEnhancedEventNoneHandler(owner:IEventDispatcher,handler:Function):Function {
+        private final function createEnhancedEventNoneHandler(owner:IEventDispatcher,handler:Function):Function {
             const func_:Object =
                 function(event:Event):void {
                     var callee:Object = arguments.callee;
