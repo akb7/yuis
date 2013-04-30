@@ -41,9 +41,7 @@
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/textLayout_rb.swc" useDefaultLinkType="false"/>
         </excludedEntries>
       </libraryPathEntry>
-      <libraryPathEntry kind="3" linkType="2" path="/yui-core/bin/yui-core.swc" useDefaultLinkType="true"/>
-      <libraryPathEntry kind="3" linkType="2" path="/yui-ds/target/swc/yui-ds.swc" useDefaultLinkType="true"/>
-      <libraryPathEntry kind="3" linkType="2" path="/yui-framework/bin/yui-framework.swc" useDefaultLinkType="true"/>
+      <libraryPathEntry kind="1" linkType="1" path="libs"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
