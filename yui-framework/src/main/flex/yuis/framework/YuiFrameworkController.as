@@ -277,7 +277,7 @@ package yuis.framework
             systemManagerMonitoringStop(root);
             customizersInitialize();
             componentMonitoringStart(root);
-            callLater( processApplicationStart );   
+            processApplicationStart();   
         }
         
         private function systemManager_applicationStartRequestHandler( event:YuiFrameworkEvent ):void{
@@ -286,7 +286,7 @@ package yuis.framework
             }  
             var root:ISystemManager = event.target as ISystemManager;
             root.removeEventListener(YuiFrameworkEvent.APPLICATION_START_REQUEST,systemManager_applicationStartRequestHandler);  
-			callLater(doApplicationStart);
+			doApplicationStart();
         }
         
         private function systemManager_addedToStageHandler( event:Event ):void{

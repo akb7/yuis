@@ -63,8 +63,15 @@ package yuis.framework
         {
             super();
             _setting = new YuiFrameworkSettings();
+            
+            addEventListener(FlexEvent.APPLICATION_COMPLETE,on_applicationCompleteHandler);
         }
-
+        
+        protected function on_applicationCompleteHandler(event:FlexEvent):void
+        {
+            createRootView();
+        }
+        
         public final override function dispatchEvent(event:Event):Boolean{
             var result:Boolean = super.dispatchEvent(event);
             if( event.isDefaultPrevented()){
@@ -86,16 +93,7 @@ package yuis.framework
         }
         
         protected final override function commitProperties():void{
-            if( _invalidateRootView ){
-                _invalidateRootView = false;
-                createRootView();
-            }
             super.commitProperties();
-        }
-        
-        protected final function requestApplicationStart():void{
-            _invalidateRootView = true;
-            invalidateProperties();
         }
         
         private final function createRootView():void{
@@ -120,7 +118,7 @@ package yuis.framework
             CONFIG::DEBUG{
                 debug(this,"RootView Created.");
             }
-            callLater(doDispatchApplicationStartRequest);
+            doDispatchApplicationStartRequest();
         }
         
         private final function doDispatchApplicationStartRequest():void{
