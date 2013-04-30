@@ -35,7 +35,7 @@ package yuis.core
             return _parameters[ parameterName ];
         }
 
-        public static function get root():DisplayObject{
+        public static function get application():DisplayObject{
             return _root;
         }
         
@@ -51,7 +51,7 @@ package yuis.core
             _parameters = value;
         }
         
-        yuis_internal static function setRoot(value:DisplayObject):void{
+        yuis_internal static function setApplication(value:DisplayObject):void{
             _root = value;
         }
 

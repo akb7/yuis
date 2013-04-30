@@ -2,19 +2,19 @@ package examples.yuis.helloworld.action
 {
     import flash.utils.setTimeout;
     
-    import examples.yuis.helloworld.helper.HelloWorldHelper;
+    import examples.yuis.helloworld.helper.HomeHelper;
     
     import yuis.core.ns.yuis_handler;
 
     /**
      * 
      */
-    public class HelloWorldAction {
+    public class HomeAction {
 
         /**
          * 
          */
-        public var helper:HelloWorldHelper;
+        public var helper:HomeHelper;
         
         /**
          * 

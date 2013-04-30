@@ -36,7 +36,7 @@ package examples.yuis.helloworld.action
         /**
          * 
          */
-        yuis_handler function closeButton_click():void {
+        yuis_handler function titleWindow_close():void {
             trace(1);
             helper.hidePopup();
         }

@@ -5,11 +5,10 @@
     <s:PopUpAnchor id="popUp" 
                    left="0" bottom="0" 
                    popUpPosition="below">
-        <s:BorderContainer>
+        <s:TitleWindow id="titleWindow">
             <s:VGroup>
                 <s:TextInput id="textInput"/>
-                <s:Button id="closeButton"/>
             </s:VGroup>
-        </s:BorderContainer>
+        </s:TitleWindow>
     </s:PopUpAnchor>
 </s:VGroup>

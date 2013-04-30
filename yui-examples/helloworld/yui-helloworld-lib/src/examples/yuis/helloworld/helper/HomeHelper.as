@@ -1,6 +1,6 @@
 package examples.yuis.helloworld.helper
 {
-    import examples.yuis.helloworld.view.HelloWorldView;
+    import examples.yuis.helloworld.view.HomeView;
     import examples.yuis.helloworld.view.StateAView;
     import examples.yuis.helloworld.view.StateBView;
     
@@ -9,12 +9,12 @@ package examples.yuis.helloworld.helper
     /**
      * 
      */
-    public class HelloWorldHelper
+    public class HomeHelper
     {
         /**
          * 
          */
-        public var view:HelloWorldView;
+        public var view:HomeView;
         
         /**
          * 

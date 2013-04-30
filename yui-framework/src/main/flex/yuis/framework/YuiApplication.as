@@ -25,12 +25,15 @@ package yuis.framework
     import flash.events.Event;
     
     import mx.core.UIComponent;
+    import mx.events.FlexEvent;
+    import mx.managers.LayoutManager;
     
     import spark.components.Application;
     
     import yuis.core.ns.yuis_internal;
     import yuis.error.YuiFrameworkError;
     import yuis.event.YuiFrameworkEvent;
+    import yuis.logging.debug;
     
     use namespace yuis_internal;
 
@@ -49,6 +52,8 @@ package yuis.framework
         }
 
         private var _rootView:UIComponent;
+        
+        private var _invalidateRootView:Boolean;
 
         public final function get rootView():UIComponent{
             return _rootView;
@@ -63,7 +68,7 @@ package yuis.framework
         public final override function dispatchEvent(event:Event):Boolean{
             var result:Boolean = super.dispatchEvent(event);
             if( event.isDefaultPrevented()){
-                
+                //nothing
             } else {
                 if( !(event.type in YuiApplicationConsts.UNRECOMMEND_EVENT_MAP)){
                     if( result ){
@@ -78,24 +83,47 @@ package yuis.framework
         
         protected final override function createChildren():void{
             super.createChildren();
-            
-            createRootView();
         }
-
-        protected function createRootView():void{
+        
+        protected final override function commitProperties():void{
+            if( _invalidateRootView ){
+                _invalidateRootView = false;
+                createRootView();
+            }
+            super.commitProperties();
+        }
+        
+        protected final function requestApplicationStart():void{
+            _invalidateRootView = true;
+            invalidateProperties();
+        }
+        
+        private final function createRootView():void{
+            CONFIG::DEBUG{
+                debug(this,"RootView Creating...");
+            }
             var viewClass:Class = getStyle(ROOT_VIEW_CLASS) as Class;
-
             if( viewClass == null ){
-                throw new YuiFrameworkError("rootViewClass style is needed.");
+                throw new YuiFrameworkError("No setting rootViewClass style.");
             } else {
                 _rootView = new viewClass();
                 _rootView.name = ROOT_VIEW;
                 _rootView.setVisible(false,true);
+                LayoutManager.getInstance().addEventListener(FlexEvent.UPDATE_COMPLETE,rootView_updateCompleteHandler);
                 addElement(_rootView);
             }
         }
-
-        protected final function requestApplicationStart():void{
+        
+        private final function rootView_updateCompleteHandler(event:FlexEvent):void
+        {
+            LayoutManager.getInstance().removeEventListener(FlexEvent.UPDATE_COMPLETE,rootView_updateCompleteHandler);
+            CONFIG::DEBUG{
+                debug(this,"RootView Created.");
+            }
+            callLater(doDispatchApplicationStartRequest);
+        }
+        
+        private final function doDispatchApplicationStartRequest():void{
             systemManager.dispatchEvent(new YuiFrameworkEvent(YuiFrameworkEvent.yuis_internal::APPLICATION_START_REQUEST));
         }
     }
