@@ -44,11 +44,24 @@
         </excludedEntries>
       </libraryPathEntry>
       <libraryPathEntry kind="1" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/{locale}"/>
-      <libraryPathEntry kind="3" linkType="1" path="rsls/yuis-1.0.0-beta2-snapshot.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="rsls/yuis-rb-1.0.0-beta2-snapshot.swc" useDefaultLinkType="false"/>
       <libraryPathEntry applicationDomain="default" forceLoad="false" kind="3" linkType="4" path="/yui-helloworld-lib/bin/yui-helloworld-lib.swc" useDefaultLinkType="true">
         <crossDomainRsls>
           <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="yui-helloworld-lib.swf"/>
+        </crossDomainRsls>
+      </libraryPathEntry>
+      <libraryPathEntry applicationDomain="default" forceLoad="false" kind="3" linkType="4" path="/yui-core/bin/yui-core.swc" useDefaultLinkType="true">
+        <crossDomainRsls>
+          <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="yui-core.swf"/>
+        </crossDomainRsls>
+      </libraryPathEntry>
+      <libraryPathEntry applicationDomain="default" forceLoad="false" kind="3" linkType="4" path="/yui-framework/bin/yui-framework.swc" useDefaultLinkType="true">
+        <crossDomainRsls>
+          <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="yui-framework.swf"/>
+        </crossDomainRsls>
+      </libraryPathEntry>
+      <libraryPathEntry applicationDomain="default" forceLoad="false" kind="3" linkType="4" path="rsls/yuis-rb-1.0.0-beta2-snapshot.swc" useDefaultLinkType="true">
+        <crossDomainRsls>
+          <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="yuis-rb-1.0.0-beta2-snapshot.swf"/>
         </crossDomainRsls>
       </libraryPathEntry>
     </libraryPath>
