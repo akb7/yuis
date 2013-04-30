@@ -6,7 +6,4 @@
     <target name="flex4x">
         <ant antfile="build-flex4x.xml"/>
     </target>
-    <target name="rb">
-        <ant antfile="build-rb.xml"/>
-    </target>
 </project>

@@ -32,7 +32,6 @@ package yuis.framework
 	import yuis.core.ns.yuis_internal;
 	import yuis.customizer.IElementCustomizer;
 	import yuis.event.RuntimeErrorEvent;
-	import yuis.event.YuiFrameworkEvent;
 
     CONFIG::UNCAUGHT_ERROR_GLOBAL{
         import flash.events.UncaughtErrorEvent;
@@ -59,20 +58,6 @@ package yuis.framework
         
         /**
          * 
-         */
-        protected var _currentRoot:DisplayObject;
-        
-        /**
-         * 
-         * @return 
-         * 
-         */
-        public override function get currentRoot():DisplayObject{
-            return _currentRoot;
-        }
-        
-        /**
-         * 
          * 
          */
         public function YuiFrameworkControllerBase(){
@@ -89,10 +74,6 @@ package yuis.framework
                 _debug("ExternalRootAdd",root);
             }
             InstanceCache.addRoot(root);
-            if( root in _rootDisplayObjectMap ){
-                applicationMonitoringStop(root);
-            }
-            _rootDisplayObjectMap[ root ] = true;
             applicationMonitoringStart(root);
             super.addRootDisplayObject(root);
         }
@@ -107,11 +88,7 @@ package yuis.framework
                 _debug("ExternalRootRemove",root);
             }
             super.removeRootDisplayObject(root);
-            if( root in _rootDisplayObjectMap ){
-                applicationMonitoringStop(root);
-            }
-            _rootDisplayObjectMap[ root ] = true;
-            delete _rootDisplayObjectMap[ root ];
+            applicationMonitoringStop(root);
             
             if( _currentRoot === root ){
                 _currentRoot = null;
@@ -164,9 +141,8 @@ package yuis.framework
             {
                 const frameworkBridge:FrameworkBridge = Yuis.public::frameworkBridge as FrameworkBridge;
                 const runtimeErrorEvent:RuntimeErrorEvent = RuntimeErrorEvent.createEvent(event.error);
-                if (!frameworkBridge.application.dispatchEvent(runtimeErrorEvent)){
-                    event.preventDefault();
-                }
+                frameworkBridge.application.dispatchEvent(runtimeErrorEvent);
+                event.preventDefault();
             }
         }
         

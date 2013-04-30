@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
   <includeClasses>
-    <classEntry path="examples.yuis.helloworld.view.HelloWorldView"/>
-    <classEntry path="examples.yuis.helloworld.helper.HelloWorldHelper"/>
-    <classEntry path="examples.yuis.helloworld.action.HelloWorldAction"/>
+    <classEntry path="examples.yuis.helloworld.view.HomeView"/>
+    <classEntry path="examples.yuis.helloworld.helper.HomeHelper"/>
+    <classEntry path="examples.yuis.helloworld.action.HomeAction"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

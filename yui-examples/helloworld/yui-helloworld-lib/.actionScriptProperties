@@ -4,13 +4,6 @@
     <compilerSourcePath/>
     <libraryPath defaultLinkType="0">
       <libraryPathEntry kind="4" path="">
-        <modifiedEntries>
-          <libraryPathEntry applicationDomain="default" forceLoad="false" index="8" kind="3" linkType="4" path="${PROJECT_FRAMEWORKS}/libs/osmf.swc" useDefaultLinkType="true">
-            <crossDomainRsls>
-              <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="osmf_4.9.0.1425567.swf"/>
-            </crossDomainRsls>
-          </libraryPathEntry>
-        </modifiedEntries>
         <excludedEntries>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/playerglobal_rb.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/rpc_rb.swc" useDefaultLinkType="false"/>
@@ -48,9 +41,7 @@
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/textLayout_rb.swc" useDefaultLinkType="false"/>
         </excludedEntries>
       </libraryPathEntry>
-      <libraryPathEntry kind="3" linkType="2" path="/yui-core/bin/yui-core.swc" useDefaultLinkType="true"/>
-      <libraryPathEntry kind="3" linkType="2" path="/yui-ds/target/swc/yui-ds.swc" useDefaultLinkType="true"/>
-      <libraryPathEntry kind="3" linkType="2" path="/yui-framework/bin/yui-framework.swc" useDefaultLinkType="true"/>
+      <libraryPathEntry kind="1" linkType="1" path="libs"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>

@@ -24,9 +24,6 @@ package yuis.framework
 {
     import flash.display.DisplayObject;
     import flash.display.DisplayObjectContainer;
-    import flash.utils.Dictionary;
-    
-    import __AS3__.vec.Vector;
     
     import yuis.convention.NamingConvention;
     import yuis.core.ns.yuis_internal;
@@ -59,26 +56,12 @@ package yuis.framework
         /**
          * 
          */
-        protected var _rootDisplayObjectMap:Dictionary;
-        
-        /**
-         * 
-         */
         protected var _customizers:Vector.<IElementCustomizer>;
         
         /**
          * 
          */
-        protected var _rootDisplayObjects:Vector.<DisplayObject>;
-        
-        /**
-         * 
-         * @return 
-         * 
-         */
-        public function get rootDisplayObjects():Vector.<DisplayObject>{
-            return _rootDisplayObjects;
-        }
+        protected var _currentRoot:DisplayObject;
         
         /**
          * 
@@ -86,7 +69,7 @@ package yuis.framework
          * 
          */
         public function get currentRoot():DisplayObject{
-            return null;
+            return _currentRoot;
         }
         
         /**
@@ -94,8 +77,6 @@ package yuis.framework
          * 
          */
         public function YuiFrameworkControllerCore(){
-            _rootDisplayObjects = new Vector.<DisplayObject>;
-            _rootDisplayObjectMap = new Dictionary(true);
         }
         
         /**
@@ -184,19 +165,14 @@ package yuis.framework
             CONFIG::DEBUG{
                 _debug("RootAdd",root);
             }
-            _rootDisplayObjects.push(root);
-            _rootDisplayObjectMap[ root ] = _rootDisplayObjects.length-1;
+            _currentRoot = root;
         }
         
         protected function unregisterRootDisplayObject(root:DisplayObject):void{
             CONFIG::DEBUG{
                 _debug("RootRemove",root);
             }
-            if( root in _rootDisplayObjectMap ){
-                var index:int = _rootDisplayObjectMap[ root ] as int;
-                delete _rootDisplayObjectMap[ root ];
-                _rootDisplayObjects.splice(index,1);
-            }
+            _currentRoot = null;
         }
         
         protected function getDefaultCustomizers():Vector.<IElementCustomizer>{

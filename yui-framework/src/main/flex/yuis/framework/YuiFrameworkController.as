@@ -103,15 +103,6 @@ package yuis.framework
             return _this;
         }
         
-        protected function set currentSystemManger(value:ISystemManager):void{  
-            CONFIG::DEBUG{
-                if( _currentRoot != value ){
-                    _debug("CurrentRoot",value);
-                }
-            }
-            _currentRoot = value as DisplayObject;
-        }
-        
         public function YuiFrameworkController(){
             super();
             if( _this == null ){
@@ -136,7 +127,6 @@ package yuis.framework
                 }
                 return;
             }
-            currentSystemManger = view.systemManager;
             //
             processViewRegister(view); 
             for each( var customizer_:IElementCustomizer in _customizers ){
@@ -168,7 +158,6 @@ package yuis.framework
             CONFIG::DEBUG{
                 _debug("ViewUncustomizing",view,view.owner);
             }
-            currentSystemManger = view.systemManager;
             var numCustomizers:int = customizers.length;
             for( var i:int = numCustomizers-1; i >= 0; i-- ){
                 viewCustomizer_ = customizers[i] as IViewCustomizer;
@@ -193,7 +182,7 @@ package yuis.framework
             var componentCustomizer_:IComponentCustomizer;
             var view:UIComponent = container as UIComponent;
             var component:UIComponent = child as UIComponent;
-            if( !view.initialized || !component.initialized){     
+            if( !component.initialized ){     
                 CONFIG::DEBUG{
                     _debug("ComponentCustomizeViewInitializeError",view,view.owner);       
                 }
@@ -202,7 +191,6 @@ package yuis.framework
             CONFIG::DEBUG{
                 _debug("ComponentCustomizing",child,container);
             }
-            currentSystemManger = view.systemManager;
             for each( var customizer_:IElementCustomizer in _customizers ){
                 componentCustomizer_ = customizer_ as IComponentCustomizer;
                 if( componentCustomizer_ != null ){
@@ -234,7 +222,6 @@ package yuis.framework
             CONFIG::DEBUG{
                 _debug("ComponentUncustomizing",child, container);
             }
-            currentSystemManger = view.systemManager;
             var numCustomizers:int = customizers.length;
             for( var i:int = numCustomizers-1; i >= 0; i-- ){
                 componentCustomizer_ = customizers[i] as IComponentCustomizer;
@@ -288,7 +275,9 @@ package yuis.framework
             const frameworkBridge:FrameworkBridge = Yuis.public::frameworkBridge as FrameworkBridge;
             const root:DisplayObject = frameworkBridge.systemManager;
             systemManagerMonitoringStop(root);
-            applicationInitialize();           
+            customizersInitialize();
+            componentMonitoringStart(root);
+            processApplicationStart();   
         }
         
         private function systemManager_applicationStartRequestHandler( event:YuiFrameworkEvent ):void{
@@ -297,7 +286,7 @@ package yuis.framework
             }  
             var root:ISystemManager = event.target as ISystemManager;
             root.removeEventListener(YuiFrameworkEvent.APPLICATION_START_REQUEST,systemManager_applicationStartRequestHandler);  
-			callLater(doApplicationStart);
+			doApplicationStart();
         }
         
         private function systemManager_addedToStageHandler( event:Event ):void{
@@ -323,43 +312,18 @@ package yuis.framework
             doRegisterComponent(event.target as DisplayObject);
         }
         
-        private function applicationInitialize():void{
-            
-            if( _customizers == null ){
-                _customizers = getDefaultCustomizers();
-            }
-            CONFIG::DEBUG{
-                _debug("ViewAssembleStart");
-            }
-            
-            var allView:Dictionary = ViewComponentRepository.allView;
-            for ( var viewName:String in allView ){
-                CONFIG::DEBUG{
-                    _debug("ViewAssembleing",viewName);
-                }
-                customizeView(ViewComponentRepository.getComponent(viewName));
-                CONFIG::DEBUG{
-                    _debug("ViewAssembled",viewName);
-                }
-            }
-            
-            CONFIG::DEBUG{
-                _debug("ViewAssembleEnd");
-            }
-            callLater( processApplicationStart );
-        }
-        
         private function processApplicationRegisteration(component:DisplayObjectContainer):void{
             CONFIG::DEBUG{
                 _debug("ApplicationRegistered",component.toString());
             }
             const frameworkBridge:FrameworkBridge = Yuis.public::frameworkBridge as FrameworkBridge;
-            var app:UIComponent = component as UIComponent;
+            const app:UIComponent = component as UIComponent;
             app.mouseEnabled = false;
-            app.setVisible(false,true);
+            app.mouseFocusEnabled = false;
+//            app.setVisible(false,true);
             frameworkBridge.application = app;
             
-            Environment.yuis_internal::setRoot( component );
+            Environment.yuis_internal::setApplication( app );
             Environment.yuis_internal::setParameters( frameworkBridge.parameters );
             
             const root:DisplayObject = frameworkBridge.systemManager;
@@ -388,55 +352,34 @@ package yuis.framework
         private function processApplicationStart():void{
             const frameworkBridge:FrameworkBridge = Yuis.public::frameworkBridge as FrameworkBridge;
             const app:UIComponent = frameworkBridge.application as UIComponent;
-            var event:YuiFrameworkEvent = new YuiFrameworkEvent(YuiFrameworkEvent.APPLICATION_START);
+            var event:YuiFrameworkEvent = new YuiFrameworkEvent(YuiFrameworkEvent.APPLICATION_START,false,true);
             app.dispatchEvent(event);
-            if( event.isDefaultPrevented() ){
-                CONFIG::DEBUG{
-                    _info("ApplicationStartPending");
-                }
-                app.systemManager.addEventListener(YuiFrameworkEvent.APPLICATION_START_REQUEST,systemManager_applicationStartRequestHandler);
-            } else {
-                CONFIG::DEBUG{
-                    _info("ApplicationStart");
-                }
-                doApplicationStart();
-                return;
+            CONFIG::DEBUG{
+                _info("ApplicationStartPending");
             }
+            app.systemManager.addEventListener(YuiFrameworkEvent.APPLICATION_START_REQUEST,systemManager_applicationStartRequestHandler);
         }
         
         private function doApplicationStart():void{
             const frameworkBridge:FrameworkBridge = Yuis.public::frameworkBridge as FrameworkBridge;
             const settings:YuiFrameworkSettings = Yuis.public::settings;
-            
-            const root:DisplayObject = frameworkBridge.systemManager;
-            const app:UIComponent = frameworkBridge.application as UIComponent;
+            //
             const rootView:DisplayObjectContainer = frameworkBridge.rootView as DisplayObjectContainer;
-                
-            app.setVisible(true,true);
-            app.mouseEnabled = false;
             if( rootView != null ){
                 if( rootView.hasEventListener(YuiFrameworkEvent.APPLICATION_START)){
                     rootView.dispatchEvent( new YuiFrameworkEvent(YuiFrameworkEvent.APPLICATION_START));
                 }
                 rootView.visible = true;
             }
-
-//            var allView:Dictionary = ViewComponentRepository.allView;
-//            var fevent:YuiFrameworkEvent;
-//            for each (var view:UIComponent in allView) 
-//            {
-//                if( view === rootView ){
-//                    continue;
-//                }
-//                if( view.hasEventListener(YuiFrameworkEvent.APPLICATION_START)){
-//                    fevent = new YuiFrameworkEvent(YuiFrameworkEvent.APPLICATION_START);
-//                    view.dispatchEvent( fevent );
-//                }
-//            }
             _isApplicationStarted = true;
-            
-            if( settings.isAutoMonitoring ){
-                componentMonitoringStart(root);
+            //
+            const root:DisplayObject = frameworkBridge.systemManager;
+            const app:UIComponent = frameworkBridge.application as UIComponent;
+//            app.setVisible(true,true);
+            app.mouseEnabled = true;
+            app.mouseFocusEnabled = true;
+            if( !settings.isAutoMonitoring ){
+                componentMonitoringStop(root);
             }
         }
 
@@ -465,8 +408,13 @@ package yuis.framework
 	            }
 			}
         }
-		
-		
+        
+        protected function customizersInitialize():void{
+            if( _customizers == null ){
+                _customizers = getDefaultCustomizers();
+            }
+        }
+        
 		protected override function getDefaultCustomizerClasses():Array{
 			const styleManager:IStyleManager2 = StyleManagerUtil.getStyleManager();
 			const customizersDef:CSSStyleDeclaration = styleManager.getStyleDeclaration(".customizers");
@@ -500,8 +448,6 @@ package yuis.framework
 		}
 		
 		protected override function doRegisterComponent( target:DisplayObject ):void{
-			const settings:YuiFrameworkSettings = Yuis.public::settings;
-			
 			var component:UIComponent = target as UIComponent;
 			if( component == null || !component.initialized ){
 				return;
@@ -509,15 +455,11 @@ package yuis.framework
 			if( isView(component) ){
 				customizeView(component);
 			} else {
-				if( settings.isAutoMonitoring ){
-					customizeComponent(getDocumentOf(component),component);
-				}
+				customizeComponent(getDocumentOf(component),component);
 			}
 		}
 		
 		protected override function doUnregisterComponent(target:DisplayObject):void{
-			const settings:YuiFrameworkSettings = Yuis.public::settings;
-			
 			var component:UIComponent = target as UIComponent;
 			if( component == null || !component.initialized ){
 				return;
@@ -525,9 +467,7 @@ package yuis.framework
 			if( isView(component)){
 				uncustomizeView( component as DisplayObjectContainer);
 			} else {
-				if( settings.isAutoMonitoring ){
-					uncustomizeComponent(getDocumentOf(component),component);
-				}
+				uncustomizeComponent(getDocumentOf(component),component);
 			}
 		}
 		

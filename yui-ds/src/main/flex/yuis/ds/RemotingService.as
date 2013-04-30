@@ -209,7 +209,7 @@ package yuis.ds {
 				channelSet.addChannel(channel);
 			}
 		}
-		
+
 		protected function internalInvoke(name:QName,args:Array):DsPendingCall{
 			if( !_isInitialzed ){
 				_isInitialzed = true;
@@ -229,13 +229,13 @@ package yuis.ds {
 			}
 			return result;
 		}
-        
-        protected function createPendingCall(message:IMessage):DsPendingCall
-        {
-            var result:DsPendingCall = new yuis_internal::pendingCallClass(message);
-            return result;
-        }
-        
+
+		protected function createPendingCall(message:IMessage):DsPendingCall
+		{
+			var result:DsPendingCall = new yuis_internal::pendingCallClass(message);
+			return result;
+		}
+
 		flash_proxy override function callProperty(name:*, ... args:Array):*{
 			return internalInvoke(name,args);
 		}

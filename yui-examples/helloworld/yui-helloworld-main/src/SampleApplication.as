@@ -1,25 +1,25 @@
 package
 {
+    import flash.utils.setInterval;
     import flash.utils.setTimeout;
     
-    import yuis.event.YuiFrameworkEvent;
+    import spark.components.Label;
+    
     import yuis.framework.YuiApplication;
     
     public class SampleApplication extends YuiApplication
     {
+        public var booting:Label;
+        
         public function SampleApplication()
         {
             super();
-            
-            this.addEventListener(YuiFrameworkEvent.APPLICATION_START,on_applicationStart);
         }
         
-        private function on_applicationStart(event:YuiFrameworkEvent):void{
-            event.preventDefault();
-            
-            setTimeout(requestApplicationStart,1000);
+        protected override function createRootView():void{
+            booting.text = "1秒後に起動します。";
+            setTimeout(super.createRootView,1000);
+//            super.createRootView();
         }
-        
-        
     }
 }
