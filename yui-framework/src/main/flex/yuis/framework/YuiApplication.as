@@ -96,7 +96,12 @@ package yuis.framework
             super.commitProperties();
         }
         
-        private final function createRootView():void{
+        protected function createRootView():void{
+            removeAllElements();
+            doCreateRootView();
+        }
+        
+        private final function doCreateRootView():void{
             CONFIG::DEBUG{
                 debug(this,"RootView Creating...");
             }
@@ -118,6 +123,7 @@ package yuis.framework
             CONFIG::DEBUG{
                 debug(this,"RootView Created.");
             }
+            _rootView.setVisible(true,true);
             doDispatchApplicationStartRequest();
         }
         

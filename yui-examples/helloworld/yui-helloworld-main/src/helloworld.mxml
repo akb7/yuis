@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SampleApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
                    xmlns="*"
-                   rootViewClass="examples.yuis.helloworld.view.HomeView"
+                   rootViewClass="examples.yuis.helloworld.view.HomeView" xmlns:s="library://ns.adobe.com/flex/spark"
                    >
+    <s:Label id="booting"/>
 </SampleApplication>

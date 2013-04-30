@@ -320,7 +320,7 @@ package yuis.framework
             const app:UIComponent = component as UIComponent;
             app.mouseEnabled = false;
             app.mouseFocusEnabled = false;
-            app.setVisible(false,true);
+//            app.setVisible(false,true);
             frameworkBridge.application = app;
             
             Environment.yuis_internal::setApplication( app );
@@ -375,7 +375,7 @@ package yuis.framework
             //
             const root:DisplayObject = frameworkBridge.systemManager;
             const app:UIComponent = frameworkBridge.application as UIComponent;
-            app.setVisible(true,true);
+//            app.setVisible(true,true);
             app.mouseEnabled = true;
             app.mouseFocusEnabled = true;
             if( !settings.isAutoMonitoring ){
