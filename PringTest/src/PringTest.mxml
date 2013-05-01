@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:s="library://ns.adobe.com/flex/spark"
+               xmlns:mx="library://ns.adobe.com/flex/mx"
+               minWidth="955" minHeight="600">
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.printing.FlexPrintJob;
+            import mx.printing.FlexPrintJobScaleType;
+            
+            var printJob:FlexPrintJob;
+            protected function button1_clickHandler(event:MouseEvent):void
+            {
+                printJob = new FlexPrintJob();
+                if(!printJob.start()) {
+                    
+                    return;
+                }
+                
+                // viewを1ページに入るように設定する。
+                printJob.addObject(this, FlexPrintJobScaleType.SHOW_ALL);
+                // 印刷を実行
+                printJob.send();
+            }
+            
+        ]]>
+    </fx:Script>
+    
+    <fx:Declarations>
+        <!-- 非ビジュアルエレメント (サービス、値オブジェクトなど) をここに配置 -->
+    </fx:Declarations>
+    <s:Button click="button1_clickHandler(event)"/>
+</s:Application>

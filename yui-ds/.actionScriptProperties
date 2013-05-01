@@ -4,8 +4,13 @@
     <compilerSourcePath>
       <compilerSourcePathEntry kind="1" linkType="1" path="src/main/resources"/>
     </compilerSourcePath>
-    <libraryPath defaultLinkType="0">
+    <libraryPath defaultLinkType="1">
       <libraryPathEntry kind="4" path="">
+        <modifiedEntries>
+          <libraryPathEntry kind="3" linkType="2" path="${PROJECT_FRAMEWORKS}/libs/core.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry index="1" kind="3" linkType="2" path="${PROJECT_FRAMEWORKS}/libs/framework.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry index="2" kind="3" linkType="2" path="${PROJECT_FRAMEWORKS}/libs/rpc.swc" useDefaultLinkType="false"/>
+        </modifiedEntries>
         <excludedEntries>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/playerglobal_rb.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="1" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/{locale}"/>
@@ -31,6 +36,7 @@
             </crossDomainRsls>
           </libraryPathEntry>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/experimental_rb.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/experimental.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/automation_rb.swc" useDefaultLinkType="false"/>
           <libraryPathEntry applicationDomain="default" forceLoad="false" index="6" kind="3" linkType="4" path="${PROJECT_FRAMEWORKS}/libs/sparkskins.swc" useDefaultLinkType="true">
             <crossDomainRsls>
@@ -47,6 +53,7 @@
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/rpc_rb.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/qtp.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/flash-integration_rb.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/apache.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/tool_air_rb.swc" useDefaultLinkType="false"/>
           <libraryPathEntry applicationDomain="default" forceLoad="false" index="1" kind="3" linkType="4" path="${PROJECT_FRAMEWORKS}/libs/textLayout.swc" useDefaultLinkType="true">
             <crossDomainRsls>
@@ -55,6 +62,7 @@
             </crossDomainRsls>
           </libraryPathEntry>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/advancedgrids_rb.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/asc-support.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/spark_rb.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/en_US/automation_agent_rb.swc" useDefaultLinkType="false"/>
           <libraryPathEntry index="3" kind="3" linkType="2" path="${PROJECT_FRAMEWORKS}/libs/spark_dmv.swc" useDefaultLinkType="false"/>
@@ -67,7 +75,7 @@
         </excludedEntries>
       </libraryPathEntry>
       <libraryPathEntry kind="3" linkType="2" path="/yui-core/bin/yui-core.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/yui-framework/bin/yui-framework.swc" useDefaultLinkType="true"/>
+      <libraryPathEntry kind="3" linkType="2" path="/yui-framework/bin/yui-framework.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
