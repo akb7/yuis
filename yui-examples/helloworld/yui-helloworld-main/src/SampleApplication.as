@@ -1,6 +1,5 @@
 package
 {
-    import flash.utils.setInterval;
     import flash.utils.setTimeout;
     
     import spark.components.Label;
