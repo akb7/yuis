@@ -233,7 +233,6 @@ package yuis.framework
         }        
         
         private function application_initCompleteHandler( event:Event ):void{
-            Logging.initialize();
             CONFIG::DEBUG_EVENT{
                 dump(this,event);
             }

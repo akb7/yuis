@@ -29,6 +29,10 @@ package yuis.cmd
 
         protected var _currentCommandIndex:int;
         
+        public function SequenceCommand(){
+            
+        }
+        
         protected final override function runAsync():void{
             _currentCommandIndex = 0;
             if( _commands.length > 0 ){

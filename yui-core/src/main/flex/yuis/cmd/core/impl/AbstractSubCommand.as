@@ -36,6 +36,9 @@ package yuis.cmd.core.impl
         
         public final function set parent( value:IComplexCommand ):void{
             _parent = value;
-        }  
+        }
+        
+        public function AbstractSubCommand(){
+        }
     }
 }

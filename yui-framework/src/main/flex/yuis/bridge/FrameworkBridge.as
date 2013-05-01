@@ -24,7 +24,6 @@ package yuis.bridge
 {
     import flash.display.DisplayObject;
     import flash.display.DisplayObjectContainer;
-    import flash.errors.IllegalOperationError;
     
     import mx.styles.CSSStyleDeclaration;
     import mx.styles.IStyleManager2;
@@ -77,6 +76,10 @@ package yuis.bridge
 
         public function get systemManager():DisplayObject{
             return _plugin.systemManager;
+        }
+        
+        public function FrameworkBridge(){
+            
         }
 
         public function isApplication(application:DisplayObject):Boolean{

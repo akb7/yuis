@@ -24,6 +24,9 @@ package yuis.ds.responder {
 
         public var faultFunction:Function;
 
+        public function AbstractRpcEventResponder(){
+        }
+        
         public function result(data:Object):void{
         }
 

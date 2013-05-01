@@ -26,9 +26,7 @@ package yuis.ds {
     import yuis.core.ns.yuis_internal;
     import yuis.core.reflection.ClassRef;
     import yuis.core.reflection.FunctionRef;
-    import yuis.core.reflection.ParameterRef;
     import yuis.ds.responder.RpcDefaultEventResponder;
-    import yuis.ds.responder.RpcEventResponder;
     import yuis.ds.responder.RpcNoneResponder;
     import yuis.ds.responder.RpcObjectResponder;
     import yuis.ds.responder.RpcResponderFactory;
@@ -36,7 +34,6 @@ package yuis.ds {
     import yuis.service.IPendingCall;
     import yuis.service.IService;
     import yuis.service.OperationCallBack;
-    import yuis.service.responder.IServiceResponder;
     import yuis.service.responder.ServiceResponderFactory;
 
     use namespace mx_internal;
@@ -95,9 +92,6 @@ package yuis.ds {
             if( responder is IResponder ){
                 _responderOwner = null;
                 _responder = responder as IResponder;
-            } else if( responder is IServiceResponder ){
-                _responderOwner = null;
-                _responder = new RpcEventResponder(responder.onResult,responder.onFault);
             } else {
                 _responderOwner = responder;
                 var service:IService = _operation.service as IService;

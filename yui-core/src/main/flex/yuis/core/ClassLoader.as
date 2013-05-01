@@ -35,17 +35,20 @@ package yuis.core
             try{
                 clazz = getDefinitionByName( name ) as Class;
             } catch( e:Error ){
+                trace(e,e.getStackTrace());
             }
             if ( clazz == null ){
                 try{
                     clazz = getClassByAlias( name );
                 } catch( e:Error ){
+                    trace(e,e.getStackTrace());
                 }
             }
             if ( clazz == null ){
                 try{
                     clazz = findClassByApplicationDomain( name, ad == null ? ApplicationDomain.currentDomain : ad );
                 } catch( e:Error ){
+                    trace(e,e.getStackTrace());
                 }
             }
             if( clazz == null){

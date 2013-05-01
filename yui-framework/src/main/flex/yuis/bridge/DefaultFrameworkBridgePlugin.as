@@ -27,7 +27,6 @@ package yuis.bridge
     
     import mx.core.IVisualElementContainer;
     import mx.core.UIComponent;
-    import mx.managers.ISystemManager;
     
     import spark.components.Application;
     import spark.components.Group;
@@ -69,6 +68,10 @@ package yuis.bridge
                  result = _application[ ROOT_VIEW ] as UIComponent;
             }
             return result;
+        }
+        
+        public function DefaultFrameworkBridgePlugin()
+        {
         }
 
         public function isApplication(component:DisplayObject):Boolean{

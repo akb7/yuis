@@ -18,7 +18,6 @@ package yuis.service.responder
     import yuis.core.error.NotFoundError;
     import yuis.core.reflection.ClassRef;
     import yuis.core.reflection.FunctionRef;
-    import yuis.core.reflection.ParameterRef;
     import yuis.service.IOperation;
     import yuis.ns.yuis_fault;
     import yuis.ns.yuis_result;
@@ -105,6 +104,5 @@ package yuis.service.responder
 
             return functionRef;
         }
-
     }
 }
